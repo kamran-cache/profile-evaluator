@@ -1,16 +1,20 @@
-import React from 'react'
-import Nationality from '../components/Nationality';
-import Visa from '../components/Visa';
+import React from "react";
+import Nationality from "../components/Nationality";
+import Visa from "../components/Visa";
+import ID from "../assets/IDCard2.jpg";
 
 const FormPage = () => {
   return (
     <>
-      <div className="flex w-full pt-8">
+      <div className="flex w-full pt-4">
         <div className="flex justify-center w-1/2">
           {/* Form component */}
           <div className="flex items-center justify-center px-12">
             <div className="mx-auto w-full max-w-[550px] bg-white">
               <form>
+                <div className="flex text-2xl font-semibold mb-4">
+                  Basic Details
+                </div>
                 <div className="-mx-3 flex flex-wrap">
                   <div className="w-full px-3 sm:w-1/3">
                     <div className="mb-5">
@@ -124,6 +128,24 @@ const FormPage = () => {
 
                   <div className="w-full px-3 sm:w-1/2">
                     <div className="mb-5">
+                      <label className="mb-3 block text-base font-medium text-[#07074D]">
+                        Marital Status
+                      </label>
+                      <select className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                        <option value="">-- select one --</option>
+                        <option value="single">Single</option>
+                        <option value="married">Married</option>
+                        <option value="separated">Separated</option>
+                        <option value="divorced">Divorced</option>
+                        <option value="widowed">Widowed</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="-mx-3 flex flex-wrap">
+                  <div className="w-full px-3 ">
+                    <div className="mb-5">
                       <label
                         htmlFor="lName"
                         className="mb-3 block text-base font-medium text-[#07074D]"
@@ -157,31 +179,6 @@ const FormPage = () => {
                     className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   />
                 </div>
-                <div className="-mx-3 flex flex-wrap">
-                <div className="w-full px-3 sm:w-1/2">
-                  <div className="mb-5">
-                    <label className="mb-3 block text-base font-medium text-[#07074D]">
-                      Current Visa Status
-                    </label>
-                    <Visa />
-                  </div>
-                </div>
-                <div className="w-full px-3 sm:w-1/2">
-                  <div className="mb-5">
-                    <label className="mb-3 block text-base font-medium text-[#07074D]">
-                    Marital Status
-                    </label>
-                    <select className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
-                      <option value="">-- select one --</option>
-                      <option value="single">Single</option>
-                      <option value="married">Married</option>
-                      <option value="separated">Separated</option>
-                      <option value="divorced">Divorced</option>
-                      <option value="widowed">Widowed</option>
-                    </select>
-                  </div>
-                </div>
-                </div>
 
                 {/* <div className='flex w-full justify-between'>
                 <button className="flex-start hover:shadow-form rounded-md py-3 px-8 text-center text-base font-semibold text-black  outline outline-1 ">
@@ -195,10 +192,12 @@ const FormPage = () => {
             </div>
           </div>
         </div>
-        <div className="flex w-1/2 ">world</div>
+        <div className="flex w-1/2 ">
+          <img src={ID} className="rounded-xl" />
+        </div>
       </div>
     </>
   );
-}
+};
 
-export default FormPage
+export default FormPage;
