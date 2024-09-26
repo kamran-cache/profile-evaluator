@@ -1,8 +1,19 @@
-import React from 'react'
-import Nationality from '../components/Nationality';
-import Visa from '../components/Visa';
+import React, { useState } from "react";
+import Nationality from "../components/Nationality";
+import Visa from "../components/Visa";
+import { store } from "../redux/store";
+import { useSelector, useDispatch } from "react-redux";
+import { addInfo } from "../redux/personlInfoSlice";
 
 const FormPage = () => {
+  const [value, setValue] = useState("");
+  const personalInfo = useSelector((state) => state.personalInfo);
+  const dispatch = useDispatch();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    dispatch(addInfo({ target: name, value }));
+  };
+  console.log(store.getState());
   return (
     <>
       <div className="flex w-full pt-8">
@@ -23,6 +34,7 @@ const FormPage = () => {
                         id="fName"
                         placeholder="First Name"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -37,6 +49,7 @@ const FormPage = () => {
                         id="fName"
                         placeholder="Middle Name"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -54,6 +67,7 @@ const FormPage = () => {
                         id="lName"
                         placeholder="Last Name"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -73,6 +87,7 @@ const FormPage = () => {
                         name="date"
                         id="date"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -94,9 +109,10 @@ const FormPage = () => {
                       <div className="flex items-center">
                         <input
                           type="radio"
-                          name="radio1"
+                          name="male"
                           id="radioButton1"
                           className="h-5 w-5"
+                          onChange={handleChange}
                         />
                         <label
                           htmlFor="radioButton1"
@@ -108,9 +124,10 @@ const FormPage = () => {
                       <div className="flex items-center">
                         <input
                           type="radio"
-                          name="radio1"
+                          name="female"
                           id="radioButton2"
                           className="h-5 w-5"
+                          onChange={handleChange}
                         />
                         <label
                           htmlFor="radioButton2"
@@ -132,10 +149,11 @@ const FormPage = () => {
                       </label>
                       <input
                         type="Email Address"
-                        name="lName"
+                        name="email"
                         id="lName"
                         placeholder="example@gmail.com"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -155,42 +173,38 @@ const FormPage = () => {
                     placeholder="House No, Street, City, State, ZIP Code"
                     min={0}
                     className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="-mx-3 flex flex-wrap">
-                <div className="w-full px-3 sm:w-1/2">
-                  <div className="mb-5">
-                    <label className="mb-3 block text-base font-medium text-[#07074D]">
-                      Current Visa Status
-                    </label>
-                    <Visa />
+                  <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-5">
+                      <label className="mb-3 block text-base font-medium text-[#07074D]">
+                        Current Visa Status
+                      </label>
+                      <Visa />
+                    </div>
+                  </div>
+                  <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-5">
+                      <label className="mb-3 block text-base font-medium text-[#07074D]">
+                        Marital Status
+                      </label>
+                      <select
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        name="maritialStatus"
+                        onChange={handleChange}
+                      >
+                        <option value="">-- select one --</option>
+                        <option value="single">Single</option>
+                        <option value="married">Married</option>
+                        <option value="separated">Separated</option>
+                        <option value="divorced">Divorced</option>
+                        <option value="widowed">Widowed</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
-                <div className="w-full px-3 sm:w-1/2">
-                  <div className="mb-5">
-                    <label className="mb-3 block text-base font-medium text-[#07074D]">
-                    Marital Status
-                    </label>
-                    <select className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
-                      <option value="">-- select one --</option>
-                      <option value="single">Single</option>
-                      <option value="married">Married</option>
-                      <option value="separated">Separated</option>
-                      <option value="divorced">Divorced</option>
-                      <option value="widowed">Widowed</option>
-                    </select>
-                  </div>
-                </div>
-                </div>
-
-                {/* <div className='flex w-full justify-between'>
-                <button className="flex-start hover:shadow-form rounded-md py-3 px-8 text-center text-base font-semibold text-black  outline outline-1 ">
-                    Prev
-                  </button>
-                  <button className="flex-end hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                    Next
-                  </button>
-                </div> */}
               </form>
             </div>
           </div>
@@ -199,6 +213,6 @@ const FormPage = () => {
       </div>
     </>
   );
-}
+};
 
-export default FormPage
+export default FormPage;
