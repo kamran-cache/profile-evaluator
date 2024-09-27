@@ -1,16 +1,19 @@
 import { useState, useRef } from "react";
 import Resume from '../assets/resume.jpg';
+import OpenPass from '../assets/open-passport1.jpg';
+import VisaImg from '../assets/Visa-Image.jpg';
+import Visa from "../components/VisaDropdown";
 
-const DynamicForm = () => {
+const VisaForm = () => {
   const textareaRef = useRef(null); // Reference to the textarea
   const [forms, setForms] = useState([]); // To store form data as sections
   const [currentForm, setCurrentForm] = useState({
-    role: "",
+    VISA: "",
     startDate: "",
     endDate: "",
-    company: "",
-    location: "",
-    summary: "",
+    course: "",
+    Institution: "",
+    Company: "",
   }); // Current form input values
   const [isFormVisible, setIsFormVisible] = useState(false); // Toggle form visibility
 
@@ -26,15 +29,15 @@ const DynamicForm = () => {
   // Add form content to the list and collapse the form
   const handleAddForm = (e) => {
     e.preventDefault(); // Prevent default form submission
-    if (currentForm.role.trim() !== "") {
+    if (currentForm.VISA.trim() !== "") {
       setForms([...forms, currentForm]); // Add the current form content to forms list
       setCurrentForm({
-        role: "",
+        VISA: "",
         startDate: "",
         endDate: "",
-        company: "",
-        location: "",
-        summary: "",
+        course: "",
+        Institution: "",
+        Company: "",
       }); // Reset the form input
       setIsFormVisible(false); // Collapse the form after adding content
     }
@@ -46,11 +49,13 @@ const DynamicForm = () => {
   };
 
   // Toggle Experience section visibility
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenArray, setIsOpenArray] = useState([]);
 
-    const handleClick = () => {
-      setIsOpen(!isOpen);
-    };
+  const handleClick = (index) => {
+    const updatedIsOpenArray = [...isOpenArray];
+    updatedIsOpenArray[index] = !updatedIsOpenArray[index]; // Toggle only the clicked section
+    setIsOpenArray(updatedIsOpenArray);
+  };
 
   return (
     <div className="flex w-full pt-4">
@@ -58,7 +63,7 @@ const DynamicForm = () => {
         <div className="flex items-center justify-center px-12">
           <div className="mx-auto w-full max-w-[550px] bg-white">
             {/* Heading */}
-            <div className="flex text-2xl font-semibold mb-4">Experience</div>
+            <div className="flex text-2xl font-semibold mb-4">VISA</div>
 
             {/* Render previous forms as collapsed content */}
             {forms.length > 0 && (
@@ -66,14 +71,14 @@ const DynamicForm = () => {
                 {forms.map((formContent, index) => (
                   <div
                     key={index}
-                    onClick={handleClick}
+                    onClick={() => handleClick(index)}
                     className="w-[34rem] mb-2 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md cursor-pointer"
                   >
                     <div className="flex justify-between">
                       <strong>Experience {index + 1}:</strong>
                       <svg
                         className={`fill-current text-blue-700 h-8 w-8 transform transition-transform duration-500 ${
-                          isOpen ? "rotate-180" : ""
+                            isOpenArray[index] ? "rotate-180" : ""
                         }`}
                         viewBox="0 0 20 20"
                       >
@@ -82,24 +87,30 @@ const DynamicForm = () => {
                     </div>
                     <div className="flex">
                       <p className="text-gray-500 mr-[1rem]">
-                        <strong>Role:</strong> {formContent.role}
+                        <strong>VISA:</strong> {formContent.VISA}
                       </p>
+                      {formContent.course && (
                       <p className="text-gray-500">
-                        <strong>Company:</strong> {formContent.company}
+                        <strong>Course:</strong> {formContent.course}
                       </p>
+                      )}
+                      {formContent.Company && (
+                        <p className="text-gray-500">
+                        <strong>Company:</strong> {formContent.Company}
+                      </p>
+                      )}
                     </div>
-                    {isOpen && (
+                    {isOpenArray[index] && (
                       <>
                         <p className="text-gray-500">
                           <strong>Duration:</strong> {formContent.startDate} -{" "}
                           {formContent.endDate}
                         </p>
+                        {formContent.course && (
                         <p className="text-gray-500">
-                          <strong>Location:</strong> {formContent.location}
+                          <strong>Institution:</strong> {formContent.Institution}
                         </p>
-                        <p className="text-gray-500">
-                          <strong>Summary:</strong> {formContent.summary}
-                        </p>
+                        )}
                       </>
                     )}
                   </div>
@@ -111,7 +122,7 @@ const DynamicForm = () => {
               className="mb-4 px-4 py-2 bg-blue-500 text-white rounded"
               onClick={toggleFormVisibility}
             >
-              {isFormVisible ? "Collapse Form" : "Add Experience"}
+              {isFormVisible ? "Collapse Form" : "Add VISA"}
             </button>
 
             {/* Toggle Form */}
@@ -121,22 +132,27 @@ const DynamicForm = () => {
                   <div className="w-full px-3">
                     <div className="mb-5">
                       <label className="mb-3 block text-base font- text-[#07074D]">
-                        What was your <strong>Role</strong> at the company?
+                        Select your <strong>VISA</strong> type
                       </label>
-                      <input
+                      <Visa
+                        name="VISA"
+                        value={currentForm.VISA}
+                        onChange={handleInputChange}
+                      />
+                      {/* <input
                         type="text"
                         name="role"
                         placeholder="Software Developer"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                         value={currentForm.role}
                         onChange={handleInputChange}
-                      />
+                      /> */}
                     </div>
                   </div>
                   <div className="w-full px-3">
                     <div className="mb-5">
                       <label className="mb-3 block text-base font- text-[#07074D]">
-                        <strong>How long</strong> were you with the company?
+                        <strong>Duration</strong> of Visa
                       </label>
                       <div className="flex space-x- w-full">
                         <input
@@ -164,40 +180,64 @@ const DynamicForm = () => {
                     </div>
                   </div>
                 </div>
-                <div className="-mx-3 flex flex-wrap">
-                  <div className="w-full px-3 sm:w-1/2">
+                {currentForm.VISA === "F-1" && (
+                  <div className="-mx-3 flex flex-wrap">
+                    <div className="w-full px-3">
+                      <div className="mb-5">
+                        <label className="mb-3 block text-base font- text-[#07074D]">
+                          <strong>Degree or Qualification</strong> for Which the
+                          Visa Was Issued
+                        </label>
+                        <input
+                          type="text"
+                          name="course"
+                          placeholder="Specify the degree or qualification for which the visa was granted"
+                          className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          value={currentForm.course}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="w-full px-3">
+                      <div className="mb-5">
+                        <label className="mb-3 block text-base font- text-[#07074D]">
+                          <strong>Institution</strong> Where
+                          Degree/Qualification Was Earned
+                        </label>
+                        <input
+                          type="text"
+                          name="Institution"
+                          placeholder="University of California"
+                          className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                          value={currentForm.Institution}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {currentForm.VISA === "H-1B" && (
+                  <div className="w-full -mx-3 px-3">
                     <div className="mb-5">
                       <label className="mb-3 block text-base font- text-[#07074D]">
-                        For which <strong>Company</strong> did you work?
+                        Name of the <strong>Company</strong> That Issued the
+                        Work Visa
                       </label>
                       <input
                         type="text"
-                        name="company"
+                        name="Company"
                         placeholder="Google"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                        value={currentForm.company}
+                        value={currentForm.Company}
                         onChange={handleInputChange}
                       />
                     </div>
                   </div>
+                )}
 
-                  <div className="w-full px-3 sm:w-1/2">
-                    <div className="mb-5">
-                      <label className="mb-3 block text-base font- text-[#07074D]">
-                        <strong>Where</strong> was the company located?
-                      </label>
-                      <input
-                        type="text"
-                        name="location"
-                        placeholder="New York, NY"
-                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                        value={currentForm.location}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="-mx-3 flex flex-wrap">
+                {/* <div className="-mx-3 flex flex-wrap">
                   <div className="w-full px-3">
                     <div className="mb-5">
                       <label className="mb-3 block text-base font- text-[#07074D]">
@@ -216,12 +256,12 @@ const DynamicForm = () => {
                       />
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <button
                   className="mt-2 px-4 py-2 bg-green-500 text-white rounded"
                   type="submit"
                 >
-                  Add Experience
+                  Add VISA
                 </button>
               </form>
             )}
@@ -229,11 +269,13 @@ const DynamicForm = () => {
         </div>
       </div>
 
-      <div className="flex justify-center w-1/2 h-[40rem]">
-        <img src={Resume} className="rounded-xl shadow-md" />
+      <div className="flex justify-center w-1/2 h-[35rem]">
+        <img src={OpenPass} className="rounded-[220px] shadow-m" />
+        <img src={VisaImg} className="absolute z-10 h-[13rem] w-[19rem] mt-[3rem] rounded-x shadow-m" />
+
       </div>
     </div>
   );
 };
 
-export default DynamicForm;
+export default VisaForm;

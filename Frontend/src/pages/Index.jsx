@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import FormPage from './form';
 import ProfDetails from './ProfDetails';
-import Experience from './Experience';
-import DynamicForm from './test';
+import Experience from './temp';
+import DynamicForm from './Experience';
 import Education from './Education';
+import VisaForm from './Visa';
 
 const MultiStepForm = () => {
   // State to track the current form step
   const [step, setStep] = useState(1);
-  const totalSteps = 3; // Total number of form steps
+  const totalSteps = 4; // Total number of form steps
 
   // Handle Next and Previous button clicks
   const nextStep = () => {
@@ -42,15 +43,23 @@ const MultiStepForm = () => {
 
       {/* Form steps */}
       <div>
+        {/* Basic Details */}
         {step === 1 && (
             <FormPage/>
         )}
 
+        {/* VISA Details */}
         {step === 2 && (
+            <VisaForm/>
+        )}
+
+        {/* Experience */}
+        {step === 3 && (
           <DynamicForm/>
         )}
 
-        {step === 3 && (
+        {/* Education */}
+        {step === 4 && (
           <Education/>
         )}
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import Nationality from "../components/Nationality";
-import Visa from "../components/Visa";
+import Visa from "../components/VisaDropdown";
 import ID from "../assets/IDCard2.jpg";
 
 const FormPage = () => {

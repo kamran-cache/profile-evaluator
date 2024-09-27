@@ -1,10 +1,14 @@
 import React from "react";
 
-const Visa = () => {
+const Visa = ({name, value, onChange}) => {
   return (
     <>
-      <select className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
-            <option value="">-- select one --</option>
+      <select className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+      name={name}
+      value={value} // bind selected value
+      onChange={onChange} // handle change
+      >
+            <option value="" disabled>-- select VISA --</option>
         <optgroup label="Nonimmigrant Visas">
           <option value="B-1">B-1: Business Visitor</option>
           <option value="B-2">B-2: Tourist Visitor</option>
