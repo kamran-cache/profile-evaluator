@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Nationality from "../components/Nationality";
 import Visa from "../components/Visa";
-import { store } from "../redux/store";
+import ID from "../assets/IDCard2.jpg";
 import { useSelector, useDispatch } from "react-redux";
+import { store } from "../redux/store";
 import { addInfo } from "../redux/personlInfoSlice";
 
 const FormPage = () => {
@@ -16,12 +17,15 @@ const FormPage = () => {
   console.log(store.getState());
   return (
     <>
-      <div className="flex w-full pt-8">
+      <div className="flex w-full pt-4">
         <div className="flex justify-center w-1/2">
           {/* Form component */}
           <div className="flex items-center justify-center px-12">
             <div className="mx-auto w-full max-w-[550px] bg-white">
               <form>
+                <div className="flex text-2xl font-semibold mb-4">
+                  Basic Details
+                </div>
                 <div className="-mx-3 flex flex-wrap">
                   <div className="w-full px-3 sm:w-1/3">
                     <div className="mb-5">
@@ -109,7 +113,8 @@ const FormPage = () => {
                       <div className="flex items-center">
                         <input
                           type="radio"
-                          name="male"
+                          name="gender"
+                          value="male"
                           id="radioButton1"
                           className="h-5 w-5"
                           onChange={handleChange}
@@ -124,7 +129,8 @@ const FormPage = () => {
                       <div className="flex items-center">
                         <input
                           type="radio"
-                          name="female"
+                          name="gender"
+                          value="female"
                           id="radioButton2"
                           className="h-5 w-5"
                           onChange={handleChange}
@@ -140,6 +146,24 @@ const FormPage = () => {
                   </div>
 
                   <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-5">
+                      <label className="mb-3 block text-base font-medium text-[#07074D]">
+                        Marital Status
+                      </label>
+                      <select className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                        <option value="">-- select one --</option>
+                        <option value="single">Single</option>
+                        <option value="married">Married</option>
+                        <option value="separated">Separated</option>
+                        <option value="divorced">Divorced</option>
+                        <option value="widowed">Widowed</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="-mx-3 flex flex-wrap">
+                  <div className="w-full px-3 ">
                     <div className="mb-5">
                       <label
                         htmlFor="lName"
@@ -168,7 +192,7 @@ const FormPage = () => {
                   </label>
                   <input
                     type="text"
-                    name="guest"
+                    name="address"
                     id="guest"
                     placeholder="House No, Street, City, State, ZIP Code"
                     min={0}
@@ -176,40 +200,22 @@ const FormPage = () => {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="-mx-3 flex flex-wrap">
-                  <div className="w-full px-3 sm:w-1/2">
-                    <div className="mb-5">
-                      <label className="mb-3 block text-base font-medium text-[#07074D]">
-                        Current Visa Status
-                      </label>
-                      <Visa />
-                    </div>
-                  </div>
-                  <div className="w-full px-3 sm:w-1/2">
-                    <div className="mb-5">
-                      <label className="mb-3 block text-base font-medium text-[#07074D]">
-                        Marital Status
-                      </label>
-                      <select
-                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                        name="maritialStatus"
-                        onChange={handleChange}
-                      >
-                        <option value="">-- select one --</option>
-                        <option value="single">Single</option>
-                        <option value="married">Married</option>
-                        <option value="separated">Separated</option>
-                        <option value="divorced">Divorced</option>
-                        <option value="widowed">Widowed</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
+
+                {/* <div className='flex w-full justify-between'>
+                <button className="flex-start hover:shadow-form rounded-md py-3 px-8 text-center text-base font-semibold text-black  outline outline-1 ">
+                    Prev
+                  </button>
+                  <button className="flex-end hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
+                    Next
+                  </button>
+                </div> */}
               </form>
             </div>
           </div>
         </div>
-        <div className="flex w-1/2 ">world</div>
+        <div className="flex w-1/2 ">
+          <img src={ID} className="rounded-xl" />
+        </div>
       </div>
     </>
   );
