@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import Resume from '../assets/resume.jpg';
 
-const DynamicForm = () => {
+const Experience = () => {
   const textareaRef = useRef(null); // Reference to the textarea
   const [forms, setForms] = useState([]); // To store form data as sections
   const [currentForm, setCurrentForm] = useState({
@@ -236,4 +236,4 @@ const DynamicForm = () => {
   );
 };
 
-export default DynamicForm;
+export default Experience;

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import FormPage from './form';
-import ProfDetails from './ProfDetails';
-import Experience from './temp';
-import DynamicForm from './Experience';
 import Education from './Education';
 import VisaForm from './Visa';
+import Experience from './Experience';
+import BasicDetails from './BasicDetails';
 
 const MultiStepForm = () => {
   // State to track the current form step
@@ -45,7 +43,7 @@ const MultiStepForm = () => {
       <div>
         {/* Basic Details */}
         {step === 1 && (
-            <FormPage/>
+            <BasicDetails/>
         )}
 
         {/* VISA Details */}
@@ -55,7 +53,7 @@ const MultiStepForm = () => {
 
         {/* Experience */}
         {step === 3 && (
-          <DynamicForm/>
+          <Experience/>
         )}
 
         {/* Education */}

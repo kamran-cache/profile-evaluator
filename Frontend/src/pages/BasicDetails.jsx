@@ -3,7 +3,7 @@ import Nationality from "../components/Nationality";
 import Visa from "../components/VisaDropdown";
 import ID from "../assets/IDCard2.jpg";
 
-const FormPage = () => {
+const BasicDetails = () => {
   return (
     <>
       <div className="flex w-full pt-4">
@@ -200,4 +200,4 @@ const FormPage = () => {
   );
 };
 
-export default FormPage;
+export default BasicDetails;

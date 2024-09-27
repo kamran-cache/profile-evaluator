@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useRef } from "react";
 import Resume from '../assets/resume.jpg';
 
-const Experience = () => {
+const Exp = () => {
 
     const textareaRef = useRef(null); // Reference to the textarea
 
@@ -126,4 +126,4 @@ const Experience = () => {
   );
 }
 
-export default Experience
+export default Exp
