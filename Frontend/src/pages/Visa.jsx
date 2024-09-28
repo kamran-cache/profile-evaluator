@@ -77,7 +77,7 @@ const VisaForm = () => {
                     className="w-[34rem] mb-2 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md cursor-pointer"
                   >
                     <div className="flex justify-between">
-                      <strong>Experience {index + 1}:</strong>
+                      <strong>VISA {index + 1}:</strong>
                       <svg
                         className={`fill-current text-blue-700 h-8 w-8 transform transition-transform duration-500 ${
                             isOpenArray[index] ? "rotate-180" : ""
