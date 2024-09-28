@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
-import Resume from '../assets/resume.jpg';
-import OpenPass from '../assets/open-passport1.jpg';
-import VisaImg from '../assets/Visa-Image.jpg';
+import Resume from "../assets/resume.jpg";
+import OpenPass from "../assets/open-passport1.jpg";
+import VisaImg from "../assets/Visa-Image.jpg";
 import Visa from "../components/VisaDropdown";
 
 const VisaForm = () => {
@@ -78,7 +78,7 @@ const VisaForm = () => {
                       <strong>Experience {index + 1}:</strong>
                       <svg
                         className={`fill-current text-blue-700 h-8 w-8 transform transition-transform duration-500 ${
-                            isOpenArray[index] ? "rotate-180" : ""
+                          isOpenArray[index] ? "rotate-180" : ""
                         }`}
                         viewBox="0 0 20 20"
                       >
@@ -90,14 +90,14 @@ const VisaForm = () => {
                         <strong>VISA:</strong> {formContent.VISA}
                       </p>
                       {formContent.course && (
-                      <p className="text-gray-500">
-                        <strong>Course:</strong> {formContent.course}
-                      </p>
+                        <p className="text-gray-500">
+                          <strong>Course:</strong> {formContent.course}
+                        </p>
                       )}
                       {formContent.Company && (
                         <p className="text-gray-500">
-                        <strong>Company:</strong> {formContent.Company}
-                      </p>
+                          <strong>Company:</strong> {formContent.Company}
+                        </p>
                       )}
                     </div>
                     {isOpenArray[index] && (
@@ -107,9 +107,10 @@ const VisaForm = () => {
                           {formContent.endDate}
                         </p>
                         {formContent.course && (
-                        <p className="text-gray-500">
-                          <strong>Institution:</strong> {formContent.Institution}
-                        </p>
+                          <p className="text-gray-500">
+                            <strong>Institution:</strong>{" "}
+                            {formContent.Institution}
+                          </p>
                         )}
                       </>
                     )}
@@ -271,8 +272,10 @@ const VisaForm = () => {
 
       <div className="flex justify-center w-1/2 h-[35rem]">
         <img src={OpenPass} className="rounded-[220px] shadow-m" />
-        <img src={VisaImg} className="absolute z-10 h-[13rem] w-[19rem] mt-[3rem] rounded-x shadow-m" />
-
+        <img
+          src={VisaImg}
+          className="absolute z-10 h-[13rem] w-[19rem] mt-[3rem] rounded-x shadow-m"
+        />
       </div>
     </div>
   );
