@@ -214,7 +214,6 @@ const Experience = () => {
                         placeholder="• Increased website traffic by 25% through SEO strategies
 • Collaborated with cross-functional teams to ensure product success"
                         rows="5"
-                        name="description"
                         className="w-full h-[11rem] rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                         ref={textareaRef}
                         value={currentForm.summary}
