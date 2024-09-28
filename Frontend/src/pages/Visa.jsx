@@ -59,9 +59,11 @@ const VisaForm = () => {
 
   return (
     <div className="flex w-full pt-4">
-      <div className="flex justify-center w-1/2">
-        <div className="flex items-center justify-center px-12">
-          <div className="mx-auto w-full max-w-[550px] bg-white">
+      <div className="flex justify-center w-1/2 h-full">
+          {/* Form component */}
+          <div className="flex flex-col justify-between w-full pl-12 bg-white">
+            {/* Scrollable form content */}
+            <div className="overflow-y-auto overflow-x-hidden w-full h-[35rem] py-4 scrollbar-transparent flex flex-col items-center"> 
             {/* Heading */}
             <div className="flex text-2xl font-semibold mb-4">VISA</div>
 
@@ -119,7 +121,7 @@ const VisaForm = () => {
             )}
             {/* Toggle Form Button */}
             <button
-              className="mb-4 px-4 py-2 bg-blue-500 text-white rounded"
+              className="w-fit mb-4 px-4 py-2 bg-blue-500 text-white rounded"
               onClick={toggleFormVisibility}
             >
               {isFormVisible ? "Collapse Form" : "Add VISA"}
@@ -127,7 +129,7 @@ const VisaForm = () => {
 
             {/* Toggle Form */}
             {isFormVisible && (
-              <form onSubmit={handleAddForm}>
+              <form className='w-full pr-12' onSubmit={handleAddForm}>
                 <div className="-mx-3 flex flex-wrap">
                   <div className="w-full px-3">
                     <div className="mb-5">
