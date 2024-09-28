@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import Education from './Education';
-import VisaForm from './Visa';
-import Experience from './Experience';
-import BasicDetails from './BasicDetails';
+import React, { useState } from "react";
+import Education from "./Education";
+import VisaForm from "./Visa";
+import Experience from "./Experience";
+import BasicDetails from "./BasicDetails";
+import Authorship from "./Authorship";
 import Awards from './Awards';
 import Scholarships from './Scholarships';
 import Patents from './Patents';
@@ -45,19 +46,13 @@ const MultiStepForm = () => {
       {/* Form steps */}
       <div>
         {/* Basic Details */}
-        {step === 1 && (
-            <BasicDetails/>
-        )}
+        {step === 1 && <BasicDetails />}
 
         {/* VISA Details */}
-        {step === 2 && (
-            <VisaForm/>
-        )}
+        {step === 2 && <VisaForm />}
 
         {/* Experience */}
-        {step === 3 && (
-          <Experience/>
-        )}
+        {step === 3 && <Experience />}
 
         {/* Education */}
         {step === 4 && (

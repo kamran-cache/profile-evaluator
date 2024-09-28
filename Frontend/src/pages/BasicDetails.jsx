@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Nationality from "../components/Nationality";
 import Visa from "../components/VisaDropdown";
 import ID from "../assets/IDCard2.jpg";
+import { useSelector, useDispatch } from "react-redux";
+import { store } from "../redux/store";
+import { addInfo } from "../redux/personlInfoSlice";
 
 const BasicDetails = () => {
   return (
@@ -27,6 +30,7 @@ const BasicDetails = () => {
                         id="fName"
                         placeholder="First Name"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -41,6 +45,7 @@ const BasicDetails = () => {
                         id="fName"
                         placeholder="Middle Name"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -58,6 +63,7 @@ const BasicDetails = () => {
                         id="lName"
                         placeholder="Last Name"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -77,6 +83,7 @@ const BasicDetails = () => {
                         name="date"
                         id="date"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -98,9 +105,11 @@ const BasicDetails = () => {
                       <div className="flex items-center">
                         <input
                           type="radio"
-                          name="radio1"
+                          name="gender"
+                          value="male"
                           id="radioButton1"
                           className="h-5 w-5"
+                          onChange={handleChange}
                         />
                         <label
                           htmlFor="radioButton1"
@@ -112,9 +121,11 @@ const BasicDetails = () => {
                       <div className="flex items-center">
                         <input
                           type="radio"
-                          name="radio1"
+                          name="gender"
+                          value="female"
                           id="radioButton2"
                           className="h-5 w-5"
+                          onChange={handleChange}
                         />
                         <label
                           htmlFor="radioButton2"
@@ -154,10 +165,11 @@ const BasicDetails = () => {
                       </label>
                       <input
                         type="Email Address"
-                        name="lName"
+                        name="email"
                         id="lName"
                         placeholder="example@gmail.com"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -172,11 +184,12 @@ const BasicDetails = () => {
                   </label>
                   <input
                     type="text"
-                    name="guest"
+                    name="address"
                     id="guest"
                     placeholder="House No, Street, City, State, ZIP Code"
                     min={0}
                     className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                    onChange={handleChange}
                   />
                 </div>
 
