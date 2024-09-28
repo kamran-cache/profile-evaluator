@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import Education from './Education';
-import VisaForm from './Visa';
-import Experience from './Experience';
-import BasicDetails from './BasicDetails';
+import React, { useState } from "react";
+import Education from "./Education";
+import VisaForm from "./Visa";
+import Experience from "./Experience";
+import BasicDetails from "./BasicDetails";
+import Authorship from "./Authorship";
 
 const MultiStepForm = () => {
   // State to track the current form step
   const [step, setStep] = useState(1);
-  const totalSteps = 4; // Total number of form steps
+  const totalSteps = 5; // Total number of form steps
 
   // Handle Next and Previous button clicks
   const nextStep = () => {
@@ -42,31 +43,25 @@ const MultiStepForm = () => {
       {/* Form steps */}
       <div>
         {/* Basic Details */}
-        {step === 1 && (
-            <BasicDetails/>
-        )}
+        {step === 1 && <BasicDetails />}
 
         {/* VISA Details */}
-        {step === 2 && (
-            <VisaForm/>
-        )}
+        {step === 2 && <VisaForm />}
 
         {/* Experience */}
-        {step === 3 && (
-          <Experience/>
-        )}
+        {step === 3 && <Experience />}
 
         {/* Education */}
-        {step === 4 && (
-          <Education/>
-        )}
+        {step === 4 && <Education />}
+        {/* Education */}
+        {step === 5 && <Authorship />}
       </div>
 
       {/* Navigation buttons */}
-      <div className="w-1/2 px-12 mt-6 flex justify-between">
+      <div className="w-1/2 px-12 mt-6 flex justify-between relative z-50">
         {step > 1 && (
           <button
-          className="flex-start bg-white hover:shadow-form rounded-md py-3 px-8 text-center text-base font-semibold text-black hover:bg-gray-200 outline outline-1 "
+            className="fixed left-4 bottom-4  bg-white hover:shadow-form rounded-md py-3 px-8 text-center text-base font-semibold text-black hover:bg-gray-200 outline outline-1"
             onClick={prevStep}
           >
             Previous
@@ -75,7 +70,7 @@ const MultiStepForm = () => {
 
         {step < totalSteps && (
           <button
-          className="flex-end hover:shadow-form rounded-md bg-blue-500 hover:bg-blue-800 py-3 px-8 text-center text-base font-semibold text-white outline-none"
+            className="fixed right-0 bottom-0 flex-end hover:shadow-form rounded-md bg-blue-500 hover:bg-blue-800 py-3 px-8 text-center text-base font-semibold text-white outline-none"
             onClick={nextStep}
           >
             Next
@@ -84,8 +79,8 @@ const MultiStepForm = () => {
 
         {step === totalSteps && (
           <button
-            className="py-3 px-8 bg-green-500 hover:bg-green-700 text-white rounded-md"
-            onClick={() => alert('Form Submitted!')}
+            className="fixed right-0 bottom-0 py-3 px-8 bg-green-500 hover:bg-green-700 text-white rounded-md"
+            onClick={() => alert("Form Submitted!")}
           >
             Submit
           </button>

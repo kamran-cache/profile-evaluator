@@ -48,4 +48,4 @@ const profileSchema = new mongoose.Schema({
 // Creating a Mongoose model based on the schema
 const Profile = mongoose.model("Profile", profileSchema);
 
-module.exports = User;
+module.exports = Profile;
