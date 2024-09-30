@@ -30,7 +30,7 @@ const BasicDetails = () => {
                         id="fName"
                         placeholder="First Name"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                        onChange={handleChange}
+                         
                       />
                     </div>
                   </div>
@@ -45,7 +45,7 @@ const BasicDetails = () => {
                         id="fName"
                         placeholder="Middle Name"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                        onChange={handleChange}
+                         
                       />
                     </div>
                   </div>
@@ -63,7 +63,7 @@ const BasicDetails = () => {
                         id="lName"
                         placeholder="Last Name"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                        onChange={handleChange}
+                         
                       />
                     </div>
                   </div>
@@ -83,7 +83,7 @@ const BasicDetails = () => {
                         name="date"
                         id="date"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                        onChange={handleChange}
+                         
                       />
                     </div>
                   </div>
@@ -109,7 +109,7 @@ const BasicDetails = () => {
                           value="male"
                           id="radioButton1"
                           className="h-5 w-5"
-                          onChange={handleChange}
+                           
                         />
                         <label
                           htmlFor="radioButton1"
@@ -125,7 +125,7 @@ const BasicDetails = () => {
                           value="female"
                           id="radioButton2"
                           className="h-5 w-5"
-                          onChange={handleChange}
+                           
                         />
                         <label
                           htmlFor="radioButton2"
@@ -169,7 +169,7 @@ const BasicDetails = () => {
                         id="lName"
                         placeholder="example@gmail.com"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                        onChange={handleChange}
+                         
                       />
                     </div>
                   </div>
@@ -189,7 +189,7 @@ const BasicDetails = () => {
                     placeholder="House No, Street, City, State, ZIP Code"
                     min={0}
                     className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    onChange={handleChange}
+                     
                   />
                 </div>
 

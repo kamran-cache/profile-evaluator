@@ -32,7 +32,7 @@ const PaperForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className='w-full pr-12' onSubmit={handleSubmit}>
         <div>
           <div className="-mx-3 flex flex-wrap">
             <div className="w-full px-3">

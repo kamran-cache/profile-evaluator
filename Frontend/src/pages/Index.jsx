@@ -11,7 +11,7 @@ import Patents from './Patents';
 const MultiStepForm = () => {
   // State to track the current form step
   const [step, setStep] = useState(1);
-  const totalSteps = 7; // Total number of form steps
+  const totalSteps = 8; // Total number of form steps
 
   // Handle Next and Previous button clicks
   const nextStep = () => {
@@ -68,6 +68,11 @@ const MultiStepForm = () => {
         )}
 
         {step === 7 && (
+          <Authorship/>
+        )}
+
+
+        {step === 8 && (
           <Patents/>
         )}
       </div>
