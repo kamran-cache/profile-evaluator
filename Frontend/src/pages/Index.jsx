@@ -7,11 +7,13 @@ import Authorship from "./Authorship";
 import Awards from './Awards';
 import Scholarships from './Scholarships';
 import Patents from './Patents';
+import OrignalWork from "./OrignalWork";
+import MediaMentions from "./MediaMentions";
 
 const MultiStepForm = () => {
   // State to track the current form step
   const [step, setStep] = useState(1);
-  const totalSteps = 8; // Total number of form steps
+  const totalSteps = 10; // Total number of form steps
 
   // Handle Next and Previous button clicks
   const nextStep = () => {
@@ -74,6 +76,14 @@ const MultiStepForm = () => {
 
         {step === 8 && (
           <Patents/>
+        )}
+
+        {step === 9 && (
+          <OrignalWork/>
+        )}
+
+        {step === 10 && (
+          <MediaMentions/>
         )}
       </div>
 

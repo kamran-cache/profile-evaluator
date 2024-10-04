@@ -2,50 +2,28 @@ import { useState, useRef } from "react";
 import Resume from "../assets/resume.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { store } from "../redux/store";
-import { addExperience } from "../redux/experienceSlice";
+import { addExperience, setFormField } from "../redux/experienceSlice";
 
 const Experience = () => {
   const textareaRef = useRef(null); // Reference to the textarea
-  const [forms, setForms] = useState([]); // To store form data as sections
-  const [currentForm, setCurrentForm] = useState({
-    role: "",
-    startDate: "",
-    endDate: "",
-    company: "",
-    location: "",
-    summary: "",
-  }); // Current form input values
-  const [isFormVisible, setIsFormVisible] = useState(false); // Toggle form visibility
-
+  const dispatch = useDispatch();
+  
+  // Access the current form and experiences from the Redux state
+  const { currentForm, experiences } = useSelector((state) => state.experience);
+  
   // Handle input change for form fields
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setCurrentForm((prevForm) => ({
-      ...prevForm,
-      [name]: value,
-    }));
+    dispatch(setFormField({ name, value }));
   };
 
-  // Add form content to the list and collapse the form
+  // Add form content to the Redux store
   const handleAddForm = (e) => {
     e.preventDefault(); // Prevent default form submission
     if (currentForm.role.trim() !== "") {
-      setForms([...forms, currentForm]); // Add the current form content to forms list
-      setCurrentForm({
-        role: "",
-        startDate: "",
-        endDate: "",
-        company: "",
-        location: "",
-        summary: "",
-      }); // Reset the form input
-      setIsFormVisible(false); // Collapse the form after adding content
+      dispatch(addExperience()); // Add the current form to experiences
+      setIsOpen(!isOpen);
     }
-  };
-
-  // Toggle form visibility
-  const toggleFormVisibility = () => {
-    setIsFormVisible(!isFormVisible); // Toggle form visibility
   };
 
   // Toggle Experience section visibility
@@ -53,6 +31,13 @@ const Experience = () => {
 
   const handleClick = () => {
     setIsOpen(!isOpen);
+  };
+
+
+  const [isToggle, setIsToggle] = useState(false);
+
+  const handleToggle = () => {
+    setIsToggle(!isToggle);
   };
 
   return (
@@ -66,19 +51,19 @@ const Experience = () => {
             <div className="flex text-2xl font-semibold mb-4">Experience</div>
 
             {/* Render previous forms as collapsed content */}
-            {forms.length > 0 && (
+            {experiences.length > 0 && (
               <div className="mb-4">
-                {forms.map((formContent, index) => (
+                {experiences.map((formContent, index) => (
                   <div
                     key={index}
-                    onClick={handleClick}
+                    onClick={handleToggle}
                     className="w-[34rem] mb-2 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium outline-none focus:border-[#6A64F1] focus:shadow-md cursor-pointer"
                   >
                     <div className="flex justify-between">
                       <strong>Experience {index + 1}:</strong>
                       <svg
                         className={`fill-current text-blue-700 h-8 w-8 transform transition-transform duration-500 ${
-                          isOpen ? "rotate-180" : ""
+                          isToggle ? "rotate-180" : ""
                         }`}
                         viewBox="0 0 20 20"
                       >
@@ -93,7 +78,7 @@ const Experience = () => {
                         <strong>Company:</strong> {formContent.company}
                       </p>
                     </div>
-                    {isOpen && (
+                    {isToggle && (
                       <>
                         <p className="text-gray-500">
                           <strong>Duration:</strong> {formContent.startDate} -{" "}
@@ -114,13 +99,13 @@ const Experience = () => {
             {/* Toggle Form Button */}
             <button
               className="w-fit mb-4 px-4 py-2 bg-blue-500 text-white rounded"
-              onClick={toggleFormVisibility}
+              onClick={() => setIsOpen(!isOpen)}
             >
-              {isFormVisible ? "Collapse Form" : "Add Experience"}
+              {isOpen ? "Collapse Form" : "Add Experience"}
             </button>
 
             {/* Toggle Form */}
-            {isFormVisible && (
+            {isOpen && (
               <form className='w-full pr-12' onSubmit={handleAddForm}>
                 <div className="-mx-3 flex flex-wrap">
                   <div className="w-full px-3">

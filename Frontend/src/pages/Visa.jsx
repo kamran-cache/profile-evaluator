@@ -3,10 +3,15 @@ import Resume from "../assets/resume.jpg";
 import OpenPass from "../assets/open-passport1.jpg";
 import VisaImg from "../assets/Visa-Image.jpg";
 import Visa from "../components/VisaDropdown";
+import { useDispatch, useSelector } from "react-redux";
+import { addVisaForm } from "../redux/visaSlice"; // Redux action
+
 
 const VisaForm = () => {
   const textareaRef = useRef(null); // Reference to the textarea
-  const [forms, setForms] = useState([]); // To store form data as sections
+  const dispatch = useDispatch(); // Dispatch action
+  const forms = useSelector((state) => state.visa.forms); // Get form data from Redux
+
   const [currentForm, setCurrentForm] = useState({
     VISA: "",
     startDate: "",
@@ -15,7 +20,9 @@ const VisaForm = () => {
     Institution: "",
     Company: "",
   }); // Current form input values
+
   const [isFormVisible, setIsFormVisible] = useState(false); // Toggle form visibility
+  const [isOpenArray, setIsOpenArray] = useState([]); // Toggle section visibility
 
   // Handle input change for form fields
   const handleInputChange = (e) => {
@@ -26,11 +33,11 @@ const VisaForm = () => {
     }));
   };
 
-  // Add form content to the list and collapse the form
+  // Add form content to Redux state and collapse the form
   const handleAddForm = (e) => {
     e.preventDefault(); // Prevent default form submission
     if (currentForm.VISA.trim() !== "") {
-      setForms([...forms, currentForm]); // Add the current form content to forms list
+      dispatch(addVisaForm(currentForm)); // Dispatch form data to Redux store
       setCurrentForm({
         VISA: "",
         startDate: "",
@@ -49,8 +56,6 @@ const VisaForm = () => {
   };
 
   // Toggle Experience section visibility
-  const [isOpenArray, setIsOpenArray] = useState([]);
-
   const handleClick = (index) => {
     const updatedIsOpenArray = [...isOpenArray];
     updatedIsOpenArray[index] = !updatedIsOpenArray[index]; // Toggle only the clicked section

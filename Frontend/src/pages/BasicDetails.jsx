@@ -1,23 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import Nationality from "../components/Nationality";
 import Visa from "../components/VisaDropdown";
 import ID from "../assets/IDCard2.jpg";
-import { useSelector, useDispatch } from "react-redux";
-import { store } from "../redux/store";
+import { useDispatch } from "react-redux";
 import { addInfo } from "../redux/personlInfoSlice";
 
 const BasicDetails = () => {
+  const dispatch = useDispatch();
+
+  // Handler to update Redux state
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    dispatch(addInfo({ target: name, value }));
+  };
+
   return (
     <>
       <div className="flex w-full pt-4">
         <div className="flex justify-center w-1/2">
-          {/* Form component */}
           <div className="flex items-center justify-center px-12">
             <div className="mx-auto w-full max-w-[550px] bg-white">
               <form>
-                <div className="flex text-2xl font-semibold mb-4">
-                  Basic Details
-                </div>
+                <div className="flex text-2xl font-semibold mb-4">Basic Details</div>
                 <div className="-mx-3 flex flex-wrap">
                   <div className="w-full px-3 sm:w-1/3">
                     <div className="mb-5">
@@ -30,10 +34,11 @@ const BasicDetails = () => {
                         id="fName"
                         placeholder="First Name"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                         
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
+
                   <div className="w-full px-3 sm:w-1/3">
                     <div className="mb-5">
                       <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -41,14 +46,15 @@ const BasicDetails = () => {
                       </label>
                       <input
                         type="text"
-                        name="fName"
-                        id="fName"
+                        name="mName"
+                        id="mName"
                         placeholder="Middle Name"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                         
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
+
                   <div className="w-full px-3 sm:w-1/3">
                     <div className="mb-5">
                       <label
@@ -63,7 +69,7 @@ const BasicDetails = () => {
                         id="lName"
                         placeholder="Last Name"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                         
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -80,22 +86,24 @@ const BasicDetails = () => {
                       </label>
                       <input
                         type="date"
-                        name="date"
+                        name="dob"
                         id="date"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                         
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
+
                   <div className="w-full px-3 sm:w-1/2">
                     <div className="mb-5">
                       <label className="mb-3 block text-base font-medium text-[#07074D]">
                         Nationality
                       </label>
-                      <Nationality />
+                      <Nationality onChange={handleChange} />
                     </div>
                   </div>
                 </div>
+
                 <div className="-mx-3 flex flex-wrap">
                   <div className="mb-5 w-full px-3 sm:w-1/2">
                     <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -109,7 +117,7 @@ const BasicDetails = () => {
                           value="male"
                           id="radioButton1"
                           className="h-5 w-5"
-                           
+                          onChange={handleChange}
                         />
                         <label
                           htmlFor="radioButton1"
@@ -125,7 +133,7 @@ const BasicDetails = () => {
                           value="female"
                           id="radioButton2"
                           className="h-5 w-5"
-                           
+                          onChange={handleChange}
                         />
                         <label
                           htmlFor="radioButton2"
@@ -142,7 +150,11 @@ const BasicDetails = () => {
                       <label className="mb-3 block text-base font-medium text-[#07074D]">
                         Marital Status
                       </label>
-                      <select className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                      <select
+                        name="maritalStatus"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={handleChange}
+                      >
                         <option value="">-- select one --</option>
                         <option value="single">Single</option>
                         <option value="married">Married</option>
@@ -158,18 +170,18 @@ const BasicDetails = () => {
                   <div className="w-full px-3 ">
                     <div className="mb-5">
                       <label
-                        htmlFor="lName"
+                        htmlFor="email"
                         className="mb-3 block text-base font-medium text-[#07074D]"
                       >
                         Email Address
                       </label>
                       <input
-                        type="Email Address"
+                        type="email"
                         name="email"
-                        id="lName"
+                        id="email"
                         placeholder="example@gmail.com"
                         className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                         
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -177,7 +189,7 @@ const BasicDetails = () => {
 
                 <div className="mb-5">
                   <label
-                    htmlFor="guest"
+                    htmlFor="address"
                     className="mb-3 block text-base font-medium text-[#07074D]"
                   >
                     Residential Address
@@ -185,27 +197,17 @@ const BasicDetails = () => {
                   <input
                     type="text"
                     name="address"
-                    id="guest"
+                    id="address"
                     placeholder="House No, Street, City, State, ZIP Code"
-                    min={0}
                     className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                     
+                    onChange={handleChange}
                   />
                 </div>
-
-                {/* <div className='flex w-full justify-between'>
-                <button className="flex-start hover:shadow-form rounded-md py-3 px-8 text-center text-base font-semibold text-black  outline outline-1 ">
-                    Prev
-                  </button>
-                  <button className="flex-end hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                    Next
-                  </button>
-                </div> */}
               </form>
             </div>
           </div>
         </div>
-        <div className="flex w-1/2 ">
+        <div className="flex w-1/2">
           <img src={ID} className="rounded-xl" />
         </div>
       </div>
