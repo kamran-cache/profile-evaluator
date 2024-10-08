@@ -36,6 +36,5 @@ const educationSlice = createSlice({
   },
 });
 
-export const { setFormField, addEducation, resetForm } =
-  educationSlice.actions;
+export const { setFormField, addEducation, resetForm } = educationSlice.actions;
 export default educationSlice.reducer;

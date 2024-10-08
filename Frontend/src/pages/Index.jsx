@@ -4,16 +4,18 @@ import VisaForm from "./Visa";
 import Experience from "./Experience";
 import BasicDetails from "./BasicDetails";
 import Authorship from "./Authorship";
-import Awards from './Awards';
-import Scholarships from './Scholarships';
-import Patents from './Patents';
+import Awards from "./Awards";
+import Scholarships from "./Scholarships";
+import Patents from "./Patents";
 import OrignalWork from "./OrignalWork";
 import MediaMentions from "./MediaMentions";
+import PressRelease from "./PressRelease";
+import Judging from "./Judging";
 
 const MultiStepForm = () => {
   // State to track the current form step
   const [step, setStep] = useState(1);
-  const totalSteps = 10; // Total number of form steps
+  const totalSteps = 12; // Total number of form steps
 
   // Handle Next and Previous button clicks
   const nextStep = () => {
@@ -57,41 +59,28 @@ const MultiStepForm = () => {
         {step === 3 && <Experience />}
 
         {/* Education */}
-        {step === 4 && (
-          <Education/>
-        )}
+        {step === 4 && <Education />}
 
-        {step === 5 && (
-          <Awards/>
-        )}
+        {step === 5 && <Awards />}
 
-        {step === 6 && (
-          <Scholarships/>
-        )}
+        {step === 6 && <Scholarships />}
 
-        {step === 7 && (
-          <Authorship/>
-        )}
+        {step === 7 && <Authorship />}
 
+        {step === 8 && <Patents />}
 
-        {step === 8 && (
-          <Patents/>
-        )}
+        {step === 9 && <OrignalWork />}
 
-        {step === 9 && (
-          <OrignalWork/>
-        )}
-
-        {step === 10 && (
-          <MediaMentions/>
-        )}
+        {step === 10 && <MediaMentions />}
+        {step === 11 && <PressRelease />}
+        {step === 12 && <Judging />}
       </div>
 
       {/* Navigation buttons */}
       <div className="w-1/2 px-12 mt-6 flex justify-between z-50 relative">
         {step > 1 && (
           <button
-          className="fixed left-[5rem] bottom-[1rem] flex-start bg-white hover:shadow-form rounded-md py-3 px-8 text-center text-base font-semibold text-black hover:bg-gray-200 outline outline-1 "
+            className="fixed left-[5rem] bottom-[1rem] flex-start bg-white hover:shadow-form rounded-md py-3 px-8 text-center text-base font-semibold text-black hover:bg-gray-200 outline outline-1 "
             onClick={prevStep}
           >
             Previous
@@ -100,7 +89,7 @@ const MultiStepForm = () => {
 
         {step < totalSteps && (
           <button
-          className="fixed right-[50rem] bottom-[1rem] flex-end hover:shadow-form rounded-md bg-blue-500 hover:bg-blue-800 py-3 px-8 text-center text-base font-semibold text-white outline-none"
+            className="fixed right-[50rem] bottom-[1rem] flex-end hover:shadow-form rounded-md bg-blue-500 hover:bg-blue-800 py-3 px-8 text-center text-base font-semibold text-white outline-none"
             onClick={nextStep}
           >
             Next
@@ -110,7 +99,7 @@ const MultiStepForm = () => {
         {step === totalSteps && (
           <button
             className="fixed right-[50rem] bottom-[1rem] py-3 px-8 bg-green-500 hover:bg-green-700 text-white rounded-md"
-            onClick={() => alert('Form Submitted!')}
+            onClick={() => alert("Form Submitted!")}
           >
             Submit
           </button>
