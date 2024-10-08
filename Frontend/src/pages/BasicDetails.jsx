@@ -17,10 +17,12 @@ const BasicDetails = () => {
   return (
     <>
       <div className="flex w-full pt-4">
-        <div className="flex justify-center w-1/2">
-          <div className="flex items-center justify-center px-12">
-            <div className="mx-auto w-full max-w-[550px] bg-white">
-              <form>
+      <div className="flex justify-center w-1/2 h-full">
+          {/* Form component */}
+          <div className="flex flex-col justify-between w-full pl-12 bg-white">
+            {/* Scrollable form content */}
+            <div className="overflow-y-auto overflow-x-hidden w-full h-[35rem] py-4 scrollbar-transparent"> 
+              <form className='w-full pr-12'>
                 <div className="flex text-2xl font-semibold mb-4">Basic Details</div>
                 <div className="-mx-3 flex flex-wrap">
                   <div className="w-full px-3 sm:w-1/3">
@@ -121,7 +123,7 @@ const BasicDetails = () => {
                         />
                         <label
                           htmlFor="radioButton1"
-                          className="pl-3 text-base font-medium text-[#07074D]"
+                          className="pl-1 text-base font-medium text-[#07074D]"
                         >
                           Male
                         </label>
@@ -137,9 +139,25 @@ const BasicDetails = () => {
                         />
                         <label
                           htmlFor="radioButton2"
-                          className="pl-3 text-base font-medium text-[#07074D]"
+                          className="pl-1 text-base font-medium text-[#07074D]"
                         >
                           Female
+                        </label>
+                      </div>
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          name="gender"
+                          value="Other"
+                          id="radioButton2"
+                          className="h-5 w-5"
+                          onChange={handleChange}
+                        />
+                        <label
+                          htmlFor="radioButton2"
+                          className="pl-1 text-base font-medium text-[#07074D]"
+                        >
+                          Others
                         </label>
                       </div>
                     </div>
@@ -189,26 +207,105 @@ const BasicDetails = () => {
 
                 <div className="mb-5">
                   <label
-                    htmlFor="address"
                     className="mb-3 block text-base font-medium text-[#07074D]"
                   >
-                    Residential Address
+                    Street Address
                   </label>
                   <input
                     type="text"
-                    name="address"
+                    name="streetAddress"
                     id="address"
-                    placeholder="House No, Street, City, State, ZIP Code"
+                    placeholder="123 Main Street"
                     className="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                     onChange={handleChange}
                   />
                 </div>
+                <div className="-mx-3 flex flex-wrap">
+                  <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-5">
+                      <label
+                        className="mb-3 block text-base font-medium text-[#07074D]"
+                      >
+                        City and State
+                      </label>
+                      <input
+                        type="text"
+                        name="location"
+                        id="location"
+                        placeholder="Dallas, TX"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="w-full px-3 sm:w-1/2">
+                    <div className="mb-5">
+                      <label className="mb-3 block text-base font-medium text-[#07074D]">
+                        Pincode
+                      </label>
+                      <input
+                        type="text"
+                        name="pincode"
+                        id="pincode"
+                        placeholder="75201"
+                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="-mx-3 flex flex-wrap">
+                  <div className="mb-5 w-full px-3">
+                    <label className="mb-3 block text-base font-medium text-[#07074D]">
+                    Do you currently reside in the United States?
+                    </label>
+                    <div className="flex items-center mt-6 space-x-6">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          name="usResident"
+                          value="yes"
+                          id="radioButton1"
+                          className="h-5 w-5"
+                          onChange={handleChange}
+                        />
+                        <label
+                          htmlFor="radioButton1"
+                          className="pl-1 text-base font-medium text-[#07074D]"
+                        >
+                          Yes
+                        </label>
+                      </div>
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          name="usResident"
+                          value="no"
+                          id="radioButton2"
+                          className="h-5 w-5"
+                          onChange={handleChange}
+                        />
+                        <label
+                          htmlFor="radioButton2"
+                          className="pl-1 text-base font-medium text-[#07074D]"
+                        >
+                          No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </form>
             </div>
           </div>
         </div>
         <div className="flex w-1/2">
-          <img src={ID} className="rounded-xl" />
+          <div className="sticky top-4 ml-8">
+          <img src={ID} className="rounded-xl " />
+          </div>
         </div>
       </div>
     </>
