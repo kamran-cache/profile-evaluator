@@ -11,11 +11,14 @@ import OrignalWork from "./OrignalWork";
 import MediaMentions from "./MediaMentions";
 import PressRelease from "./PressRelease";
 import Judging from "./Judging";
+import Exhibitions from "./Exhibitions";
+import FinalMerits from "./FinalMerits";
+import Memberships from "./Memberships";
 
 const MultiStepForm = () => {
   // State to track the current form step
   const [step, setStep] = useState(1);
-  const totalSteps = 12; // Total number of form steps
+  const totalSteps = 16; // Total number of form steps
 
   // Handle Next and Previous button clicks
   const nextStep = () => {
@@ -71,9 +74,17 @@ const MultiStepForm = () => {
 
         {step === 9 && <OrignalWork />}
 
-        {step === 10 && <MediaMentions />}
-        {step === 11 && <PressRelease />}
-        {step === 12 && <Judging />}
+        {/* {step === 10 && <MediaMentions />} */}
+        {step === 10 && <PressRelease />}
+        {step === 11 && <Judging />}
+        {step === 12 && <OrignalWork />}
+
+        {step === 13 && <MediaMentions />}
+
+        {step === 14 && <Exhibitions />}
+
+        {step === 15 && <FinalMerits />}
+        {step === 16 && <Memberships />}
       </div>
 
       {/* Navigation buttons */}
