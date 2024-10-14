@@ -4,6 +4,7 @@ import Resume from "../assets/resume.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { addEducation, setFormField } from "../redux/educationSlice";
 
+
 const Education = () => {
   const textareaRef = useRef(null); // Reference to the textarea
   const dispatch = useDispatch();

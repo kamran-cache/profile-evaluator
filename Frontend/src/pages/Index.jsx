@@ -15,7 +15,7 @@ import FinalMerits from "./FinalMerits";
 const MultiStepForm = () => {
   // State to track the current form step
   const [step, setStep] = useState(1);
-  const totalSteps = 12; // Total number of form steps
+  const totalSteps = 11; // Total number of form steps
 
   // Handle Next and Previous button clicks
   const nextStep = () => {
@@ -75,24 +75,19 @@ const MultiStepForm = () => {
           <Authorship/>
         )}
 
-
         {step === 8 && (
-          <Patents/>
-        )}
-
-        {step === 9 && (
           <OrignalWork/>
         )}
 
-        {step === 10 && (
+        {step === 9 && (
           <MediaMentions/>
         )}
 
-        {step === 11 && (
+        {step === 10 && (
           <Exhibitions/>
         )}
 
-        {step === 12 && (
+        {step === 11 && (
           <FinalMerits/>
         )}
       </div>
