@@ -30,19 +30,20 @@ const personalInfoSchema = new mongoose.Schema({
 });
 
 const profileSchema = new mongoose.Schema({
-  personal_info: { type: personalInfoSchema, required: true },
-  education: [educationSchema],
-  work_experience: [workExperienceSchema],
-  skills: { type: [String] },
-  projects: [
-    {
-      title: { type: String, required: true },
-      description: { type: String },
-      year: { type: Number },
-      role: { type: String },
-    },
+  personal_info: { type: mongoose.Schema.Types.ObjectId, ref: "BasicDetails" },
+  authorships: [{ type: mongoose.Schema.Types.ObjectId, ref: "Authorship" }],
+  awards: [{ type: mongoose.Schema.Types.ObjectId, ref: "Awards" }],
+  education: [{ type: mongoose.Schema.Types.ObjectId, ref: "Education" }],
+  exhibitions: { type: mongoose.Schema.Types.ObjectId, ref: "Exhibitions" },
+  experience: [{ type: mongoose.Schema.Types.ObjectId, ref: "Experience" }],
+  merits: [{ type: mongoose.Schema.Types.ObjectId, ref: "Merit" }],
+  media: [{ type: mongoose.Schema.Types.ObjectId, ref: "MediaMention" }],
+  original_work: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "OriginalWork" },
   ],
-  extra_curriculars: { type: [String] }, // Array of strings for extra-curricular activities
+  patents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Pateent" }],
+  scholarships: [{ type: mongoose.Schema.Types.ObjectId, ref: "Scholarship" }],
+  visa: [{ type: mongoose.Schema.Types.ObjectId, ref: "Visa" }],
 });
 
 // Creating a Mongoose model based on the schema

@@ -4,8 +4,13 @@ import experienceSlice from "./experienceSlice";
 import authorshipSlice from "./authorshipSlice";
 import visaSlice from "./visaSlice";
 import educationSlice from "./educationSlice";
+<<<<<<< HEAD
 import awardsSlice from "./awardsSlice";
 import scholarshipSlice from "./scholarshipSlice";
+=======
+import pressReleaseSlice from "./pressReleaseSlice";
+import judgingSlice from "./judgingSlice";
+>>>>>>> origin/develop
 
 export const store = configureStore({
   reducer: {
@@ -14,7 +19,12 @@ export const store = configureStore({
     authorship: authorshipSlice,
     visa: visaSlice,
     education: educationSlice,
+<<<<<<< HEAD
     awards: awardsSlice,
     scholarships: scholarshipSlice,
+=======
+    pressRelease: pressReleaseSlice,
+    judging: judgingSlice,
+>>>>>>> origin/develop
   },
 });
