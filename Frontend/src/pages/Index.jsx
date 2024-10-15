@@ -9,11 +9,8 @@ import Scholarships from "./Scholarships";
 import Patents from "./Patents";
 import OrignalWork from "./OrignalWork";
 import MediaMentions from "./MediaMentions";
-import PressRelease from "./PressRelease";
-import Judging from "./Judging";
 import Exhibitions from "./Exhibitions";
 import FinalMerits from "./FinalMerits";
-import Memberships from "./Memberships";
 
 const MultiStepForm = () => {
   // State to track the current form step
