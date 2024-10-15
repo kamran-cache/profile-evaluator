@@ -29,7 +29,7 @@ const BookForm = () => {
   return (
     <>
       <div>
-        <form className='w-full pr-12' onSubmit={handleSubmit}>
+        <form className="w-full pr-12" onSubmit={handleSubmit}>
           <div className="-mx-3 flex flex-wrap">
             <div className="w-full px-3">
               <div className="mb-5">
@@ -102,7 +102,7 @@ const BookForm = () => {
                 </label>
                 <input
                   type="text"
-                  name="Edition"
+                  name="edition"
                   placeholder="Is this a first edition or a revised edition?"
                   className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   //   onFocus={(e) => (e.target.type = "date")}
