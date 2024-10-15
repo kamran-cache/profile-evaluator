@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useRef } from "react";
-import Recognition from "../assets/Recognition.webp";
+import Recognition from "../../assets/Recognition.webp";
 
 const Memberships = () => {
   const [merits, setMerits] = useState(false);

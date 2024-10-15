@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFormField, addJudgingRecord } from "../redux/judgingSlice";
-import Resume from "../assets/resume.jpg";
+import { setFormField, addJudgingRecord } from "../../redux/judgingSlice";
+import Resume from "../../assets/resume.jpg";
 
 const JudgingForm = () => {
   const dispatch = useDispatch();

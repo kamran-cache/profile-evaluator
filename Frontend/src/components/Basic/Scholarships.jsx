@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState, useRef } from "react";
-import Scholarship from '../assets/scholarship.webp';
+import Scholarship from '../../assets/scholarship.webp';
 import { useSelector, useDispatch } from "react-redux";
-import { addscholarships, setFormField } from "../redux/scholarshipSlice";
+import { addscholarships, setFormField } from "../../redux/scholarshipSlice";
 
 const Scholarships = () => {
 

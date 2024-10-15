@@ -1,9 +1,9 @@
 import React from "react";
-import Nationality from "../components/Nationality";
-import Visa from "../components/VisaDropdown";
-import ID from "../assets/IDCard2.jpg";
+import Nationality from "../Nationality";
+import Visa from "../VisaDropdown";
+import ID from "../../assets/IDCard2.jpg";
 import { useDispatch } from "react-redux";
-import { addInfo } from "../redux/personlInfoSlice";
+import { addInfo } from "../../redux/personlInfoSlice";
 
 const BasicDetails = () => {
   const dispatch = useDispatch();

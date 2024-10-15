@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useRef } from "react";
-import Recognition from '../assets/Recognition.webp';
+import Recognition from '../../assets/Recognition.webp';
 import { useSelector, useDispatch } from "react-redux";
-import { addAward, setFormField } from "../redux/awardsSlice";
+import { addAward, setFormField } from "../../redux/awardsSlice";
 
 const Awards = () => {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import MultiStepForm from './pages/Index'
 import { Routes, Route } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './components/Basic/Dashboard';
 
 function App() {
 

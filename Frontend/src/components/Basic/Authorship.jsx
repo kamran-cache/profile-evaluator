@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
-import Resume from "../assets/resume.jpg";
-import Paper from "../assets/Paper.jpg";
-import PaperForm from "../components/PaperForm";
-import BookForm from "../components/BookForm";
-import PatentForm from "../components/PatentForm";
+import Resume from "../../assets/resume.jpg";
+import Paper from "../../assets/Paper.jpg";
+import PaperForm from "../PaperForm";
+import BookForm from "../BookForm";
+import PatentForm from "../PatentForm";
 import { useSelector } from "react-redux";
 
 const Authorship = () => {
