@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-import Education from "./Education";
-import VisaForm from "./Visa";
-import Experience from "./Experience";
-import BasicDetails from "./BasicDetails";
-import Authorship from "./Authorship";
-import Awards from "./Awards";
-import Scholarships from "./Scholarships";
-import Patents from "./Patents";
-import OrignalWork from "./OrignalWork";
-import MediaMentions from "./MediaMentions";
-import Exhibitions from "./Exhibitions";
-import FinalMerits from "./FinalMerits";
+import Education from "../components/Basic/Education";
+import VisaForm from "../components/Basic/Visa";
+import Experience from "../components/Basic/Experience";
+import BasicDetails from "../components/Basic/BasicDetails";
+import Authorship from "../components/Basic/Authorship";
+import Awards from "../components/Basic/Awards";
+import Scholarships from "../components/Basic/Scholarships";
+import Patents from "../components/Basic/Patents";
+import OrignalWork from "../components/Basic/OrignalWork";
+import MediaMentions from "../components/Basic/MediaMentions";
+import Exhibitions from "../components/Basic/Exhibitions";
+import FinalMerits from "../components/Basic/FinalMerits";
+import JudgingForm from "../components/Basic/Judging";
+import PressRelease from "../components/Basic/PressRelease";
+import Memberships from "../components/Basic/Memberships";
 
 const MultiStepForm = () => {
   // State to track the current form step
@@ -73,7 +76,7 @@ const MultiStepForm = () => {
 
         {/* {step === 10 && <MediaMentions />} */}
         {step === 10 && <PressRelease />}
-        {step === 11 && <Judging />}
+        {step === 11 && <JudgingForm />}
         {step === 12 && <OrignalWork />}
 
         {step === 13 && <MediaMentions />}

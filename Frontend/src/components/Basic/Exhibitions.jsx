@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Recognition from "../assets/Recognition.webp";
+import Recognition from "../../assets/Recognition.webp";
 
 const Exhibitions = () => {
   const [hasExhibition, setHasExhibition] = useState(false);

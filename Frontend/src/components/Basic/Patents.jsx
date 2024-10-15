@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useRef } from "react";
-import Patent from '../assets/Patent.jpg';
-import './index.css';
+import Patent from '../../assets/Patent.jpg';
+import '../../pages/index.css';
 
 const Patents = () => {
   return (

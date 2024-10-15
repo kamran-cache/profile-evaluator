@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
-import Resume from "../assets/resume.jpg";
+import Resume from "../../assets/resume.jpg";
 import { useSelector, useDispatch } from "react-redux";
-import { addPressRelease, setFormField } from "../redux/pressReleaseSlice";
+import { addPressRelease, setFormField } from "../../redux/pressReleaseSlice";
 
 const PressRelease = () => {
   const textareaRef = useRef(null); // Reference to the textarea
