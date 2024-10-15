@@ -18,8 +18,12 @@ app.use(express.json());
 
 // router
 const profileRouter = require("./router/profileRouter");
+const basicInfoRouter = require("./router/basicInfoRouter");
+const experienceRouter = require("./router/experienceRouter");
 
 app.use("/api/v1/profile", profileRouter);
+app.use("/api/v1/basicInfo", basicInfoRouter);
+app.use("/api/v1/experience", experienceRouter);
 
 const Port = process.env.PORT || 8000;
 app.listen(Port, () => {

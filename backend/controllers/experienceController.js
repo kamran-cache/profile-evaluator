@@ -5,14 +5,13 @@ const Profile = require("../models/profile");
 exports.addExperience = async (req, res) => {
   try {
     const experience = new Experience(req.body); // Create new experience object
-    await experience.save();
 
     // Find the profile and add the new experience reference
-    const profile = await Profile.findById(req.params.profileId);
+    const profile = await Profile.findById(req.params.id);
     if (!profile) return res.status(404).json({ error: "Profile not found" });
-
-    profile.experience.push(experience._id); // Push the experience to the profile's experience array
-    await profile.save(); // Save the updated profile
+    await experience.save();
+    profile.experience.push(experience._id);
+    await profile.save();
 
     res
       .status(201)
