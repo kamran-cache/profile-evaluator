@@ -23,7 +23,7 @@ const PaperForm = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(setFormField({ name: "section", value: "Paper" }));
+    dispatch(setFormField({ name: "authorshipType", value: "Paper" }));
     dispatch(addAuthorship()); // Dispatch action to add authorship entry
     dispatch(resetForm());
     dispatch(handleToggle());
@@ -32,7 +32,7 @@ const PaperForm = () => {
 
   return (
     <div>
-      <form className='w-full pr-12' onSubmit={handleSubmit}>
+      <form className="w-full pr-12" onSubmit={handleSubmit}>
         <div>
           <div className="-mx-3 flex flex-wrap">
             <div className="w-full px-3">

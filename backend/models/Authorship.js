@@ -30,4 +30,6 @@ const authorshipSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-module.exports = mongoose.model("Authorship", authorshipSchema);
+const Authorship = mongoose.model("Authorship", authorshipSchema);
+
+module.exports = Authorship;

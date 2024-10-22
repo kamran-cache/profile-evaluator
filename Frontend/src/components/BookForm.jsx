@@ -21,7 +21,7 @@ const BookForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(setFormField({ name: "section", value: "Book" }));
+    dispatch(setFormField({ name: "authorshipType", value: "Book" }));
     dispatch(addAuthorship()); // Dispatch action to add authorship entry
     dispatch(resetForm()); // Reset form after submission
   };

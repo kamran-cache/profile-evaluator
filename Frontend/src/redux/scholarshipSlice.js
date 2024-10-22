@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  isEdited: false,
   scholarships: [], // Stores the experience form data
   currentForm: {
     name: "",
@@ -17,6 +18,7 @@ const scholarshipSlice = createSlice({
     setFormField: (state, action) => {
       const { name, value } = action.payload;
       state.currentForm[name] = value;
+      state.isEdited = true;
     },
     addscholarships: (state) => {
       state.scholarships.push(state.currentForm);
@@ -31,9 +33,25 @@ const scholarshipSlice = createSlice({
     resetForm: (state) => {
       state.currentForm = initialState.currentForm;
     },
+    setScholarship: (state, action) => {
+      const scholarship = action.payload;
+      // Ensure that the incoming visa data is an array and set it to forms
+      state.scholarships = Array.isArray(scholarship)
+        ? scholarship
+        : [scholarship];
+      state.isEdited = false;
+    },
+    setIsScholarshipEdited: (state, action) => {
+      state.isEdited = action.payload;
+    },
   },
 });
 
-export const { setFormField, addscholarships, resetForm } =
-scholarshipSlice.actions;
+export const {
+  setFormField,
+  addscholarships,
+  resetForm,
+  setScholarship,
+  setIsScholarshipEdited,
+} = scholarshipSlice.actions;
 export default scholarshipSlice.reducer;

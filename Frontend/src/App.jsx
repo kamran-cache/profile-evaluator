@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import './App.css'
-import MultiStepForm from './pages/Index'
-import { Routes, Route } from 'react-router-dom';
-import Dashboard from './components/Basic/Dashboard';
+import { useState } from "react";
+import "./App.css";
+import MultiStepForm from "./pages/Index";
+import { Routes, Route } from "react-router-dom";
+import Dashboard from "./components/Basic/Dashboard";
+import Login from "./pages/Login";
 import CriticalRole from './pages/additionalForms/CriticalRole';
 import Judging from './pages/additionalForms/Judging2';
 import Authorship2 from './pages/additionalForms/Authorship2';
@@ -14,12 +15,13 @@ import FinalMerits2 from './pages/additionalForms/FinalMerits2';
 import ToDoList from './others/todo';
 
 function App() {
-
   return (
     <>
-     <Routes>
-        <Route path="/" element={<MultiStepForm/>} />
-        <Route path="/dash" element={<Dashboard/>} />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/form" element={<MultiStepForm />} />
+        <Route path="/form/:id" element={<MultiStepForm />} />
+        <Route path="/dash" element={<Dashboard />} />
         <Route path="/role" element={<CriticalRole/>} />
         <Route path="/judging" element={<Judging/>} />
         <Route path="/authorship" element={<Authorship2/>} />
@@ -34,7 +36,7 @@ function App() {
 
       </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

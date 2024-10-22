@@ -14,9 +14,14 @@ import JudgingSlice2 from "./AdditionalForms/JudgingSlice2";
 import PressReleaseSlice2 from "./AdditionalForms/PressReleaseSlice2";
 import ExibitionSlice from "./AdditionalForms/ExibitionSlice";
 import FinalMeritsSlice2 from "./AdditionalForms/FinalMeritsSlice2";
+import exhibitionSlice from "./exhibitionSlice";
+import applicationSlice from "./applicationSlice";
+import meritSlice from "./finalMeritSlice";
+import membershipSlice from "./membershipSlice";
 
 export const store = configureStore({
   reducer: {
+    application: applicationSlice,
     personalInfo: personalInfo,
     experience: experienceSlice,
     authorship: authorshipSlice,
@@ -32,5 +37,8 @@ export const store = configureStore({
     press: PressReleaseSlice2,
     exibition: ExibitionSlice,
     merits: FinalMeritsSlice2,
+    exhibition: exhibitionSlice,
+    finalMerits: meritSlice,
+    membership: membershipSlice,
   },
 });

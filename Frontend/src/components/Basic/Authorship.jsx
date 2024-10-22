@@ -5,13 +5,17 @@ import PaperForm from "../PaperForm";
 import BookForm from "../BookForm";
 import PatentForm from "../PatentForm";
 import { useSelector } from "react-redux";
+import NavigationBtn from "../NavigationBtn";
+import { useParams } from "react-router-dom";
 
 const Authorship = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [dropdownValue, setDropdownValue] = useState("Paper");
+  const { id } = useParams();
   const formData = useSelector((state) => state.authorship.authorshipData);
+  const authorshipData = useSelector((state) => state.authorship);
 
-  console.log(formData, 123);
+  console.log("authorshipData", authorshipData);
   const handleDropdown = (e) => {
     console.log(e.target);
     setDropdownValue(e.target.value);
@@ -21,7 +25,7 @@ const Authorship = () => {
     setIsFormVisible(!isFormVisible); // Toggle form visibility
   };
 
-  // Toggle Experience section visibility
+  // Toggle Experience authorshipType visibility
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -30,7 +34,7 @@ const Authorship = () => {
   return (
     <>
       <div className="flex w-full pt-4">
-      <div className="flex justify-center w-1/2 h-full">
+        <div className="flex justify-center w-1/2 h-full">
           {/* Form component */}
           <div className="flex flex-col justify-between w-full pl-12 bg-white">
             {/* Scrollable form content */}
@@ -44,8 +48,8 @@ const Authorship = () => {
               {formData.length > 0 && (
                 <div className="mb-4">
                   {formData.map((formContent, index) =>
-                    formContent.section === "Paper" ||
-                    formContent.section === "Book" ? (
+                    formContent.authorshipType === "Paper" ||
+                    formContent.authorshipType === "Book" ? (
                       <div
                         key={index}
                         onClick={() => handleClick(index)}
@@ -53,7 +57,7 @@ const Authorship = () => {
                       >
                         <div className="flex justify-between">
                           <strong>
-                            Authorship {index + 1}: {formContent.section}
+                            Authorship {index + 1}: {formContent.authorshipType}
                           </strong>
                           <svg
                             className={`fill-current text-blue-700 h-8 w-8 transform transition-transform duration-500 ${
@@ -96,7 +100,7 @@ const Authorship = () => {
                       >
                         <div className="flex justify-between">
                           <strong>
-                            Authorship {index + 1}: {formContent.section}
+                            Authorship {index + 1}: {formContent.authorshipType}
                           </strong>
                           <svg
                             className={`fill-current text-blue-700 h-8 w-8 transform transition-transform duration-500 ${
@@ -151,7 +155,7 @@ const Authorship = () => {
                       <strong>Select the type of authorship:</strong>
                     </div>
                     <select
-                      name="type"
+                      name="authorshipType"
                       id=""
                       className="w-full my-3  rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                       onChange={handleDropdown}
@@ -179,6 +183,11 @@ const Authorship = () => {
           />
         </div>
       </div>
+      <NavigationBtn
+        data={authorshipData.isEdited ? authorshipData : ""}
+        api={`http://localhost:5000/api/v1/add-data/authorship/${id}`}
+        section={"authorship"}
+      />
     </>
   );
 };
