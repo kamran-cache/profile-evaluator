@@ -33,7 +33,7 @@ export const store = configureStore({
     judging: judgingSlice,
     projects : CriticalRoleSlice,
     authorships : AuthorshipSlice2,
-    judging: JudgingSlice2,
+    judgings: JudgingSlice2,
     press: PressReleaseSlice2,
     exibition: ExibitionSlice,
     merits: FinalMeritsSlice2,

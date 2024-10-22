@@ -17,7 +17,7 @@ import Memberships from "../components/Basic/Memberships";
 import { useDispatch, useSelector } from "react-redux";
 import { setPersonalInfo } from "../redux/personalInfoSlice";
 import { setVisa } from "../redux/visaSlice";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { store } from "../redux/store";
 import axios from "axios";
 import { setExperience } from "../redux/experienceSlice";
@@ -33,6 +33,8 @@ const MultiStepForm = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const totalSteps = 12; // Total number of form steps
+
+  const navigate = useNavigate();
 
   const getData = async () => {
     try {
@@ -72,7 +74,7 @@ const MultiStepForm = () => {
     console.log(window.localStorage.getItem("token"));
     if (!window.localStorage.getItem("token")) {
       // console.log()
-      navigate("/login");
+      navigate("/");
     }
     getData();
     console.log(store.getState(), 123);

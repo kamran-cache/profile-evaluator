@@ -9,7 +9,7 @@ import {
 const Judging = () => {
   const dispatch = useDispatch();
 
-  const { currentForm, judging } = useSelector((state) => state.judging);
+  const { currentForm, judging } = useSelector((state) => state.judgings);
 
   // Handle input change for form fields
   const handleInputChange = (e) => {
