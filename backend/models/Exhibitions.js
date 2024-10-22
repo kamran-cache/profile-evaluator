@@ -1,29 +1,16 @@
 const mongoose = require("mongoose");
 
 const exhibitionSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+  role: {
+    type: String,
+    enum: ["Speaker", "Presenter", "Panelist", "Moderator"],
     required: true,
   },
-  hasExhibition: {
-    type: Boolean,
+  count: {
+    type: Number,
     required: true,
   },
-  roles: [
-    {
-      role: {
-        type: String,
-        enum: ["Speaker", "Presenter", "Panelist", "Moderator"],
-        required: true,
-      },
-      count: {
-        type: Number,
-        required: true,
-      },
-    },
-  ],
 });
 
-const Exhibition = mongoose.model("Exhibition", exhibitionSchema);
+const Exhibition = mongoose.model("Exhibitions", exhibitionSchema);
 module.exports = Exhibition;

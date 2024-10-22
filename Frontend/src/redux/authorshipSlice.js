@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const authorshipSlice = createSlice({
   name: "authorship",
   initialState: {
+    isEdited: false,
     authorshipData: [],
     currentForm: {},
     toggleForm: false,
@@ -11,6 +12,7 @@ const authorshipSlice = createSlice({
     setFormField: (state, action) => {
       const { name, value } = action.payload; // Destructure the field name and value
       state.currentForm[name] = value; // Set the field dynamically in the current form
+      state.isEdited = true;
     },
     addAuthorship: (state) => {
       state.authorshipData.push(state.currentForm); // Add the current form to the authorship data list
@@ -33,6 +35,17 @@ const authorshipSlice = createSlice({
     handleToggle: (state) => {
       state.toggleForm = !state.toggleForm;
     },
+    setAuthorship: (state, action) => {
+      const authorship = action.payload;
+      // Ensure that the incoming visa data is an array and set it to forms
+      state.authorshipData = Array.isArray(authorship)
+        ? authorship
+        : [authorship];
+      state.isEdited = false;
+    },
+    setIsAuthorshipEdited: (state, action) => {
+      state.isEdited = action.payload;
+    },
   },
 });
 
@@ -43,5 +56,7 @@ export const {
   updateAuthorship,
   removeAuthorship,
   handleToggle,
+  setIsAuthorshipEdited,
+  setAuthorship,
 } = authorshipSlice.actions;
 export default authorshipSlice.reducer;

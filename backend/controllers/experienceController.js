@@ -12,7 +12,7 @@ exports.addExperience = async (req, res) => {
     await experience.save();
     profile.experience.push(experience._id);
     await profile.save();
-
+    console.log(profile, "profile");
     res
       .status(201)
       .json({ message: "Experience added successfully", experience });

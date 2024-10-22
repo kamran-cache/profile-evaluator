@@ -1,21 +1,21 @@
-import React from 'react'
+import React from "react";
 import { useState, useRef } from "react";
-import Patent from '../../assets/Patent.jpg';
-import '../../pages/index.css';
+import Patent from "../../assets/Patent.jpg";
+import "../../pages/index.css";
+import NavigationBtn from "../NavigationBtn";
 
 const Patents = () => {
   return (
     <>
-        <div className="flex w-full pt-4 h-[86vh]">
-        
+      <div className="flex w-full pt-4 h-[86vh]">
         <div className="flex justify-center w-1/2 h-full">
           {/* Form component */}
           <div className="flex flex-col justify-between w-full pl-12 bg-white">
             {/* Scrollable form content */}
-            <div className="overflow-y-auto overflow-x-hidden w-full h-[35rem] py-4 scrollbar-transparent"> 
-              <form className='w-full pr-12'>
+            <div className="overflow-y-auto overflow-x-hidden w-full h-[35rem] py-4 scrollbar-transparent">
+              <form className="w-full pr-12">
                 <div className="flex text-2xl font-semibold mb-4">
-                Your Innovation Journey: Patents & Citations
+                  Your Innovation Journey: Patents & Citations
                 </div>
                 <div className="-mx-3 flex flex-wrap">
                   <div className="w-full px-3">
@@ -50,7 +50,7 @@ const Patents = () => {
                   </div>
                 </div>
                 <div className="-mx-3 flex flex-wrap">
-                <div className="w-full px-3 sm:w-1/2">
+                  <div className="w-full px-3 sm:w-1/2">
                     <div className="mb-5">
                       <label className="mb-3 block text-base font- text-[#07074D]">
                         What is the <strong>Filing Date</strong> of the patent?
@@ -79,7 +79,8 @@ const Patents = () => {
                   <div className="w-full px-3">
                     <div className="mb-5">
                       <label className="mb-3 block text-base font- text-[#07074D]">
-                        What is the <strong>Current Status</strong> of the patent?
+                        What is the <strong>Current Status</strong> of the
+                        patent?
                       </label>
                       <input
                         type="text"
@@ -127,7 +128,8 @@ const Patents = () => {
                   <div className="w-full px-3">
                     <div className="mb-5">
                       <label className="mb-3 block text-base font- text-[#07074D]">
-                      What is the <strong>Affiliated Institution</strong> or company for this patent?
+                        What is the <strong>Affiliated Institution</strong> or
+                        company for this patent?
                       </label>
                       <input
                         type="text"
@@ -143,7 +145,8 @@ const Patents = () => {
                   <div className="w-full px-3">
                     <div className="mb-5">
                       <label className="mb-3 block text-base font- text-[#07074D]">
-                      Please list any <strong>Citations</strong> of the patent in high-impact journals.
+                        Please list any <strong>Citations</strong> of the patent
+                        in high-impact journals.
                       </label>
                       <input
                         type="text"
@@ -159,7 +162,8 @@ const Patents = () => {
                   <div className="w-full px-3">
                     <div className="mb-5">
                       <label className="mb-3 block text-base font- text-[#07074D]">
-                      Please list any <strong>International Citations</strong> of the patent.
+                        Please list any <strong>International Citations</strong>{" "}
+                        of the patent.
                       </label>
                       <input
                         type="text"
@@ -176,13 +180,16 @@ const Patents = () => {
           </div>
         </div>
         <div className="flex justify-center w-1/2 h-full">
-          <div className="sticky top-4"> {/* Sticky image */}
+          <div className="sticky top-4">
+            {" "}
+            {/* Sticky image */}
             <img src={Patent} className="rounded-xl shadow-md h-[40rem]" />
           </div>
         </div>
       </div>
+      <NavigationBtn />
     </>
-  )
-}
+  );
+};
 
-export default Patents
+export default Patents;

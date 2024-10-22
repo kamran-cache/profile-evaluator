@@ -1,17 +1,26 @@
 const BasicDetails = require("../models/BasicDetails");
 const Profile = require("../models/profile");
+const Users = require("../models/Users");
 
 // Create a profile and associate it with BasicDetails
 exports.createBasicDetails = async (req, res) => {
   try {
-    const basicDetails = new BasicDetails(req.body);
+    const userId = req.user.userId;
+    // console.log(userId);
+    const basicDetails = new BasicDetails(req.body.data);
     await basicDetails.save();
 
     const profile = new Profile({
       personal_info: basicDetails._id, // Set the reference to the BasicDetails object
     });
-
     await profile.save();
+    const users = await Users.findByIdAndUpdate(
+      userId,
+      { profile: profile._id },
+      { new: true }
+    );
+
+    console.log("Users", users);
     console.log("basicDetails", basicDetails);
 
     res.status(201).json(profile);
@@ -33,26 +42,9 @@ exports.getBasicDetails = async (req, res) => {
   }
 };
 
-// Update basic details by ID
-// exports.updateBasicDetails = async (req, res) => {
-//   try {
-//     const updatedBasicDetails = await BasicDetails.findByIdAndUpdate(
-//       req.params.id,
-//       req.body,
-//       { new: true } // This ensures we get the updated document back
-//     );
-//     if (!updatedBasicDetails)
-//       return res.status(404).json({ error: "Basic details not found" });
-
-//     res.status(200).json(updatedBasicDetails);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
-
 // Update Basic Details linked to a Profile
 exports.updateBasicDetailsInProfile = async (req, res) => {
-  const basicDetails = req.body;
+  const basicDetails = req.body.data;
   const profileId = req.params.id;
 
   try {

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  isEdited: false,
   experiences: [], // Stores the experience form data
   currentForm: {
     role: "",
@@ -19,6 +20,7 @@ const experienceSlice = createSlice({
     setFormField: (state, action) => {
       const { name, value } = action.payload;
       state.currentForm[name] = value;
+      state.isEdited = true;
     },
     addExperience: (state) => {
       state.experiences.push(state.currentForm);
@@ -35,9 +37,23 @@ const experienceSlice = createSlice({
     resetForm: (state) => {
       state.currentForm = initialState.currentForm;
     },
+    setExperience: (state, action) => {
+      const experience = action.payload;
+      // Ensure that the incoming visa data is an array and set it to forms
+      state.experiences = Array.isArray(experience) ? experience : [experience];
+      state.isEdited = false;
+    },
+    setIsExperienceEdited: (state, action) => {
+      state.isEdited = action.payload;
+    },
   },
 });
 
-export const { setFormField, addExperience, resetForm } =
-  experienceSlice.actions;
+export const {
+  setFormField,
+  addExperience,
+  resetForm,
+  setExperience,
+  setIsExperienceEdited,
+} = experienceSlice.actions;
 export default experienceSlice.reducer;

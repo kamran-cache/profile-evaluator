@@ -2,6 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  isEdited: false,
   currentForm: {
     title: "",
     publication: "",
@@ -17,6 +18,7 @@ const pressReleaseSlice = createSlice({
     setFormField: (state, action) => {
       const { name, value } = action.payload;
       state.currentForm[name] = value;
+      state.isEdited = true;
     },
     addPressRelease: (state) => {
       if (state.currentForm.title.trim() !== "") {
@@ -24,8 +26,19 @@ const pressReleaseSlice = createSlice({
         state.currentForm = initialState.currentForm; // Reset the currentForm after adding
       }
     },
+    setPressRelease: (state, action) => {
+      const pressRelease = action.payload;
+      state.pressReleases = Array.isArray(pressRelease)
+        ? pressRelease
+        : [pressRelease];
+      state.isEdited = false;
+    },
+    setIsPREdited: (state, action) => {
+      state.isEdited = action.payload;
+    },
   },
 });
 
-export const { setFormField, addPressRelease } = pressReleaseSlice.actions;
+export const { setFormField, addPressRelease, setIsPREdited, setPressRelease } =
+  pressReleaseSlice.actions;
 export default pressReleaseSlice.reducer;

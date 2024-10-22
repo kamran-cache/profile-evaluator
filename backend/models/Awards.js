@@ -10,25 +10,24 @@ const awardSchema = new mongoose.Schema({
   },
   mode: {
     type: String,
-    enum: ["Online", "Offline", "Hybrid"],
+    enum: ["online", "offline", "hybrid"],
     required: true,
   },
-  year: {
+  date: {
     type: Date,
     required: true,
   },
   title: {
     type: String,
-    required: true,
   },
   issuingOrganization: {
     type: String,
-    required: true,
   },
   category: {
     type: String,
-    required: true,
   },
 });
 
-module.exports = mongoose.model("Award", awardSchema);
+const Awards = mongoose.model("Awards", awardSchema);
+
+module.exports = Awards;

@@ -21,7 +21,7 @@ const PatentForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(setFormField({ name: "section", value: "Patent" }));
+    dispatch(setFormField({ name: "authorshipType", value: "Patent" }));
     dispatch(addAuthorship()); // Dispatch action to add authorship entry
     dispatch(resetForm()); // Reset form after submission
   };
@@ -29,7 +29,7 @@ const PatentForm = () => {
   return (
     <>
       <div>
-        <form className='w-full pr-12' onSubmit={handleSubmit}>
+        <form className="w-full pr-12" onSubmit={handleSubmit}>
           <div className="-mx-3 flex flex-wrap">
             <div className="w-full px-3">
               <div className="mb-5">

@@ -2,25 +2,15 @@ const mongoose = require("mongoose");
 
 const meritSchema = new mongoose.Schema(
   {
-    publicRecognition: {
+    publicFigure: {
       type: Boolean,
-      required: true,
     },
-    recognizedAsPublicFigure: {
+    nationalInterest: {
       type: Boolean,
-      required: function () {
-        return this.publicRecognition;
-      },
     },
-    contributionsToNationalInterest: {
-      type: Boolean,
-      required: function () {
-        return this.publicRecognition;
-      },
-    },
-    activities: {
+    contributions: {
       type: [String],
-      enum: ["Mentorship", "Volunteering", "Social Activities"],
+      enum: ["mentorship", "volunteering", "socialActivities"],
     },
   },
   { timestamps: true }
