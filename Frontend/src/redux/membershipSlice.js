@@ -22,9 +22,13 @@ export const membershipSlice = createSlice({
         state.isEdited = true;
       }
     },
+    setMemberships: (state, action) => {
+      const memberships = action.payload;
+      state.forms = Array.isArray(memberships) ? memberships : [memberships];
+    },
   },
 });
 
-export const { setMembershipCount, setMembershipName } =
+export const { setMembershipCount, setMembershipName, setMemberships } =
   membershipSlice.actions;
 export default membershipSlice.reducer;

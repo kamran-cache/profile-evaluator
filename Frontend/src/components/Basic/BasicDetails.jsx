@@ -5,11 +5,13 @@ import ID from "../../assets/IDCard2.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { addInfo } from "../../redux/personalInfoSlice";
 import NavigationBtn from "../NavigationBtn";
+import { useNavigate } from "react-router-dom";
 
 const BasicDetails = ({ onSubmit }) => {
   const dispatch = useDispatch();
   const personalInfo = useSelector((state) => state.personalInfo.personalInfo);
-  console.log(personalInfo, "basicdetail");
+  const personalInfoData = useSelector((state) => state.personalInfo);
+  console.log(personalInfoData, "basicdetail");
   // Handler to update Redux state
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,6 +27,7 @@ const BasicDetails = ({ onSubmit }) => {
       onSubmit("", "");
     }
   };
+  const navigate = useNavigate();
   return (
     <>
       <div className="flex w-full pt-4 ">
@@ -331,10 +334,17 @@ const BasicDetails = ({ onSubmit }) => {
         </div>
       </div>
       <NavigationBtn
-        data={personalInfo.isEdited ? personalInfo : ""}
+        data={personalInfoData.isEdited ? personalInfoData : ""}
         api={"http://localhost:5000/api/v1/basicInfo/"}
         section={"basicDetails"}
       />
+      {/* <button
+        onClick={() => {
+          navigate("/role/:id");
+        }}
+      >
+        Critical Role
+      </button> */}
     </>
   );
 };

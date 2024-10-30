@@ -5,6 +5,7 @@ import {
   addJudging,
   setFormField,
 } from "../../redux/AdditionalForms/JudgingSlice2";
+import { useParams } from "react-router-dom";
 
 const Judging = () => {
   const dispatch = useDispatch();
@@ -42,32 +43,41 @@ const Judging = () => {
     setIsOpenArray(updatedIsOpenArray);
   };
 
+  // getting id from the url id = userId and J_id = current judging record Id
+
+  const { id, j_id } = useParams();
+
+  const judgingData = useSelector((state) => state.judging);
+  console.log(judgingData, "jdata");
+
+  const currentJudgedData = judgingData.judgingRecords.find(
+    (el) => el._id === j_id
+  );
+  console.log(currentJudgedData, "curr");
+
   return (
     <>
       <div className="flex">
         <div className="flex w-[30vw] h-[100vh] justify-center">
           <div className="flex flex-col h-[88vh] mt-[10vh] items-center bg-white px-6 md:pl-[5vw] overflow-y-auto overflow-x-hidden scrollbar-transparent">
             <div className="w-[20vw] mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-md hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out text-gray-700 font-medium">
-            Judging List
+              Judging List
             </div>
             {/* Render previous forms as collapsed content */}
-            {judging.length > 0 && (
-              <div className="mb-4">
-                {judging.map((formContent, index) => (
-                  <div
-                    key={index}
-                    className="w-[20vw] mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-lg hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out"
-                  >
-                    <div className="flex justify-center text-xl text-center font-semibold text-blue-600">
-                      Judging {index + 1}
-                    </div>
-                    <div className="flex justify-center text-lg text-center mt-2">
-                      <p className="text-gray-700 font-medium">
-                        {formContent.organizationName}
+            {currentJudgedData && currentJudgedData.count > 0 && (
+              <div className="w-full">
+                {Array.from({ length: currentJudgedData.count }).map(
+                  (_, index) => (
+                    <div
+                      key={index}
+                      className="my-3 p-3 border border-gray-300 bg-gradient-to-r from-white to-gray-100 "
+                    >
+                      <p>
+                        Judged at {currentJudgedData.category} {index + 1}
                       </p>
                     </div>
-                  </div>
-                ))}
+                  )
+                )}
               </div>
             )}
           </div>

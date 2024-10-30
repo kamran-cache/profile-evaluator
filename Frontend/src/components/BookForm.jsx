@@ -90,7 +90,7 @@ const BookForm = () => {
                   className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   //   onFocus={(e) => (e.target.type = "date")}
                   //   onBlur={(e) => (e.target.type = "text")}
-                  value={currentForm.publicationDate || ""}
+                  value={currentForm.ISBN || ""}
                   onChange={handleInputChange}
                 />
               </div>
@@ -107,7 +107,7 @@ const BookForm = () => {
                   className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   //   onFocus={(e) => (e.target.type = "date")}
                   //   onBlur={(e) => (e.target.type = "text")}
-                  value={currentForm.publicationDate || ""}
+                  value={currentForm.edition || ""}
                   onChange={handleInputChange}
                 />
               </div>
@@ -124,7 +124,7 @@ const BookForm = () => {
                   className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   //   onFocus={(e) => (e.target.type = "date")}
                   //   onBlur={(e) => (e.target.type = "text")}
-                  value={currentForm.publicationDate || ""}
+                  value={currentForm.sales_distribution || ""}
                   onChange={handleInputChange}
                 />
               </div>
@@ -141,7 +141,7 @@ const BookForm = () => {
                   className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   //   onFocus={(e) => (e.target.type = "date")}
                   //   onBlur={(e) => (e.target.type = "text")}
-                  value={currentForm.publicationDate || ""}
+                  value={currentForm.translations || ""}
                   onChange={handleInputChange}
                 />
               </div>

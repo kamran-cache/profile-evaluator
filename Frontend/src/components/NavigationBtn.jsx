@@ -95,14 +95,14 @@ const NavigationBtn = ({ data, api, section }) => {
     try {
       let response;
 
-      if (data.experiences.length > 1 && data.isEdited) {
+      if (data.experiences.length > 0 && data.isEdited) {
         const newData = [];
         for (const form of data.experiences) {
           if (!form._id) {
             newData.push(form);
           }
         }
-        // console.log("newdata", newData);
+        console.log("newdata inoe 1", newData);
 
         if (newData.length > 0) {
           const filteredData = {
@@ -425,18 +425,28 @@ const NavigationBtn = ({ data, api, section }) => {
 
   const handleApiRequest = async () => {
     try {
+      console.log("inside basic details");
       let response;
+      const token = window.localStorage.getItem("token");
       if (section === "basicDetails") {
         if (id) {
           response = await axios.put(api, { data });
         } else {
-          response = await axios.post(api, { data });
+          response = await axios.post(
+            api,
+            { data },
+            {
+              headers: {
+                token: `Bearer ${token}`,
+              },
+            }
+          );
         }
       }
 
       const responseData = response.data;
       if (section === "basicDetails" && responseData._id) {
-        navigate(`/${responseData._id}`);
+        navigate(`/form/${responseData._id}`);
       }
       console.log("API Response:", responseData);
     } catch (error) {
@@ -446,6 +456,7 @@ const NavigationBtn = ({ data, api, section }) => {
   };
 
   const handleNextStep = async () => {
+    console.log("data", data);
     if (data?.isEdited) {
       if (
         section === "visa" ||
@@ -467,7 +478,7 @@ const NavigationBtn = ({ data, api, section }) => {
         await handlePRApiRequest();
       } else if (section === "judging") {
         await handleJudgingApiRequest();
-      } else if (section === "basicDetails") {
+      } else {
         await handleApiRequest();
       }
     }
@@ -491,7 +502,7 @@ const NavigationBtn = ({ data, api, section }) => {
       let response;
 
       //---------this is a method to update all the content of the visa ---------------
-      if (data.forms.length > 0 && data.isEdited) {
+      if (data && data.forms.length > 0 && data.isEdited) {
         console.log(store.getState(), "store");
         const newData = [];
         for (const form of data.forms) {
@@ -511,12 +522,14 @@ const NavigationBtn = ({ data, api, section }) => {
 
           if (response) {
             alert("form submitted!!");
+            navigate(`/role/${id}`);
           }
         } else {
           console.log("No new forms to update.");
+          navigate(`/role/${id}`);
         }
       }
-
+      navigate(`/dash/${id}`);
       console.log("API Response:", response);
     } catch (error) {
       console.error("Error in API request:", error);

@@ -37,7 +37,7 @@ const Login = () => {
       window.localStorage.setItem("token", response.data.token);
       console.log("id", response.data.profile_id);
       if (response.data.profile_id) {
-        navigate(`/form/${response.data.profile_id}`);
+        navigate(`/dash/${response.data.profile_id}`);
       } else {
         navigate("/form");
       }

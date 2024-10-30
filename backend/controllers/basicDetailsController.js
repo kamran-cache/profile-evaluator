@@ -6,14 +6,19 @@ const Users = require("../models/Users");
 exports.createBasicDetails = async (req, res) => {
   try {
     const userId = req.user.userId;
-    // console.log(userId);
-    const basicDetails = new BasicDetails(req.body.data);
+    console.log(userId);
+    const data = req.body.data.personalInfo;
+    console.log("basic data", data);
+    const basicDetails = new BasicDetails(data);
     await basicDetails.save();
+    console.log("basic data", basicDetails);
 
     const profile = new Profile({
       personal_info: basicDetails._id, // Set the reference to the BasicDetails object
     });
     await profile.save();
+    console.log("basic data", profile);
+
     const users = await Users.findByIdAndUpdate(
       userId,
       { profile: profile._id },
@@ -44,7 +49,7 @@ exports.getBasicDetails = async (req, res) => {
 
 // Update Basic Details linked to a Profile
 exports.updateBasicDetailsInProfile = async (req, res) => {
-  const basicDetails = req.body.data;
+  const basicDetails = req.body.data.personalInfo;
   const profileId = req.params.id;
 
   try {
