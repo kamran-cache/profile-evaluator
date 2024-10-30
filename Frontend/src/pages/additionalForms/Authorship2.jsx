@@ -1,54 +1,79 @@
-import React from 'react'
-import { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addAuthorships,
   setFormField,
 } from "../../redux/AdditionalForms/AuthorshipSlice2";
-
+import { useParams } from "react-router-dom";
+import { getData } from "../../utils/Data";
+import { store } from "../../redux/store";
 
 const Authorship2 = () => {
+  const [selectedType, setSelectedType] = useState("Paper");
+  const handleSelectChange = (e) => {
+    setSelectedType(e.target.value); // Update state based on selected option
+  };
 
-    const [selectedType, setSelectedType] = useState('Paper');
-    const handleSelectChange = (e) => {
-        setSelectedType(e.target.value); // Update state based on selected option
-      };
+  const dispatch = useDispatch();
 
-      const dispatch = useDispatch();
+  const { currentForm, authorships } = useSelector(
+    (state) => state.authorships
+  );
 
-      const { currentForm, authorships } = useSelector((state) => state.authorships);
-    
-      // Handle input change for form fields
-      const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        dispatch(setFormField({ name, value }));
-      };
-    
-      // Add form content to the Redux store
-      const handleAddForm = (e) => {
-        e.preventDefault(); // Prevent default form submission
-        if (currentForm.title.trim() !== "" || currentForm.patentTitle.trim() !== "") {
-          dispatch(addAuthorships()); // Add the current form to experiences
-          setIsOpen(!isOpen);
-        }
-      };
-    
-      // Toggle Experience section visibility
-      const [isOpen, setIsOpen] = useState(true);
-    
-      const handleClick = () => {
-        setIsOpen(!isOpen);
-      };
-    
-      // const [isToggle, setIsToggle] = useState(false);
-      const [isOpenArray, setIsOpenArray] = useState([]);
-    
-      const handleToggle = (index) => {
-        const updatedIsOpenArray = [...isOpenArray];
-        updatedIsOpenArray[index] = !updatedIsOpenArray[index]; // Toggle only the clicked section
-        setIsOpenArray(updatedIsOpenArray);
-      };
+  // Handle input change for form fields
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    dispatch(setFormField({ name, value }));
+  };
 
+  // Add form content to the Redux store
+  const handleAddForm = (e) => {
+    e.preventDefault(); // Prevent default form submission
+    if (
+      currentForm.title.trim() !== "" ||
+      currentForm.patentTitle.trim() !== ""
+    ) {
+      dispatch(addAuthorships()); // Add the current form to experiences
+      setIsOpen(!isOpen);
+    }
+  };
+
+  // Toggle Experience section visibility
+  const [isOpen, setIsOpen] = useState(true);
+
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // const [isToggle, setIsToggle] = useState(false);
+  const [isOpenArray, setIsOpenArray] = useState([]);
+
+  const handleToggle = (index) => {
+    const updatedIsOpenArray = [...isOpenArray];
+    updatedIsOpenArray[index] = !updatedIsOpenArray[index]; // Toggle only the clicked section
+    setIsOpenArray(updatedIsOpenArray);
+  };
+
+  // api calling
+  // id and authorship id from url
+  const { id, au_id } = useParams();
+  // calling the api to store the values in the states after the page is refreshed
+  useEffect(() => {
+    if (id) {
+      getData(id, dispatch);
+      console.log(store.getState(), "data", "user");
+    }
+    console.log(store.getState(), "datauseEffect", "user");
+  }, [id, dispatch]);
+
+  const authorshipData = useSelector((state) => state.authorship);
+  console.log(authorshipData, "jdata");
+
+  const currentAuthorshipData = authorshipData.authorshipData.find(
+    (el) => el._id === au_id
+  );
+  console.log(currentAuthorshipData, "curr");
   return (
     <div className="flex">
       <div className="flex w-[30vw] h-[100vh] justify-center">
@@ -86,8 +111,14 @@ const Authorship2 = () => {
           {/* Scrollable form content */}
           <div className="overflow-y-auto overflow-x-hidden w-full h-[85vh] py-4 scrollbar-transparent flex flex-col items-center mt-[1.5vh]">
             {/* Heading */}
-            <div className="flex text-2xl font-semibold mb-[1.5vh]">
-              Authorship
+            <div className="flex text-2xl font-semibold mb-[1.5vh] w-full justify-start">
+              {currentAuthorshipData && currentAuthorshipData.authorshipType
+                ? currentAuthorshipData.authorshipType
+                : ""}
+              :{" "}
+              {currentAuthorshipData && currentAuthorshipData.title
+                ? currentAuthorshipData.title
+                : "Authorship"}
             </div>
             {/* Toggle Form Button */}
             <button
@@ -426,8 +457,6 @@ const Authorship2 = () => {
       </div>
     </div>
   );
-}
+};
 
-
-
-export default Authorship2
+export default Authorship2;

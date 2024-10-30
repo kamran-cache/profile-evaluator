@@ -137,13 +137,21 @@ exports.addEducation = async (req, res) => {
 // Add new experience to a profile
 exports.addExperience = async (req, res) => {
   try {
-    const { experiences } = req.body.data; // Create new experience object
+    const { experiences } = req.body.data;
+    console.log(experiences, "exp data");
     const profile = await Profile.findById(req.params.id);
     if (!profile) return res.status(404).json({ error: "Profile not found" });
     const savedExperiences = [];
     for (const experience of experiences) {
-      const newExperience = new Experience(experience);
+      console.log("role", experience.roles);
+      const newExperience = new Experience({
+        company: experience.company,
+        roles: experience.roles,
+        location: experience.location,
+      });
+
       await newExperience.save();
+      console.log(newExperience, "res");
       savedExperiences.push(newExperience._id);
 
       profile.experience.push(newExperience._id);

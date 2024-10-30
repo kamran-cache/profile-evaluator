@@ -1,10 +1,13 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addExibition,
   setFormField,
 } from "../../redux/AdditionalForms/ExibitionSlice";
+import { store } from "../../redux/store";
+import { getData } from "../../utils/Data";
+import { useParams } from "react-router-dom";
 
 const Exibition2 = () => {
   const dispatch = useDispatch();
@@ -42,12 +45,22 @@ const Exibition2 = () => {
     setIsOpenArray(updatedIsOpenArray);
   };
 
+  const { id, e_id } = useParams();
+  // calling the api to store the values in the states after the page is refreshed
+  useEffect(() => {
+    if (id) {
+      getData(id, dispatch);
+      console.log(store.getState(), "data", "user");
+    }
+    console.log(store.getState(), "datauseEffect", "user");
+  }, [id, dispatch]);
+
   return (
     <div className="flex p-8">
       <div className="flex w-1/3 h-[90vh] justify-center">
         <div className="flex flex-col w-full h-[88vh] items-center bg- px-6 md:pl-[5vw] overflow-y-auto overflow-x-hidden scrollbar-transparent">
           <div className="w-full mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-md hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out text-gray-700 font-medium ">
-          Exibitions List
+            Exibitions List
           </div>
           {/* Render previous forms as collapsed content */}
           {exibition.length > 0 && (

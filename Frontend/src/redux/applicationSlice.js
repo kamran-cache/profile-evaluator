@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   step: 1,
+  id: "",
 };
 
 const applicationSlice = createSlice({
@@ -14,8 +15,11 @@ const applicationSlice = createSlice({
     prevStep: (state) => {
       state.step = state.step - 1;
     },
+    setId: (state, action) => {
+      state.id = action.payload;
+    },
   },
 });
 
-export const { nextStep, prevStep } = applicationSlice.actions;
+export const { nextStep, prevStep, setId } = applicationSlice.actions;
 export default applicationSlice.reducer;

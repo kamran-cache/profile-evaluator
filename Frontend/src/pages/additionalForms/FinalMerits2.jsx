@@ -1,17 +1,20 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addMerits,
   setFormField,
 } from "../../redux/AdditionalForms/FinalMeritsSlice2";
+import { getData } from "../../utils/Data";
+import { store } from "../../redux/store";
+import { useParams } from "react-router-dom";
 
 const FinalMerits2 = () => {
   const [selectedType, setSelectedType] = useState("");
   const handleSelectChange = (e) => {
     setSelectedType(e.target.value);
     const { name, value } = e.target;
-    dispatch(setFormField({ name, value })); 
+    dispatch(setFormField({ name, value }));
   };
 
   const dispatch = useDispatch();
@@ -52,7 +55,15 @@ const FinalMerits2 = () => {
     updatedIsOpenArray[index] = !updatedIsOpenArray[index]; // Toggle only the clicked section
     setIsOpenArray(updatedIsOpenArray);
   };
-
+  const { id, f_id } = useParams();
+  // calling the api to store the values in the states after the page is refreshed
+  useEffect(() => {
+    if (id) {
+      getData(id, dispatch);
+      console.log(store.getState(), "data", "user");
+    }
+    console.log(store.getState(), "datauseEffect", "user");
+  }, [id, dispatch]);
   return (
     <div className="flex p-8">
       <div className="flex w-1/3 h-[90vh] justify-center">

@@ -18,7 +18,7 @@ import exhibitionSlice from "./exhibitionSlice";
 import applicationSlice from "./applicationSlice";
 import meritSlice from "./finalMeritSlice";
 import membershipSlice from "./membershipSlice";
-
+import profileReducer from "./profileData";
 export const store = configureStore({
   reducer: {
     application: applicationSlice,
@@ -31,8 +31,8 @@ export const store = configureStore({
     scholarships: scholarshipSlice,
     pressRelease: pressReleaseSlice,
     judging: judgingSlice,
-    projects : CriticalRoleSlice,
-    authorships : AuthorshipSlice2,
+    projects: CriticalRoleSlice,
+    authorships: AuthorshipSlice2,
     judgings: JudgingSlice2,
     press: PressReleaseSlice2,
     exibition: ExibitionSlice,
@@ -40,5 +40,6 @@ export const store = configureStore({
     exhibition: exhibitionSlice,
     finalMerits: meritSlice,
     membership: membershipSlice,
+    profile: profileReducer,
   },
 });
