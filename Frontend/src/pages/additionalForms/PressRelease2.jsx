@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
     addPress,
     setFormField,
@@ -43,16 +44,90 @@ const PressRelease2 = () => {
     setIsOpenArray(updatedIsOpenArray);
   };
 
+  const companiesData = [
+    {
+      companyName: "Innovative startup",
+      employmentDates: "Forbes",
+      roles: [
+        { roleName: "Software Engineer", roleDates: "Jan 2022 - Dec 2023" , location: "New York, NY"},
+        { roleName: "Senior Engineer", roleDates: "Jan 2023 - Dec 2024" , location: "New York, NY"}
+      ]
+    },
+    {
+      companyName: "Emerging AI Startups",
+      employmentDates: "The Times",
+      roles: [
+        { roleName: "Lead Developer", roleDates: "Jan 2019 - Dec 2021" , location: "New York, NY"},
+        { roleName: "Engineering Manager", roleDates: "Jan 2022 - Present" , location: "New York, NY"}
+      ]
+    }
+  ];
+
+  const [selectedCompany, setSelectedCompany] = useState(companiesData[0]);
+
+  const [expandedCompany, setExpandedCompany] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    // Navigate to the details page with the companyId
+    navigate('/authorship');
+  };
+
+  const toggleCompany = (index) => {
+    setExpandedCompany(expandedCompany === index ? null : index);
+  };    
+
   return (
     <div className="flex p-8 ">
-      <div className="flex w-1/3 h-[90vh] justify-center">
-        <div className="flex flex-col w-full h-[88vh] items-center bg- px-6 md:pl-[5vw] overflow-y-auto overflow-x-hidden scrollbar-transparent">
-          <div className="w-full mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-md hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out text-gray-700 font-medium ">
+      <div className="w-full md:w-1/3 pr-4">
+        <div className="flex justify-center mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-md hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out text-2xl font-bold text-blue-600">
             Press Release List
-          </div>
-          {/* Render previous forms as collapsed content */}
+        </div>
+        <div className="space-y-4">
+          {companiesData.map((company, index) => (
+            <div
+              key={index}
+              className={`p-4 rounded-lg shadow-md border ${
+                expandedCompany === index
+                  ? "bg-gradient-to-r from-white to-gray-100 border-blue-400"
+                  : "border border-gray-300 bg-gradient-to-r from-white to-gray-100"
+              } cursor-pointer hover:shadow-lg transition-all duration-300`}
+              onClick={() => setSelectedCompany(company)}
+            >
+              <div
+                className="flex justify-between items-center"
+                
+              >
+                <h3 className="text-xl font-semibold">{company.companyName}</h3>
+                {/* <span className="text-2xl">{expandedCompany === index ? "-" : "+"}</span> */}
+              </div>
+              <p className="text-gray-600">{company.employmentDates}</p>
+
+              
+            </div>
+          ))}
+        </div>
+        </div>
+      <div className="flex w-2/3 h-[88vh]">
+        <div className="flex flex-col justify-between w-full pl-12 rounded-xl border shadow-lg bg-white">
+          <div className="overflow-y-auto overflow-x-hidden w-full h-[85vh] py-4 scrollbar-transparent flex flex-col items-center mt-[1.5vh]">
+            <div className="flex text-2xl font-semibold mb-[1.5vh]">
+              Press Release
+            </div>
+            {/* Toggle Form Button */}
+            <button
+                className="w-fit mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {isOpen ? "Collapse Form" : "Add PR"}
+              </button>
+
+              {!isOpen && (
+              <>
+                {/* Render previous forms as collapsed content */}
           {press.length > 0 && (
-              <div className="mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:mt-8">
                 {press.map((formContent, index) => (
                   <div
                     key={index}
@@ -73,21 +148,8 @@ const PressRelease2 = () => {
                 ))}
               </div>
             )}
-        </div>
-      </div>
-      <div className="flex w-2/3 h-[88vh]">
-        <div className="flex flex-col justify-between w-full pl-12 rounded-xl border shadow-lg bg-white">
-          <div className="overflow-y-auto overflow-x-hidden w-full h-[85vh] py-4 scrollbar-transparent flex flex-col items-center mt-[1.5vh]">
-            <div className="flex text-2xl font-semibold mb-[1.5vh]">
-              Press Release
-            </div>
-            {/* Toggle Form Button */}
-            <button
-                className="w-fit mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                {isOpen ? "Collapse Form" : "Add PR"}
-              </button>
+              </>
+            )}
 
                 {/* Toggle Form */}
               {isOpen && (

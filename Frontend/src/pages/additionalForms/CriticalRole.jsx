@@ -132,7 +132,7 @@ const CriticalRole = () => {
         <div className="flex w-2/3 h-[88vh]">
           <div className="flex flex-col justify-between w-full  rounded-xl border shadow-lg bg-white">
             {/* Scrollable form content */}
-            <div className="overflow-y-auto overflow-x-hidden w-full h-[85vh] py-4 scrollbar-transparent flex flex-col pl-12 items-center mt-[1.5vh]">
+            <div className="overflow-y-auto overflow-x-hidden w-full h-[85vh] py-4 scrollbar-transparent flex flex-col items-center mt-[1.5vh]">
               {/* Heading */}
               <div className=" text-2xl font-semibold mb-[2vh]">
                 Projects
@@ -171,7 +171,7 @@ const CriticalRole = () => {
 
               {/* Toggle Form */}
               {isOpen && (
-                <form className="w-full pr-12" onSubmit={handleAddForm}>
+                <form className="w-full px-12" onSubmit={handleAddForm}>
                   <div className="-mx-3 flex flex-wrap">
                     <div className="w-full px-3">
                       <div className="mb-5">

@@ -13,6 +13,7 @@ import PressRelease2 from './pages/additionalForms/PressRelease2';
 import Exibition2 from './pages/additionalForms/Exibition2';
 import FinalMerits2 from './pages/additionalForms/FinalMerits2';
 import ToDoList from './others/todo';
+import Dashboard2 from "./pages/Dashboard2";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/form" element={<MultiStepForm />} />
         <Route path="/form/:id" element={<MultiStepForm />} />
-        <Route path="/dash" element={<Dashboard />} />
+        <Route path="/dash" element={<Dashboard2 />} />
         <Route path="/role" element={<CriticalRole/>} />
         <Route path="/judging" element={<Judging/>} />
         <Route path="/authorship" element={<Authorship2/>} />
