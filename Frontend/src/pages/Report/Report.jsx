@@ -11,6 +11,7 @@ import Experience from "./Experience";
 import Achievement from "./Achievement";
 import ProfileSummary from "./ProfileSummary";
 import Strength from "./Strength";
+import Navbar from "./navbar";
 const Report = () => {
   const dispatch = useDispatch();
   console.log(store.getState());
@@ -31,8 +32,10 @@ const Report = () => {
   const awardsData = useSelector((state) => state.awards.awards);
 
   console.log(experienceData, "kfe");
+
   return (
     <div>
+      <Navbar />
       <Section1 data={personalData} />
       <Section2 data={visaData} />
       <Section3 data={educationData} />
