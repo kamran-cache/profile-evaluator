@@ -51,7 +51,10 @@ exports.addAwards = async (req, res) => {
     const profile = await Profile.findById(req.params.id);
     if (!profile) return res.status(404).json({ error: "Profile not found" });
     const savedAwards = [];
-    for (const award of awards) {
+
+    const awardsArray = Array.isArray(awards) ? awards : [awards];
+
+    for (const award of awardsArray) {
       const newAward = new Awards(award);
       await newAward.save();
       savedAwards.push(newAward._id);
@@ -113,7 +116,12 @@ exports.addEducation = async (req, res) => {
     const profile = await Profile.findById(req.params.id);
     if (!profile) return res.status(404).json({ error: "Profile not found" });
     const savedEducations = [];
-    for (const education of educations) {
+
+    const educationsArray = Array.isArray(educations)
+      ? educations
+      : [educations];
+
+    for (const education of educationsArray) {
       const newEducation = new Education(education);
       await newEducation.save();
       savedEducations.push(newEducation._id);
@@ -138,12 +146,17 @@ exports.addEducation = async (req, res) => {
 exports.addExperience = async (req, res) => {
   try {
     const { experiences } = req.body.data;
-    console.log(experiences, "exp data");
+    console.log("Received experiences:", experiences);
+
+    // Find the profile by ID
     const profile = await Profile.findById(req.params.id);
     if (!profile) return res.status(404).json({ error: "Profile not found" });
-    const savedExperiences = [];
-    for (const experience of experiences) {
-      console.log("role", experience.roles);
+
+    // Process each experience (single or multiple) and add to profile
+    const experienceArray = Array.isArray(experiences)
+      ? experiences
+      : [experiences];
+    for (const experience of experienceArray) {
       const newExperience = new Experience({
         company: experience.company,
         roles: experience.roles,
@@ -151,14 +164,13 @@ exports.addExperience = async (req, res) => {
       });
 
       await newExperience.save();
-      console.log(newExperience, "res");
-      savedExperiences.push(newExperience._id);
+      console.log("Saved experience:", newExperience);
 
       profile.experience.push(newExperience._id);
     }
-    await profile.save();
 
-    // Populate the visa array in the profile and return it
+    // Save the updated profile and populate experiences
+    await profile.save();
     const populatedProfile = await profile.populate("experience");
 
     res.status(201).json({
@@ -166,6 +178,7 @@ exports.addExperience = async (req, res) => {
       experiences: populatedProfile.experience,
     });
   } catch (err) {
+    console.error("Error adding experience:", err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -379,8 +392,13 @@ exports.addJudging = async (req, res) => {
     // Find the profile and add the visa reference
     const profile = await Profile.findById(req.params.id);
     if (!profile) return res.status(404).json({ error: "Profile not found" });
+
+    const judgingArray = Array.isArray(judgingRecords)
+      ? judgingRecords
+      : [judgingRecords];
+
     const savedData = [];
-    for (const judgingRecord of judgingRecords) {
+    for (const judgingRecord of judgingArray) {
       // Convert date strings to Date objects
 
       const newjudgingRecords = new Judging(judgingRecord);

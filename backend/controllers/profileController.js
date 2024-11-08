@@ -9,7 +9,12 @@ exports.getProfile = async (req, res) => {
       .populate("awards")
       .populate("education")
       .populate("exhibitions")
-      .populate("experience")
+      .populate({
+        path: "experience",
+        populate: {
+          path: "roles.projects", // Specify the path to populate the projects within roles
+        },
+      })
       .populate("merits")
       .populate("media")
       .populate("originalWork")

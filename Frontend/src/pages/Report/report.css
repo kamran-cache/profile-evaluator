@@ -1,0 +1,36 @@
+/* Add this CSS to your styles */
+.hover-effect {
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease;
+  }
+  
+  .hover-effect::before {
+    content: '';
+    position: absolute;
+    top: 0; /* Start below the div */
+    left: 50%;
+    width: 200%;
+    height: 250%;
+    background: radial-gradient(circle at center, rgba(1, 1, 70, 0.8) 20%, transparent 70%);
+    transform: translateX(-50%) scale(0);
+    transition: transform 0.4s ease-in, width 0.6s ease, height 0.6s ease; /* Separate scaling and fill transitions */
+    border-radius: 50%;
+    z-index: 0;
+  }
+  
+  .hover-effect:hover::before {
+    transform: translateX(-50%) scale(1);
+    width: 500%; /* Expands width to cover the entire div */
+    height: 500%; /* Expands height to cover the entire div */
+  }
+  
+  .hover-effect:hover {
+    color: white; /* Change text color on hover */
+  }
+  
+  .hover-effect > * {
+    position: relative;
+    z-index: 1;
+  }
+  

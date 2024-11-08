@@ -9,6 +9,10 @@ export default {
       fontFamily: {
         inter: ['Inter', 'sans-serif'], // Adding Oswald font
         raleway: ['Raleway', 'sans-serif'], // Adding Raleway font
+        metropolis: ["Metropolis", "sans-serif"],
+      },
+      colors: {
+        primary: "#007EE8",
       },
     }
   },

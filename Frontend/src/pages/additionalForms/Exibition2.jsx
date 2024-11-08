@@ -8,6 +8,7 @@ import {
 import { store } from "../../redux/store";
 import { getData } from "../../utils/Data";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Exibition2 = () => {
   const dispatch = useDispatch();
@@ -21,11 +22,18 @@ const Exibition2 = () => {
   };
 
   // Add form content to the Redux store
-  const handleAddForm = (e) => {
+  const handleAddForm = async (e) => {
     e.preventDefault(); // Prevent default form submission
     if (currentForm.title.trim() !== "") {
-      dispatch(addExibition()); // Add the current form to experiences
-      setIsOpen(!isOpen);
+      const updatedExhibition = currentForm;
+      const response = await axios.put(
+        `http://localhost:5000/api/v1/update/exhibition/${e_id}`,
+        { data: updatedExhibition }
+      );
+      if (response) {
+        dispatch(addExibition()); // Add the current form to experiences
+        setIsOpen(!isOpen);
+      }
     }
   };
 

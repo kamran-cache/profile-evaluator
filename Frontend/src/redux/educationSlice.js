@@ -21,6 +21,11 @@ const educationSlice = createSlice({
       state.currentForm[name] = value;
       state.isEdited = true;
     },
+    setEducationField: (state, action) => {
+      const { name, value } = action.payload;
+      state.currentForm[name] = value;
+      state.isEdited = true;
+    },
     addEducation: (state) => {
       state.educations.push(state.currentForm);
       // Reset the form
@@ -49,6 +54,7 @@ const educationSlice = createSlice({
 
 export const {
   setFormField,
+  setEducationField,
   addEducation,
   resetForm,
   setEducation,

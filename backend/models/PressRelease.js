@@ -15,6 +15,10 @@ const prSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    publicationDate: Date,
+    link: String,
+    author: String,
+    industry: String,
   },
   { timestamps: true }
 );

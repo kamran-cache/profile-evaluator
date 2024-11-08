@@ -1,0 +1,38 @@
+import React, { useEffect } from "react";
+import Section1 from "./Section1";
+import { store } from "../../redux/store";
+import { useSelector, useDispatch } from "react-redux";
+import { getData } from "../../utils/Data";
+import { useParams } from "react-router-dom";
+import Section2 from "./Section2";
+import Section3 from "./Section3";
+import Work from "./Work";
+const Report = () => {
+  const dispatch = useDispatch();
+  console.log(store.getState());
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      getData(id, dispatch);
+      console.log(store.getState(), "data", "user");
+    }
+    console.log(store.getState(), "datauseEffect", "user");
+  }, [id, dispatch]);
+
+  const personalData = useSelector((state) => state.personalInfo.personalInfo);
+  const visaData = useSelector((state) => state.visa);
+  const educationData = useSelector((state) => state.education.educations);
+  const experienceData = useSelector((state) => state.experience.experiences);
+  console.log(personalData);
+  return (
+    <div>
+      <Section1 data={personalData} />
+      <Section2 data={visaData} />
+      <Section3 data={educationData} />
+      <Work data={experienceData} />
+    </div>
+  );
+};
+
+export default Report;
