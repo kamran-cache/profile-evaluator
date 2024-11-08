@@ -39,7 +39,7 @@ function App() {
         <Route exact path="/" element={<Login />} />
         <Route exact path="/form" element={<MultiStepForm />} />
         <Route exact path="/form/:id" element={<MultiStepForm />} />
-        {/* <Route exact path="/dash" element={<Dashboard />} /> */}
+        <Route exact path="/dash" element={<Dashboard />} />
         <Route exact path="/dash/:id" element={<Dashboard />} />
         <Route exact path="/role/:id/:c_id/:r_id" element={<CriticalRole />} />
         <Route exact path="/judging/:id/:j_id" element={<Judging />} />
@@ -50,6 +50,7 @@ function App() {
         <Route exact path="/exibition/:id/:e_id" element={<Exibition2 />} />
         <Route exact path="/final/:id/:f_id" element={<FinalMerits2 />} />
         <Route exact path="/todo" element={<ToDoList />} />
+        <Route exact path="/dash2" element={<Dashboard2 />} />
       </Routes>
     </>
   );

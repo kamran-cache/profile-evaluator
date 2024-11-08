@@ -9,32 +9,32 @@ const Dashboard2 = () => {
 
   const experienceClick = () => {
     // Pass only the roleName, not the event object
-    navigate('/company');
+    navigate('/role/:id/:c_id/:r_id');
   };
 
   const authorshipClick = () => {
     // Pass only the roleName, not the event object
-    navigate('/authorship');
+    navigate('/authorship/:id/:au_id');
   };
 
   const judgingClick = () => {
     // Pass only the roleName, not the event object
-    navigate('/judging');
+    navigate('/judging/:id/:j_id');
   };
 
   const pressReleaseClick = () => {
     // Pass only the roleName, not the event object
-    navigate('/pr');
+    navigate('/pr/:id/:pr_id');
   };
 
   const exibitionClick = () => {
     // Pass only the roleName, not the event object
-    navigate('/exibition');
+    navigate('/exibition/:id/:e_id');
   };
 
   const meritsClick = () => {
     // Pass only the roleName, not the event object
-    navigate('/final');
+    navigate('/final/:id/:f_id');
   };
 
   return (

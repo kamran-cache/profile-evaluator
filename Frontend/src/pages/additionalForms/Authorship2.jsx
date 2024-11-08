@@ -168,11 +168,11 @@ const Authorship2 = () => {
           {/* Scrollable form content */}
           <div className="overflow-y-auto overflow-x-hidden w-full h-[88vh] py-4 scrollbar-transparent flex flex-col items-center mt-[1.5vh]">
             {/* Heading */}
-            <div className="flex text-2xl font-semibold mb-[1.5vh] w-full justify-start">
+            <div className="flex text-2xl font-semibold pl-2 mb-[1.5vh] w-full justify-start">
               {currentAuthorshipData && currentAuthorshipData.authorshipType
                 ? currentAuthorshipData.authorshipType
                 : ""}
-              :{" "}
+              {/* :{" "} */}
               {currentAuthorshipData && currentAuthorshipData.title
                 ? currentAuthorshipData.title
                 : "Authorship"}
