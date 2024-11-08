@@ -18,6 +18,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getData } from "./utils/Data";
 import { store } from "./redux/store";
 import { fetchProfile } from "./redux/profileData";
+import Section1 from "./pages/Report/Section1";
+import Report from "./pages/Report/Report";
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.profile.profile);
@@ -49,6 +51,7 @@ function App() {
         <Route exact path="/exibition/:id/:e_id" element={<Exibition2 />} />
         <Route exact path="/final/:id/:f_id" element={<FinalMerits2 />} />
         <Route exact path="/todo" element={<ToDoList />} />
+        <Route exact path="/report/:id" element={<Report />} />
       </Routes>
     </>
   );

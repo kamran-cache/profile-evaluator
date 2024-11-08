@@ -19,6 +19,11 @@ const awardsSlice = createSlice({
       state.currentForm[name] = value;
       state.isEdited = true;
     },
+    setAwardsFormField: (state, action) => {
+      const { name, value } = action.payload;
+      state.currentForm[name] = value;
+      state.isEdited = true;
+    },
     addAward: (state) => {
       state.awards.push(state.currentForm);
       // Reset the form
@@ -49,5 +54,6 @@ export const {
   resetForm,
   setAwards,
   setIsAwardEdited,
+  setAwardsFormField,
 } = awardsSlice.actions;
 export default awardsSlice.reducer;

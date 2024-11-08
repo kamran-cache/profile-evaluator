@@ -6,6 +6,7 @@ import {
   setFormField,
 } from "../../redux/AdditionalForms/JudgingSlice2";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Judging = () => {
   const dispatch = useDispatch();
@@ -19,11 +20,18 @@ const Judging = () => {
   };
 
   // Add form content to the Redux store
-  const handleAddForm = (e) => {
+  const handleAddForm = async (e) => {
     e.preventDefault(); // Prevent default form submission
     if (currentForm.organizationName.trim() !== "") {
-      dispatch(addJudging()); // Add the current form to experiences
-      setIsOpen(!isOpen);
+      const updatedJudging = currentForm;
+      const response = await axios.put(
+        `http://localhost:5000/api/v1/update/judging/${j_id}`,
+        { data: updatedJudging }
+      );
+      if (response) {
+        dispatch(addJudging()); // Add the current form to experiences
+        setIsOpen(!isOpen);
+      }
     }
   };
 

@@ -10,6 +10,17 @@ const exhibitionSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  main: [
+    {
+      title: String,
+      organization: String,
+      link: String,
+      criteria: String,
+      description: String,
+      evidenceType: String,
+      evidence: String,
+    },
+  ],
 });
 
 const Exhibition = mongoose.model("Exhibitions", exhibitionSchema);

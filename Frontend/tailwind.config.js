@@ -8,6 +8,10 @@ export default {
     extend: {
       fontFamily: {
         inter: ["Inter", "sans-serif"], // Adding Inter font
+        metropolis: ["Metropolis", "sans-serif"],
+      },
+      colors: {
+        primary: "#007EE8",
       },
     },
   },

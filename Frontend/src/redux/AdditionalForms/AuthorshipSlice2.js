@@ -9,10 +9,10 @@ const initialState = {
     dateOfPublishing: "",
     authors: "",
     evidenceType: "",
-    evidence : null,
+    evidence: null,
     patentTitle: "",
     patentRegistry: "",
-    patentDate: "",
+    filingDate: "",
     keyFeatures: "",
     summary: "",
     impact: "",
@@ -38,7 +38,7 @@ const authorshipsSlice = createSlice({
         dateOfPublishing: "",
         authors: "",
         evidenceType: "",
-        evidence : null,
+        evidence: null,
         patentTitle: "",
         patentRegistry: "",
         patentDate: "",
@@ -55,5 +55,5 @@ const authorshipsSlice = createSlice({
 });
 
 export const { setFormField, addAuthorships, resetForm } =
-authorshipsSlice.actions;
+  authorshipsSlice.actions;
 export default authorshipsSlice.reducer;

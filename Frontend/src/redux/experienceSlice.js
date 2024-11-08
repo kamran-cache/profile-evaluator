@@ -34,7 +34,7 @@ const experienceSlice = createSlice({
       state.currentForm = {
         company: "",
         location: "",
-        roles: [], // Reset to an empty roles array
+        roles: [{ jobTitle: "", startDate: "", endDate: "" }],
         summary: "",
       };
     },
