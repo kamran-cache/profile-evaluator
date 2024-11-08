@@ -31,7 +31,7 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/profile", profileRouter);
 app.use("/api/v1/basicInfo", basicInfoRouter);
 app.use("/api/v1/add-data", addRouter);
-app.use("/api/v1/update-data", updateRouter);
+app.use("/api/v1/update", updateRouter);
 app.use("/api/v1/projects", projectRouter);
 
 const Port = process.env.PORT || 8000;

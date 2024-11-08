@@ -9,6 +9,7 @@ import {
 import { useParams } from "react-router-dom";
 import { getData } from "../../utils/Data";
 import { store } from "../../redux/store";
+import axios from "axios";
 
 const Authorship2 = () => {
   const [selectedType, setSelectedType] = useState("Paper");
@@ -68,14 +69,21 @@ const Authorship2 = () => {
       };    
 
   // Add form content to the Redux store
-  const handleAddForm = (e) => {
+  const handleAddForm = async (e) => {
     e.preventDefault(); // Prevent default form submission
     if (
       currentForm.title.trim() !== "" ||
       currentForm.patentTitle.trim() !== ""
     ) {
-      dispatch(addAuthorships()); // Add the current form to experiences
-      setIsOpen(!isOpen);
+      const updatedAuthorship = currentForm;
+      const response = await axios.put(
+        `http://localhost:5000/api/v1/update/authorship/${au_id}`,
+        { data: updatedAuthorship }
+      );
+      if (response) {
+        dispatch(addAuthorships()); // Add the current form to experiences
+        setIsOpen(!isOpen);
+      }
     }
   };
 
@@ -411,7 +419,7 @@ const Authorship2 = () => {
                           </label>
                           <input
                             type="patentDate"
-                            name="patentDate"
+                            name="filingDate"
                             onChange={handleInputChange}
                             placeholder="e.g., June 1, 2022"
                             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium  text-[#6B7280] shadow-md outline-none focus:border-[#6A64F1] focus:shadow-lg"

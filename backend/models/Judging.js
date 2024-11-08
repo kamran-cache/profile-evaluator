@@ -10,6 +10,17 @@ const judgingSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    main: [
+      {
+        organizationName: String,
+        startDate: Date,
+        endDate: Date,
+        link: String,
+        criteria: String,
+        evidenceType: String,
+        evidence: String,
+      },
+    ],
   },
   { timestamps: true }
 );

@@ -7,10 +7,13 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: ['Inter', 'sans-serif'], // Adding Oswald font
-        raleway: ['Raleway', 'sans-serif'], // Adding Raleway font
+        inter: ["Inter", "sans-serif"], // Adding Inter font
+        metropolis: ["Metropolis", "sans-serif"],
       },
-    }
+      colors: {
+        primary: "#007EE8",
+      },
+    },
   },
   plugins: [],
 };

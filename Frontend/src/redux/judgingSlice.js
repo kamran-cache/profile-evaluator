@@ -137,6 +137,24 @@ const judgingSlice = createSlice({
 
       state.isEdited = true;
     },
+    setJudgingField: (state, action) => {
+      const { category, count } = action.payload; // Expect payload with category and count
+
+      // Find if category already exists in judgingRecords
+      const existingCategory = state.judgingRecords.find(
+        (record) => record.category === category
+      );
+
+      if (existingCategory) {
+        // Update count for the existing category
+        existingCategory.count = count;
+      } else {
+        // Add new category with count
+        state.judgingRecords.push({ category, count });
+      }
+
+      state.isEdited = true;
+    },
     setJudging: (state, action) => {
       const judging = action.payload;
       // Ensure that the incoming visa data is an array and set it to forms
@@ -149,6 +167,6 @@ const judgingSlice = createSlice({
   },
 });
 
-export const { setFormField, setIsJudgingEdited, setJudging } =
+export const { setFormField, setIsJudgingEdited, setJudging, setJudgingField } =
   judgingSlice.actions;
 export default judgingSlice.reducer;

@@ -10,6 +10,8 @@ const Patent = require("../models/Patents");
 const Scholarship = require("../models/Scholarships");
 const Visa = require("../models/Visa");
 const Profile = require("../models/profile");
+const PressRelease = require("../models/PressRelease");
+const Judging = require("../models/Judging");
 
 // update visa
 exports.updateVisa = async (req, res) => {
@@ -93,13 +95,140 @@ exports.updateExperience = async (req, res) => {
     await profile.save();
 
     // Send the response with the updated visa IDs
-    res
-      .status(200)
-      .json({
-        message: "Visa data replaced successfully",
-        experiences: savedExperience,
-      });
+    res.status(200).json({
+      message: "Visa data replaced successfully",
+      experiences: savedExperience,
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+};
+
+module.exports.addMainToMerit = async (req, res) => {
+  try {
+    const meritId = req.params.meritId;
+    const newMainEntry = req.body;
+    console.log(newMainEntry, "new");
+    console.log(req.body.data, "req");
+
+    const updatedMerit = await FinalMerits.findByIdAndUpdate(
+      meritId,
+      { $push: { main: newMainEntry.merit } },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedMerit) {
+      return res.status(404).json({ message: "Merit not found" });
+    }
+
+    res.status(200).json({
+      message: "New main entry added successfully",
+      updatedMerit,
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Error adding main entry to Merit", error });
+  }
+};
+
+module.exports.updateAuthorship = async (req, res) => {
+  try {
+    const authorshipId = req.params.authorshipId;
+    const updatedData = req.body.data;
+
+    const updatedAuthorship = await Authorship.findByIdAndUpdate(
+      authorshipId,
+      updatedData,
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedAuthorship)
+      return res.status(404).json({ message: "Authorship not found" });
+    res.status(200).json({
+      message: "Authorship updated successfully",
+      updatedAuthorship,
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Error adding main entry to Merit", error });
+  }
+};
+
+module.exports.updatePressRelease = async (req, res) => {
+  try {
+    const pressId = req.params.pressId;
+    const updatedData = req.body.data;
+
+    const updatedPR = await PressRelease.findByIdAndUpdate(
+      pressId,
+      updatedData,
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedPR)
+      return res.status(404).json({ message: "Authorship not found" });
+    res.status(200).json({
+      message: "Press Release updated successfully",
+      updatedPR,
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Error adding main entry to Merit", error });
+  }
+};
+
+module.exports.updateExhibition = async (req, res) => {
+  try {
+    const exhibitionId = req.params.exhibitionId;
+    const updatedData = req.body.data;
+
+    const updatedExhibition = await Exhibition.findByIdAndUpdate(
+      exhibitionId,
+      { $push: { main: updatedData } },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedExhibition)
+      return res.status(404).json({ message: "Exhibition not found" });
+    res.status(200).json({
+      message: "Exhibition updated successfully",
+      updatedExhibition,
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Error adding main entry to Merit", error });
+  }
+};
+
+module.exports.updateJudging = async (req, res) => {
+  try {
+    const judgingId = req.params.judgingId;
+    const updatedData = req.body.data;
+
+    const updatedJudging = await Judging.findByIdAndUpdate(
+      judgingId,
+      { $push: { main: updatedData } },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedJudging)
+      return res.status(404).json({ message: "Exhibition not found" });
+    res.status(200).json({
+      message: "Judging updated successfully",
+      updatedJudging,
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Error adding main entry to Merit", error });
   }
 };

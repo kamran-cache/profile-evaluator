@@ -8,6 +8,7 @@ import {
 import { getData } from "../../utils/Data";
 import { store } from "../../redux/store";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const FinalMerits2 = () => {
   const [selectedType, setSelectedType] = useState("");
@@ -20,6 +21,7 @@ const FinalMerits2 = () => {
   const dispatch = useDispatch();
 
   const { currentForm, merits } = useSelector((state) => state.merits);
+  console.log(merits, "merits");
 
   // Handle input change for form fields
   const handleInputChange = (e) => {
@@ -28,14 +30,23 @@ const FinalMerits2 = () => {
   };
 
   // Add form content to the Redux store
-  const handleAddForm = (e) => {
+  const handleAddForm = async (e) => {
     e.preventDefault(); // Prevent default form submission
     if (
       currentForm.name.trim() !== "" ||
       currentForm.organization.trim() !== ""
     ) {
-      dispatch(addMerits()); // Add the current form to experiences
-      setIsOpen(!isOpen);
+      const merit = currentForm;
+      const response = await axios.put(
+        `http://localhost:5000/api/v1/update/finalMerits/${f_id}`,
+        { merit }
+      );
+      if (response) {
+        console.log("data added sucessfully", response.data.updatedMerit);
+
+        dispatch(addMerits()); // Add the current form to experiences
+        setIsOpen(!isOpen);
+      }
     }
     setSelectedType("");
   };
