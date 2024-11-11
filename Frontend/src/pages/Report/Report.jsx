@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import Section2 from "./Section2";
 import Section3 from "./Section3";
 import Work from "./Work";
+import Navbar from "./navbar";
 const Report = () => {
   const dispatch = useDispatch();
   console.log(store.getState());
@@ -27,6 +28,7 @@ const Report = () => {
   console.log(personalData);
   return (
     <div>
+      <Navbar/>
       <Section1 data={personalData} />
       <Section2 data={visaData} />
       <Section3 data={educationData} />

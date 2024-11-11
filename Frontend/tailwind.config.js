@@ -14,6 +14,9 @@ export default {
       colors: {
         primary: "#007EE8",
       },
+      fontWeight: {
+        'custom': 420,
+      },
     }
   },
   plugins: [],
