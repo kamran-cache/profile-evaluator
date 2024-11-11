@@ -4,7 +4,7 @@ import { PiUserCircleThin } from "react-icons/pi";
 
 const Section1 = ({ data }) => {
   return (
-    <div className="main h-screen w-full  font-metropolis ">
+    <div className="main  h-screen w-full  font-metropolis ">
       <div className="navbar h-12 w-full bg-white border-b border-gray-400 flex flex-row items-center justify-between">
         <div className="left text-[#C2C2C2] ml-6">
           Section1: Basic Information

@@ -160,7 +160,7 @@ const Work = ({ data }) => {
           </div>
         </>
       )}
-      <div className="main h-[120vh] mt-6 flex flex-col items-center justify-center font-metropolis">
+      <div className="main  h-[120vh] mt-6 flex flex-col items-center justify-center font-metropolis">
         <div className="w-[80%]  flex items-start justify-start">
           <div className="navbar   p-3  mt-5">
             <p className="text-[#8D8D8D] text-xl font-medium">Section 3</p>
@@ -173,7 +173,7 @@ const Work = ({ data }) => {
           </div>
         </div>
 
-        <div className="body  md:ml-[4.8rem] mt-6 h-[100%] w-[85%]  flex flex-col space-y-4 overflow-y-auto">
+        <div className="body p-3  md:ml-[4.8rem] mt-6 h-[100%] w-[85%]  flex flex-col space-y-4 overflow-y-auto">
           {data &&
             data.map((companyData) => {
               // Flatten all projects across all roles for the company

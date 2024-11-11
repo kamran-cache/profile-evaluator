@@ -38,7 +38,7 @@ const ReportModal = ({ data, company, index, setIsModalOpen }) => {
       <div className="fixed inset-0 z-20 font-metropolis">
         {/* Backdrop */}
         <div
-          className="absolute text-white flex ites justify-normal inset-0 bg-black opacity-70 z-30  cursor-pointer"
+          className="absolute text-white flex items-center justify-normal inset-0 bg-black opacity-70 z-30  cursor-pointer"
           onClick={() => {
             setIsModalOpen(false);
           }} // Close modal on clicking backdrop
@@ -57,13 +57,16 @@ const ReportModal = ({ data, company, index, setIsModalOpen }) => {
                   setIsModalOpen(false);
                 }}
               >
-                <p className="text-white -mt-1">x</p>
+                <p className="text-white ">x</p>
               </div>
             </div>
-            <div className="content flex flex-col mt-4 p-6 h-full bg-red-300 ">
+            <div className="content flex flex-col mt-4 p-6 h-full  ">
               <div className="Company details">
                 <div className="company  gap-2 flex flex-row bg-[#F2F2F2]">
-                  <p className="text-primary"> {company.company},</p>
+                  <p className="text-primary font-semibold">
+                    {" "}
+                    {company.company},
+                  </p>
                   <p>
                     {formatDate(roleDetails.startDate)} -{" "}
                     {formatDate(roleDetails.endDate)}
@@ -77,16 +80,51 @@ const ReportModal = ({ data, company, index, setIsModalOpen }) => {
                 </div>
                 <hr className="w-full h-[2px] bg-black text-black mt-2" />
 
+                {/* project Overview */}
+
+                <div className="overview flex flex-col mt-3">
+                  <div className="title text-primary texxt-lg font-semibold">
+                    Project Overview:
+                  </div>
+                  <div className="content text-[#484848]">
+                    {data.summary ? data.summary : "No description available"}
+                  </div>
+                </div>
+
+                {/* key responsibilities */}
                 <div className="responsibilities flex flex-col">
                   <p className="title text-[#646464] font-semibold text-xl mt-3">
                     Key Responsibilities:
                   </p>
-                  <ul style={{ listStyleType: "disc", paddingLeft: "20px" }}>
+                  <ul
+                    style={{ listStyleType: "disc", paddingLeft: "20px" }}
+                    className="text-[#484848]"
+                  >
                     <li>
-                      contribution: <span>{data.contribution}</span>{" "}
+                      Contribution: <span>{data.contribution}</span>{" "}
                     </li>
                     <li>
-                      contribution: <span>{data.contribution}</span>{" "}
+                      Deliverables: <span>{data.deliverables}</span>{" "}
+                    </li>
+                  </ul>
+                </div>
+                {/* outcomes */}
+                <div className="outcomes flex flex-col">
+                  <p className="title text-[#646464] font-semibold text-xl mt-3">
+                    Outcomes:
+                  </p>
+                  <ul
+                    style={{ listStyleType: "disc", paddingLeft: "20px" }}
+                    className="text-[#484848]"
+                  >
+                    <li>
+                      Niche Impact: <span>{data.nicheImpact}</span>{" "}
+                    </li>
+                    <li>
+                      User Impact: <span>{data.userImpact}</span>{" "}
+                    </li>
+                    <li>
+                      Benifit to company: <span>{data.benefitToCompany}</span>{" "}
                     </li>
                   </ul>
                 </div>

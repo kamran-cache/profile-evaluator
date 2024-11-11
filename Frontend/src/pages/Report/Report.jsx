@@ -7,6 +7,10 @@ import { useParams } from "react-router-dom";
 import Section2 from "./Section2";
 import Section3 from "./Section3";
 import Work from "./Work";
+import Experience from "./Experience";
+import Achievement from "./Achievement";
+import ProfileSummary from "./ProfileSummary";
+import Strength from "./Strength";
 const Report = () => {
   const dispatch = useDispatch();
   console.log(store.getState());
@@ -24,13 +28,19 @@ const Report = () => {
   const visaData = useSelector((state) => state.visa);
   const educationData = useSelector((state) => state.education.educations);
   const experienceData = useSelector((state) => state.experience.experiences);
-  console.log(personalData);
+  const awardsData = useSelector((state) => state.awards.awards);
+
+  console.log(experienceData, "kfe");
   return (
     <div>
       <Section1 data={personalData} />
       <Section2 data={visaData} />
       <Section3 data={educationData} />
       <Work data={experienceData} />
+      <Experience data={experienceData} />
+      <Achievement data={awardsData} />
+      <ProfileSummary />
+      <Strength />
     </div>
   );
 };
