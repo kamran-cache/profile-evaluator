@@ -92,33 +92,32 @@
 
 import React from "react";
 import Logo from "../../assets/logo.png";
-import Student from "../../assets/Student.png";
+import Student from "../../assets/Student.svg";
 import { FaStar } from "react-icons/fa";
 import Star from "../../assets/Star1.png";
 const Section3 = ({ data }) => {
   console.log("education", data);
   return (
-    <div className="main h-[1247px]  w-full flex items-center justify-center flex-col space-y-7  font-metropolis  ">
-      <div className="navbar p-4 h-12 w-[95%] md:mb-6 bg-white border-b border-gray-400 flex flex-row items-center justify-between">
-        <div className="left font-normal text-2xl text-[#C2C2C2] ml-6">
+    <div className="main h-[1247px]  w-full flex items-center justify-center flex-col space-y-7  font-metropolis mt-[20vh] ">
+      <div className="navbar w-[79vw] md:mb-4 bg-white flex flex-col ">
+        <div className="text-2xl font-custom text-[#C2C2C2] leading-6 ">
           Section2: Education Background
         </div>
-        <div className="right mr-4">
-          <img src={Logo} alt="" className="h-8 w-24" />
-        </div>
+        <div className="border border-[#D7D7D7] mt-[1vh] w-[79vw]"></div>
       </div>
+      
 
-      <div className="maincontent h-[1247px] w-[80%]  relative flex flex-row bg-yellow-400">
-        <div className="left h-full w-1/3 bg-primary flex flex-col">
-          <div className="header text-white text-xl  font-medium mt-4 ml-8">
+      <div className="maincontent h-[1247px] w-[78.9vw]  relative flex flex-row">
+        <div className="left h-full w-[34.3vw] bg-primary flex flex-col">
+          <div className="header text-white text-xl leading-5  font-medium mt-14 ml-16">
             Section2:
           </div>
-          <p className="title text-3xl text-white  font-semibold ml-8">
+          <p className="title text-[40px] leading-[40px] mt-[14px] text-white  font-semibold ml-16">
             Education{" "}
           </p>
-          <p className="text-3xl text-white  font-semibold ml-8">Background</p>
+          <p className="text-[40px] leading-[40px] text-white  font-semibold ml-16">Background</p>
         </div>
-        <div className="right h-full  w-2/3  ">
+        <div className="right h-full w-[44.7vw]  ">
           <div className="headerimage  h-[307px] w-full  ">
             <img src={Student} alt="" className="h-[307px] w-full" />
           </div>

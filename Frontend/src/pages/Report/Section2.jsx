@@ -10,7 +10,7 @@ const Section2 = ({ data }) => {
     return `${month} ${year}`; // Format as "Month Year"
   };
   return (
-    <div className="h-screen  flex flex-col items-center font-metropolis mt-[8vh]">
+    <div className="h-scree  flex flex-col items-center font-metropolis mt-[8vh]">
       <div className="header flex flex-col items-center">
         <div className="title flex flow-row items-center gap-2 font-semibold text-[32px]">
           <p className="text-black">VISA Journey</p>{" "}
@@ -47,7 +47,7 @@ const Section2 = ({ data }) => {
                   >
                     {index % 2 === 0 && (
                       <>
-                        <div className="max-w-[6.5vw]">
+                        <div className="max-w-[7.5vw]">
                           <div className="flex justify-center text-center">
                             <div className="date  text-sm font-normal leading-4 mb-3 text-[#9F9F9F]">
                               {formatDate(item.endDate)}
@@ -100,7 +100,7 @@ const Section2 = ({ data }) => {
                 </div>
 
                 {index !== data.forms.length - 1 ? (
-                  <img src={Arrow} className="-mt-10 w-[4.38vw]" />
+                  <img src={Arrow} className="mt-2 w-[4.38vw]" />
                 ) : (
                   ""
                 )}

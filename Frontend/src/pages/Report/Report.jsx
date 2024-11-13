@@ -12,6 +12,7 @@ import Achievement from "./Achievement";
 import ProfileSummary from "./ProfileSummary";
 import Strength from "./Strength";
 import Navbar from "./navbar";
+import Remuneration from "./Remuneration";
 const Report = () => {
   const dispatch = useDispatch();
   console.log(store.getState());
@@ -41,6 +42,7 @@ const Report = () => {
       <Section3 data={educationData} />
       <Work data={experienceData} />
       <Experience data={experienceData} />
+      <Remuneration/>
       <Achievement data={awardsData} />
       <ProfileSummary />
       <Strength />

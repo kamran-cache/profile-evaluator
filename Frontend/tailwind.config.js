@@ -7,10 +7,6 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-<<<<<<< HEAD
-        inter: ["Inter", "sans-serif"], // Adding Inter font
-        metropolis: ["Metropolis", "sans-serif"],
-=======
         inter: ['Inter', 'sans-serif'], // Adding Oswald font
         raleway: ['Raleway', 'sans-serif'], // Adding Raleway font
         metropolis: ["Metropolis", "sans-serif"],
@@ -20,10 +16,9 @@ export default {
       },
       fontWeight: {
         'custom': 420,
->>>>>>> f7ce5a30d6840c512b47a8c541574ad9547de697
       },
-      colors: {
-        primary: "#007EE8",
+      boxShadow: {
+        'custom': '0px 2.76px 5.51px 0px #0000000A',
       },
     },
   },
