@@ -1,7 +1,8 @@
 import React from "react";
-import Tick from "../../assets/Tick.png";
 import Motivation from "../../assets/motivation.png";
-const Strength = () => {
+import Exclamation from "../../assets/Exclamation.png";
+
+const Weakness = () => {
   const elements = [
     { id: 1, title: "Membership", desc: "fgdf" },
     { id: 2, title: "Membership", desc: "fgdf" },
@@ -9,19 +10,18 @@ const Strength = () => {
     { id: 4, title: "Membership", desc: "fgdf" },
     { id: 4, title: "Membership", desc: "fgdf" },
   ];
-
   return (
     <div className="h-[43rem] w-full  font-metropolis flex justify-center items-center">
       <div className="w-[85%] p-6 relative bg-gradient-to-b from-[#007EE8] to-[#1641F1] h-[95%] rounded-lg flex flex-col items-center justify-end">
         <div className=" absolute left-16 top-16 header font-semibold text-4xl text-white ">
-          Strengths
+          Areas of Improvement
         </div>
         <div className="centerElement    flex items-center justify-center   h-[70%] w-full">
           <div className="relative  h-[19rem] w-[25rem] ">
             <div className="relative z-10  h-[15.5rem] w-[25rem] rounded-t-full overflow-hidden">
               {/* Semicircle border */}
               <div className="relative z-10 inset-0 h-[15.5rem] w-[25rem] rounded-t-full border-2 border-white border-b-0 flex items-center justify-center">
-                <img src={Motivation} alt="" />
+                {/* <img src={Motivation} alt="" /> */}
               </div>
             </div>
             {/* Ticks positioned along the top arc */}
@@ -60,7 +60,11 @@ const Strength = () => {
                     }}
                     title={item.title} // shows tooltip with the title on hover
                   >
-                    <img src={Tick} alt={item.title} className="w-6 h-6" />
+                    <img
+                      src={Exclamation}
+                      alt={item.title}
+                      className="w-6 h-6"
+                    />
                   </div>
                   <div
                     key={item.id}
@@ -93,4 +97,4 @@ const Strength = () => {
   );
 };
 
-export default Strength;
+export default Weakness;

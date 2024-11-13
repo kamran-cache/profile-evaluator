@@ -12,6 +12,8 @@ import Achievement from "./Achievement";
 import ProfileSummary from "./ProfileSummary";
 import Strength from "./Strength";
 import Navbar from "./navbar";
+import Weakness from "./Weakness";
+import VisaReadiness from "./VisaReadiness";
 const Report = () => {
   const dispatch = useDispatch();
   console.log(store.getState());
@@ -44,6 +46,8 @@ const Report = () => {
       <Achievement data={awardsData} />
       <ProfileSummary />
       <Strength />
+      <Weakness />
+      <VisaReadiness />
     </div>
   );
 };
