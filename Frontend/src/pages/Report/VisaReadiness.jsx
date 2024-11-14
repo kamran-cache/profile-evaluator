@@ -45,7 +45,7 @@ const VisaReadiness = () => {
 
   const needlePos = getNeedlePosition(score);
   return (
-    <div className="main font-metropolis h-[120vh] w-full  flex flex-col items-center justify-center">
+    <div className="main font-metropolis h-[130vh] w-full  flex flex-col items-center justify-center">
       <div className="header  flex flex-col justify-center   mt-5">
         <p className="text-3xl font-semibold ">Visa Readiness Overview</p>
         <p className="text-sm text-center">
