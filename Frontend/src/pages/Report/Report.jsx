@@ -15,6 +15,11 @@ import Navbar from "./navbar";
 import Remuneration from "./Remuneration";
 import Weakness from "./Weakness";
 import VisaReadiness from "./VisaReadiness";
+import DetailEvaluation from "./DetailEvaluation";
+import Criteria1 from "./Criteria1";
+import Criteria2 from "./Criteria2";
+import Criteria3 from "./Criteria3";
+import ComparitiveAnalysis from "./ComparitiveAnalysis";
 const Report = () => {
   const dispatch = useDispatch();
   console.log(store.getState());
@@ -44,12 +49,17 @@ const Report = () => {
       <Section3 data={educationData} />
       <Work data={experienceData} />
       <Experience data={experienceData} />
-      <Remuneration/>
+      <Remuneration />
       <Achievement data={awardsData} />
       <ProfileSummary />
       <Strength />
       <Weakness />
       <VisaReadiness />
+      <DetailEvaluation />
+      <Criteria1 />
+      <Criteria2 />
+      <Criteria3 />
+      <ComparitiveAnalysis />
     </div>
   );
 };
