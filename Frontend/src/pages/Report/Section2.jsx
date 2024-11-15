@@ -29,20 +29,20 @@ const Section2 = ({ data }) => {
                 <div className="card flex flex-col">
                   {index % 2 !== 0 && (
                     <>
-                      <div className="flex flex-col items-center h-[21vh] w-[10.9vw]">
+                      <div className="flex flex-col items-center 2xl:h-[21vh] xl:h-[26vh] w-[10.9vw]">
                         <p className="text-sm leading-5 text-center text-[#9F9F9F] font-medium">
                           Obtained F-1 visa after acceptance to a U.S.
                           university. Attended visa interview and received
                           approval.
                         </p>
-                        <img src={Line} className="mt-[3vh]" />
+                        <img src={Line} className="my-[3vh]" />
                       </div>
                     </>
                   )}
 
                   <div
                     className={`flex flex-col items-center w-[10.9vw] ${
-                      index % 2 !== 0 ? "mt-3" : "mt-[19vh]"
+                      index % 2 !== 0 ? "mt-3" : "2xl:mt-[19vh] xl:mt-[23vh]"
                     }`}
                   >
                     {index % 2 === 0 && (
@@ -85,7 +85,7 @@ const Section2 = ({ data }) => {
                   </div>
                   {index % 2 === 0 && (
                     <>
-                      <div className="flex flex-col items-center h-[21vh] w-[10.9vw]">
+                      <div className="flex flex-col items-center 2xl:h-[21vh] xl:h-[26vh] w-[10.9vw]">
                         <img
                           src={Line}
                           className="mb-[3vh] mt-[1.5vh] rotate-180"

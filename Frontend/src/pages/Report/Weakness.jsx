@@ -16,7 +16,7 @@ const Weakness = () => {
         <div className=" absolute left-16 top-16 header font-semibold text-4xl text-white ">
           Areas of Improvement
         </div>
-        <div className="centerElement    flex items-center justify-center   h-[70%] w-full">
+        <div className="centerElement    flex items-center justify-center 2xl:h-[70%] w-full">
           <div className="relative  h-[19rem] w-[25rem] ">
             <div className="relative z-10  h-[15.5rem] w-[25rem] rounded-t-full overflow-hidden">
               {/* Semicircle border */}
