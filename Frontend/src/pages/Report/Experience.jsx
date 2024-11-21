@@ -45,7 +45,8 @@ const Experience = ({ data }) => {
   return (
     <div className="main h-[30rem] w-full bg-[#FF684E]/10 mt-10 font-metropolis">
       <div className="container h-full w-full flex flex-row items-center justify-center">
-        <div className="left h-full w-1/3 flex justify-center ">
+        <div className="w-[79vw] h-full flex">
+        <div className="left h-full 2xl:w-1/4 xl:w-1/3 flex justify-center ">
           <div className="md:mt-12 w-fit h-fit flex flex-col items-start justify-center text-justify ">
             <p className="text-4xl font-semibold text-black">Gathered </p>
             <p className="text-4xl font-semibold text-primary">Experience</p>
@@ -55,7 +56,7 @@ const Experience = ({ data }) => {
             </p>
           </div>
         </div>
-        <div className="right h-full w-2/3  flex items-center justify-center">
+        <div className="right h-full 2xl:w-3/4 xl:w-2/3 flex items-center justify-center">
           <ResponsiveContainer width="90%" height="90%">
             <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -81,6 +82,7 @@ const Experience = ({ data }) => {
               ))}
             </BarChart>
           </ResponsiveContainer>
+        </div>
         </div>
       </div>
     </div>

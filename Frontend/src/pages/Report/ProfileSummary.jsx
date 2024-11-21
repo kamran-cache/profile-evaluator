@@ -4,19 +4,20 @@ import Profile from "../../assets/profile.png";
 const ProfileSummary = () => {
   return (
     <div className="h-[40rem] w-full p-[4rem]  flex items-center justify-center font-metropolis ">
-      <div className="left h-[95%] w-1/3 ">
+      <div className="w-[79vw] flex justify-between">
+      <div className="left w-1/3 ">
         <img src={Profile} alt="" className="" />
       </div>
       <div className="right p-4 h-[95%] w-2/3  flex flex-col space-y-3">
         <div className="header flex flex-col justify-end  h-fit text-right">
-          <div className="title text-[#8D8D8D] "> Section 4</div>
-          <div className="title text-[#8D8D8D] flex text-3xl font-semibold  justify-end gap-2">
+          <div className="title text-[#8D8D8D] font-medium text-lg"> Section 4</div>
+          <div className="title text-[#8D8D8D] flex text-4xl font-semibold  justify-end gap-2">
             <p className="text-black">Profile</p>{" "}
             <p className="text-primary">Summary</p>
           </div>
         </div>
 
-        <div className="content text-right ">
+        <div className="content text-right md:ml-[6rem]">
           {" "}
           <div className="para1 font-normal text-lg">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
@@ -38,6 +39,7 @@ const ProfileSummary = () => {
             eveniet voluptate sequi veritatis quaerat?{" "}
           </div>{" "}
         </div>
+      </div>
       </div>
     </div>
   );

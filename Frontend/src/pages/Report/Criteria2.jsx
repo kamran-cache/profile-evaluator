@@ -24,14 +24,14 @@ const Criteria2 = () => {
   return (
     <div className="mt-10 font-metropolis  w-full flex flex-col gap-6  ">
       <div className="top p-2 h-[30rem] w-full flex flex-col gap-6 items-center justify-center bg-gradient-to-br from-[#001A5C] to-[#0037C2]">
-        <div className="header h-[20%] flex flex-col  ">
+        <div className="header h-[20%] flex flex-col w-[79vw] items-start pl-[6rem]">
           <div className="title text-[#B5B5B5] text-lg font-normal">
             Criteria 2:
           </div>
           <div className="val font-medium text-4xl text-white">
             <span className="text-primary">Membership</span> in Associations
-            that Require Outstanding
-            <p>Achievements</p>
+            that Require 
+            <p>Outstanding Achievements</p>
           </div>
         </div>
         <div className="content h-[60%]  p-3 w-[80%] flex flex-row items-center justify-center">
@@ -39,11 +39,11 @@ const Criteria2 = () => {
             <CircularProgress
               percentage={data.result}
               icon={data.icon}
-              dimension={9}
+              dimension={14}
             />
             <div className="flex flex-col ml-12 ">
               <p className="text-white font-medium"> Current Readiness:</p>
-              <p className="val text-4xl font-medium ">{data.result}%</p>
+              <p className="val text-7xl font-medium text-[#FF9100]">{data.result}%</p>
               <p className="text-white font-medium">{data.status}</p>
             </div>
           </div>
@@ -61,13 +61,13 @@ const Criteria2 = () => {
         </div>
       </div>
       <div className="bottom flex flex-col gap-4 items-center justify-center ">
-        <div className="section1  p-4 flex flex-row gap-4 w-[80%]  ">
-          <div className="left">
+        <div className="section1  p-4 flex flex-row gap-4 w-[79vw]  px-28">
+          <div className="left ">
             <img src={Membership} alt="" />
           </div>
-          <div className="right w-2/3 flex flex-col gap-4 font-normal text-[24px]">
+          <div className="right w-2/3 flex flex-col gap-4 font-normal text-[24px] pl-[4rem]">
             <p className="text-primary font-medium text-2xl">Explanation</p>
-            <p>
+            <p className="font-medium text-[#646464]">
               Since no major awards are identified, this criterion has low
               readiness.
             </p>
@@ -87,7 +87,7 @@ const Criteria2 = () => {
               className="text-lg text-[#646464] ml-5"
               style={{ "list-style-type": "disc" }}
             >
-              <li>
+              <li className="font-medium text-[#646464]">
                 Focus on field-specific international awards that could be more
                 accessible (e.g., awards in academia, industry).
               </li>
@@ -97,7 +97,7 @@ const Criteria2 = () => {
               className="text-lg text-[#646464] ml-5"
               style={{ "list-style-type": "disc" }}
             >
-              <li>
+              <li className="font-medium text-[#646464]">
                 Focus on field-specific international awards that could be more
                 accessible (e.g., awards in academia, industry).
               </li>
@@ -105,8 +105,8 @@ const Criteria2 = () => {
           </div>
         </div>
 
-        <div className="section3 flex flex-col  w-[80%]">
-          <div className="title  mb-5 flex items-center justify-center text-[#646464] font-semibold text-2xl">
+        <div className="section3 flex flex-col mt-[5rem] w-[80%]">
+          <div className="title  mb-5 flex items-center justify-center text-[#646464] font-bold text-4xl mb-[3rem]">
             Frequently Asked Questions
           </div>
 
@@ -154,14 +154,14 @@ const Criteria2 = () => {
               </div>
             </div>
           </div> */}
-          <div className="accrodion flex flex-col space-y-2">
+          <div className="accrodion flex flex-col space-y-6">
             <div className="accordion-content bg-white rounded-lg shadow-sm border border-neutral-200">
               <div id="headingOne">
                 <button
                   className={`${
                     activeElement === "element1"
-                      ? "bg-[#D1F7FF] text-primary font-semibold text-xl rounded-b-none"
-                      : "bg-white text-neutral-800"
+                      ? "bg-[#D1F7FF] text-primary font-semibold text-2xl rounded-b-none px-8 py-4"
+                      : "bg-white text-neutral-800 font-medium text-2xl px-8 py-4"
                   } flex items-center justify-between w-full px-5 py-3 rounded-lg transition-colors duration-200   `}
                   type="button"
                   onClick={() => handleClick("element1")}
@@ -180,7 +180,7 @@ const Criteria2 = () => {
 
                 {activeElement === "element1" && (
                   <div
-                    className="px-6  bg-[#D1F7FF] text-[#646464] font-normal rounded-b-lg transition-all"
+                    className="px-6 pb-4 bg-[#D1F7FF] text-[#646464] font-medium rounded-b-lg transition-all px-10"
                     aria-labelledby="headingOne"
                   >
                     {/* <strong>This is the first item's accordion body.</strong>{" "} */}
@@ -196,8 +196,8 @@ const Criteria2 = () => {
                 <button
                   className={`${
                     activeElement === "element2"
-                      ? "bg-[#D1F7FF] text-primary font-semibold text-xl rounded-b-none"
-                      : "bg-white text-neutral-800"
+                      ? "bg-[#D1F7FF] text-primary font-semibold text-2xl rounded-b-none px-8 py-4"
+                      : "bg-white text-neutral-800 font-medium text-2xl px-8 py-4"
                   } flex items-center justify-between w-full px-5 py-3 rounded-lg transition-colors duration-200   `}
                   type="button"
                   onClick={() => handleClick("element2")}
@@ -216,7 +216,7 @@ const Criteria2 = () => {
 
                 {activeElement === "element2" && (
                   <div
-                    className="px-6  bg-[#D1F7FF] text-[#646464] font-normal rounded-b-lg transition-all"
+                    className="px-6 pb-4 bg-[#D1F7FF] text-[#646464] font-medium rounded-b-lg transition-all px-10"
                     aria-labelledby="headingOne"
                   >
                     {/* <strong>This is the first item's accordion body.</strong>{" "} */}
@@ -232,8 +232,8 @@ const Criteria2 = () => {
                 <button
                   className={`${
                     activeElement === "element3"
-                      ? "bg-[#D1F7FF] text-primary font-semibold text-xl rounded-b-none"
-                      : "bg-white text-neutral-800"
+                      ? "bg-[#D1F7FF] text-primary font-semibold text-2xl rounded-b-none px-8 py-4"
+                      : "bg-white text-neutral-800 font-medium text-2xl px-8 py-4"
                   } flex items-center justify-between w-full px-5 py-3 rounded-lg transition-colors duration-200   `}
                   type="button"
                   onClick={() => handleClick("element3")}
@@ -252,7 +252,7 @@ const Criteria2 = () => {
 
                 {activeElement === "element3" && (
                   <div
-                    className="px-6  bg-[#D1F7FF] text-[#646464] font-normal rounded-b-lg transition-all"
+                    className="px-6 pb-4 bg-[#D1F7FF] text-[#646464] font-medium rounded-b-lg transition-all px-10"
                     aria-labelledby="headingOne"
                   >
                     {/* <strong>This is the first item's accordion body.</strong>{" "} */}

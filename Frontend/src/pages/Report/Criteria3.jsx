@@ -24,7 +24,7 @@ const Criteria3 = () => {
   return (
     <div className="mt-10 font-metropolis  w-full flex flex-col gap-6  ">
       <div className="top p-2 h-[30rem] w-full flex flex-col gap-6 items-center justify-center bg-gradient-to-br from-[#001A5C] to-[#0037C2]">
-        <div className="header h-[20%] flex flex-col  ">
+        <div className="header h-[20%] flex flex-col w-[79vw] items-start pl-[6rem] ">
           <div className="title text-[#B5B5B5] text-lg font-normal">
             Criteria 3:
           </div>
@@ -43,7 +43,7 @@ const Criteria3 = () => {
             />
             <div className="flex flex-col ml-12 ">
               <p className="text-white font-medium"> Current Readiness:</p>
-              <p className="val text-4xl font-medium ">{data.result}%</p>
+              <p className="val text-7xl font-medium text-[#FF9100]">{data.result}%</p>
               <p className="text-white font-medium">{data.status}</p>
             </div>
           </div>
@@ -61,15 +61,15 @@ const Criteria3 = () => {
         </div>
       </div>
       <div className="bottom flex flex-col gap-4 items-center justify-center ">
-        <div className="section1  p-4 flex flex-row gap-4 w-[80%]  ">
+        <div className="section1  p-4 flex flex-row gap-4 w-[79vw] px-28">
           <div className="left">
             <img src={Membership} alt="" />
           </div>
-          <div className="right w-2/3 flex flex-col gap-4 font-normal text-[24px]">
+          <div className="right w-2/3 flex flex-col gap-4 font-normal text-[24px] pl-[4rem]">
             <p className="text-primary font-medium text-2xl">Explanation</p>
             <ul
               style={{ "list-style-type": "disc" }}
-              className="text-xl ml-5 text-[#646464]"
+              className="text-xl ml-5 text-[#646464] font-medium"
             >
               <li>
                 Since no major awards are identified, this criterion has low

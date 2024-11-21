@@ -76,7 +76,7 @@ const DetailEvaluation = () => {
     },
   ];
   return (
-    <div className="main font-metropolis mt-8  w-full  flex flex-col items-center justify-center">
+    <div className="main font-metropolis mt-[6rem]  w-full  flex flex-col items-center justify-center">
       <div className="contianer h-full w-[80%]  flex flex-col">
         <div className="header h-[8rem]  w-full p-3 flex flex-row justify-between">
           <div className="left flex flex-col ">

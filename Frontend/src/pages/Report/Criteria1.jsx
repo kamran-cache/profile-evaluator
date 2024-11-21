@@ -2,6 +2,7 @@ import React from "react";
 import award from "../../assets/detailSection/award.png";
 import CircularProgress from "./CircularProgress";
 import Awards from "../../assets/awards.png";
+import Pichart from "../../assets/Pichart.svg";
 const Criteria1 = () => {
   const data = {
     icon: award,
@@ -17,7 +18,7 @@ const Criteria1 = () => {
           <div className="title text-[#B5B5B5] text-lg font-normal">
             Criteria 1:
           </div>
-          <div className="val font-medium text-4xl text-white">
+          <div className="val font-bold text-4xl text-white">
             Evidence of Receipt of Major Internationally Recognized
             <p className="text-primary">Awards</p>
           </div>
@@ -30,8 +31,8 @@ const Criteria1 = () => {
               dimension={9}
             />
             <div className="flex flex-col ml-12 ">
-              <p className="text-white font-medium"> Current Readiness:</p>
-              <p className="val text-4xl font-medium ">{data.result}%</p>
+              <p className="text-white font-medium text-lg"> Current Readiness:</p>
+              <p className="val text-7xl font-medium text-[#FF9100]">{data.result}%</p>
               <p className="text-white font-medium">{data.status}</p>
             </div>
           </div>
@@ -49,14 +50,15 @@ const Criteria1 = () => {
         </div>
       </div>
       <div className="bottom flex flex-col gap-4 items-center justify-center ">
-        <div className="section1  p-4 flex flex-row gap-4 w-[80%]  ">
-          <div className="left">
+        <div className="section1  p-4 flex flex-row gap-4 w-[79vw] px-28 ">
+          <div className="left mr-[2rem]">
             <img src={Awards} alt="" />
           </div>
-          <div className="right w-2/3 flex flex-col gap-4 font-normal text-[24px]">
-            The EB1A visa emphasizes significant international awards such as
-            the Nobel Prize or Pulitzer Prize.
-            <p>
+          <div className="right w-2/3 flex flex-col gap-4 font-medium text-[#646464] text-[24px]">
+            <div className="">The EB1A visa emphasizes significant international awards 
+            <p>such as the  <strong>Nobel Prize or Pulitzer Prize.</strong></p>
+            </div> 
+            <p >
               Since no major awards are identified, this criterion has low
               readiness.
             </p>
@@ -64,13 +66,13 @@ const Criteria1 = () => {
         </div>
         <hr className=" mt-4 h-[2px] w-[80%]  bg-[#D0D0D0]" />
 
-        <div className="section1 p-4 mt-4 flex flex-row gap-4 w-[80%] ">
-          <div className="left w-2/3 flex flex-col gap-4 font-normal text-[28px]">
-            <div className="title font-bold text-2xl text-[#646464]">
+        <div className="section1 p-4 mt-4 flex flex-row gap-4 w-[79vw] px-28">
+          <div className="left w-2/3 flex flex-col gap-4 font-normal text-[28px] mt-4">
+            <div className="title font-bold text-3xl text-[#646464]">
               Opportunities for Improvement
             </div>
             <ul
-              className="text-lg text-[#646464] ml-5"
+              className="text-lg text-[#646464] ml-5 font-medium"
               style={{ "list-style-type": "disc" }}
             >
               <li>
@@ -78,9 +80,9 @@ const Criteria1 = () => {
                 accessible (e.g., awards in academia, industry).
               </li>
             </ul>
-            <p className="text-lg text-[#646464] font-medium">Next Steps:</p>
+            <p className="text-lg text-[#646464] font-bold">Next Steps:</p>
             <ul
-              className="text-lg text-[#646464] ml-5"
+              className="text-lg text-[#646464] ml-5 font-medium"
               style={{ "list-style-type": "disc" }}
             >
               <li>
@@ -90,7 +92,7 @@ const Criteria1 = () => {
             </ul>
           </div>
           <div className="right">
-            <img src={Awards} alt="" />
+            <img src={Pichart} />
           </div>
         </div>
       </div>

@@ -95,6 +95,7 @@ import Logo from "../../assets/logo.png";
 import Student from "../../assets/Student.svg";
 import { FaStar } from "react-icons/fa";
 import Star from "../../assets/Star1.png";
+import Background from "../../assets/background.svg";
 const Section3 = ({ data }) => {
   console.log("education", data);
   return (
@@ -108,14 +109,15 @@ const Section3 = ({ data }) => {
       
 
       <div className="maincontent h-[1247px] w-[78.9vw]  relative flex flex-row">
-        <div className="left h-full w-[34.3vw] bg-primary flex flex-col">
-          <div className="header text-white text-xl leading-5  font-medium mt-14 ml-16">
+        <div className="left h-full w-[34.3vw] flex flex-col">
+          <img src={Background} className="absolute " />
+          <div className="header text-white text-xl leading-5  font-medium mt-14 ml-16 z-10">
             Section2:
           </div>
-          <p className="title text-[40px] leading-[40px] mt-[14px] text-white  font-semibold ml-16">
+          <p className="title text-[40px] leading-[40px] mt-[14px] text-white  font-semibold ml-16 z-10">
             Education{" "}
           </p>
-          <p className="text-[40px] leading-[40px] text-white  font-semibold ml-16">Background</p>
+          <p className="text-[40px] leading-[40px] text-white  font-semibold ml-16 z-10">Background</p>
         </div>
         <div className="right h-full w-[44.7vw]  ">
           <div className="headerimage  h-[307px] w-full  ">
@@ -123,11 +125,11 @@ const Section3 = ({ data }) => {
           </div>
         </div>
         <div className="centercomponent absolute bg-white rounded-md left-[20%] top-[25%] h-[75%] w-[80%] overflow-y-auto overflow-x-hidden">
-          <div className="header mt-6 ml-[5rem] font-medium text-2xl ">
+          <div className="header mt-6 ml-[8rem] font-medium text-2xl ">
             Degree/Certifications
           </div>
           <div className="edcontent flex flex-row  mt-6 ">
-            <div className="leftprogressbar ml-[2.5rem] ">
+            <div className="leftprogressbar ml-[5.4rem] ">
               <div className="relative h-full bg-[#007EE8] w-2 border-2 rounded-lg">
                 {data &&
                   data.map((_, index) => (
@@ -148,21 +150,24 @@ const Section3 = ({ data }) => {
                 data.map((item, index) => (
                   <div
                     key={index}
-                    className="card flex flex-col py-3 px-2  mb-3 w-[15rem] bg-slate-100 "
+                    className="card flex flex-col pb-3 px-2  mb-3 h-48 w-[15rem] -mt-1"
                   >
-                    <div className="title font-semibold ">{item.degree}</div>
-                    <div className="date">{item.completionDate}</div>
-                    <div className="date">{item.university}</div>
-                    <div className="date">{item.location}</div>
-                    <div className="date">{item.information}</div>
+                    <div className="title font-bold text-[#646464]">{item.degree}</div>
+                    <div className="space-y-0.5 mt-1">
+                    <div className="date text-[#646464]">{item.completionDate}</div>
+                    <div className="date text-lg leading-5 font-medium">{item.university}</div>
+                    <div className="date text-[#007EE8] italic">{item.location}</div>
+                    <div className="date text-sm font-medium">{item.information}</div>
+                    </div>
                   </div>
                 ))}
             </div>
             {/* <div className="right relative bg-black"> */}
-            <div className="rightcontent relative w-[350px] h-[500px] bg-[#D7D7D7] ml-32 mt-16 flex flex-col">
-              <div className="top bg-[#0B0550] w-full flex flex-row items-center">
-                <FaStar className=" text-yellow-400 ml-2" />{" "}
-                <p className="text-white ml-3 mt-1">Achievements</p>
+            <div className="rightcontent relative w-[382px] h-[500px]  ml-32 mt-16 flex flex-col">
+              <div className="w-full h-full bg-[#D7D7D7] opacity-[29%] absolute z-0 "></div>
+              <div className="top bg-[#0B0550] w-full flex flex-row items-center z-10">
+                <FaStar className=" text-yellow-400 ml-2 text-sm" />{" "}
+                <p className="text-white ml-3 mt-1 text-sm">Special Achievements</p>
               </div>
               <div className="star absolute -right-28 top-[60%]   overflow-x-hidden ">
                 <img src={Star} alt="" className="w-full" />
