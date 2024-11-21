@@ -33,13 +33,13 @@ const Work = ({ data }) => {
           </div>
         </>
       )}
-      <div className="main   mt-6 flex flex-col items-center justify-center font-metropolis">
-        <div className="w-[80%]  flex items-start justify-start">
+      <div className="main  mt-6 flex flex-col items-center justify-center font-metropolis">
+        <div className="w-[79vw]  flex items-start justify-start">
           <div className="navbar   p-3  mt-5">
             <p className="text-[#8D8D8D] text-xl font-medium">Section 3</p>
             <div className="flex flex-row gap-2">
-              <p className="title text-black font-semibold text-3xl">Work</p>
-              <p className="title text-[#007EE8] font-semibold text-3xl ">
+              <p className="title text-black font-semibold text-4xl">Work</p>
+              <p className="title text-[#007EE8] font-semibold text-4xl ">
                 Experience
               </p>
             </div>
@@ -60,17 +60,18 @@ const Work = ({ data }) => {
                   key={companyData._id}
                   className="rows  flex flex-row items-center justify-between  gap-3"
                 >
-                  <div className="cardleft p-3 w-[20rem] h-[20rem] bg-[#E8FEFD] rounded-lg">
-                    <p className="font-semibold text-xl">
+                  <div className="cardleft p-3 pl-6 w-[20rem] h-[20rem] bg-[#E8FEFD] rounded-lg space-y-5 shadow-custom">
+                    <p className="font-semibold text-center text-xl">
                       {companyData.company}
                     </p>
-                    <p>{companyData.location}</p>
-                    <div className="roles space-y-2 overflow-y-auto">
-                      Roles:
+                    
+                    <div className="flex text-sm font-medium text-[#6C6C6C]">Location: <p className="text-black pl-2 font-norma">{companyData.location}</p></div>
+                    <div className="roles space-y-2 overflow-y-auto text-sm font-medium text-[#6C6C6C]">
+                      <p className="mb-3">Roles:</p>
                       {companyData.roles.map((role, roleIndex) => (
                         <div key={roleIndex} className="ml-3">
                           <div
-                            className="bg-slate-50  px-2 py-3 flex flex-row justify-between rounded-lg "
+                            className="bg-slate-50  px-3 py-3 flex flex-row justify-between rounded-lg  border-[1.5px] border-gray-400"
                             onClick={() => {
                               if (role.projects && role.projects.length > 0) {
                                 setCurrentRoleIndex(roleIndex);
@@ -91,9 +92,9 @@ const Work = ({ data }) => {
                     </div>
                   </div>
 
-                  <div className="cardright  w-2/3 h-[20rem]  rounded-lg mr-4 flex flex-col shadow-neutral-300 shadow-lg">
-                    <div className="header h-[15%] w-full bg-[#F4F4F4] p-3 rounded-t-lg">
-                      <span className="text-primary font-semibold text-lg">
+                  <div className="cardright  w-2/3 h-[20rem]  rounded-lg mr-4 flex flex-col shadow-neutral-300 shadow-custom">
+                    <div className="header h-[15%] w-full text-sm font-medium text-[#646464] bg-[#F4F4F4] p-3 rounded-t-lg">
+                      <span className="text-primary font-semibold text-base">
                         Accomplishments
                       </span>{" "}
                       (Awards, Recognitions, Notable Projects)
@@ -107,11 +108,11 @@ const Work = ({ data }) => {
                           alt=""
                           className="h-[16px] w-[18px] "
                         />
-                        <p className="font-medium text-[16px] mt-1 ml-1 text-[#646464]">
+                        <p className="font-medium text-[16px] my-1 ml-2 text-[#646464]">
                           Awards:
                         </p>
                       </div>
-                      <div className="right flex flex-row items-center gap-2 ml-1">
+                      <div className="right flex flex-row items-center gap-2 ml-1 text-sm font-medium text-[#6C6C6C]">
                         <div className="aw1 bg-slate-200 px-3 py-1 rounded-lg">
                           Award1
                         </div>
@@ -135,7 +136,7 @@ const Work = ({ data }) => {
                           alt=""
                           className="h-[19px] w-[18px]"
                         />
-                        <p className="font-medium text-[16px] mt-1 ml-1 text-[#646464]">
+                        <p className="font-medium text-[16px] my-1 ml-2 text-[#646464]">
                           Notable Projects:
                         </p>
                       </div>
@@ -144,7 +145,7 @@ const Work = ({ data }) => {
                           allProjects.map((project, index) => (
                             <div
                               key={index}
-                              className="hover-effect py-2 px-3 bg-primary rounded-lg gap-2 flex flex-row items-center justify-center"
+                              className="hover-effect py-2 px-3 bg-primary rounded gap-2 flex flex-row items-center justify-center"
                               onClick={() => {
                                 setIsModalOpen(!isModalOpen);
                                 setCompany(companyData);
@@ -153,7 +154,7 @@ const Work = ({ data }) => {
                               }}
                             >
                               <BsArrowRightCircle className="text-white" />
-                              <p className="font-normal text-xs text-white">
+                              <p className="font-medium text-xs text-white cursor-pointer">
                                 {/* {project.projectTitle} */}
                                 Project {index + 1}
                               </p>
@@ -175,11 +176,11 @@ const Work = ({ data }) => {
                           alt=""
                           className="h-[16px] w-[18px] "
                         />
-                        <p className="font-medium text-[16px] mt-1 ml-1 text-[#646464]">
+                        <p className="font-medium text-[16px] my-1 ml-2 text-[#646464]">
                           Recognition:
                         </p>
                       </div>
-                      <div className="right flex flex-row items-center gap-2 ml-1">
+                      <div className="right flex flex-row items-center gap-2 ml-1 text-sm font-medium text-[#6C6C6C]">
                         <div className="aw1 bg-slate-200 px-3 py-1 rounded-lg">
                           Award1
                         </div>

@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { FaStar } from "react-icons/fa";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import './Achievement.css';
 
 const Achievement = ({ data }) => {
   console.log(data, "awards");
@@ -20,8 +21,8 @@ const Achievement = ({ data }) => {
     }
   };
   return (
-    <div className="main h-[45rem]  font-metropolis flex flex-col  justify-center items-center">
-      <div className="header w-[85%] p-4 md:mt-6 flex flex-row  justify-between">
+    <div className="main h-[45rem] mt-[3rem] font-metropolis flex flex-col  justify-center items-center">
+      <div className="header w-[79vw] p-4 md:mt-6 flex flex-row  justify-between">
         <div className="firstrow w-2/3 flex flex-col ">
           <div className="col1 text-primary text-4xl font-semibold">
             {" "}
@@ -82,11 +83,11 @@ const Achievement = ({ data }) => {
         </div>
       </div>
 
-      <div className="awardbody p-2 w-[85%] h-[70%] mb-2 relative">
+      <div className="awardbody p-2 w-[79vw] h-[70%] mb-2 relative">
         {/* Left Button */}
         <button
           onClick={scrollLeft}
-          className="absolute -left-2 top-[40%] transform -translate-y-1/2 z-10 bg-gray-500/50 p-2 rounded-full"
+          className="absolute -left-2 top-[40%] transform -translate-y-1/2 z-10 bg-[#FFF3F1] p-2 rounded-full shadow-md border border-2 hover:bg-[#FFC7C0]"
         >
           <FaArrowLeft />
         </button>
@@ -94,7 +95,7 @@ const Achievement = ({ data }) => {
         {/* Carousel Container */}
         <div
           ref={carouselRef}
-          className="carousel-container p-3 flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-4 w-full h-full"
+          className="carousel-container p-3 flex overflow-x-auto scroll-smooth snap-x snap-mandatory gap-4 w-full h-full scrollbar-hide"
         >
           {data &&
             data.map((item, index) => (
@@ -129,7 +130,7 @@ const Achievement = ({ data }) => {
                   <div className="title font-semibold text-[#4E4E4E]">
                     Documents:
                   </div>
-                  <div className="text bg-[#D9D9D9] w-[25%] py-4 px-8 rounded-lg">
+                  <div className="text bg-[#D9D9D9] w-[25%] py-3 px-8 rounded-md">
                     Lorem
                   </div>
                 </div>
@@ -140,7 +141,7 @@ const Achievement = ({ data }) => {
         {/* Right Button */}
         <button
           onClick={scrollRight}
-          className="absolute  -right-2 top-[40%] transform -translate-y-1/2 z-10 h-8 w-8 bg-gray-500/50  p-2 rounded-full"
+          className="absolute  -right-2 top-[40%] transform -translate-y-1/2 z-10 bg-[#FFF3F1] p-2 rounded-full shadow-md border border-2 hover:bg-[#FFC7C0]"
         >
           <FaArrowRight />
         </button>

@@ -37,12 +37,12 @@ const Section1 = ({ data }) => {
               {/* background: linear-gradient(90deg, #4DDAF3 0%, #009EFF 100%); */}
               {/* <PiUserCircleThin className="absolute opacity-100 h-[15rem] w-[15rem] text-white z-10" />
             <div className=" h-[11.5rem] w-[11.5rem]  bg-gradient-to-r from-[#4DDAF3] to-[#009EFF] rounded-full"></div> */}
-              <div className="bg-white w-[37vw] h-[54.2vh] flex justify-center items-center rounded-lg">
+              <div className="bg-white w-[37vw] xl:h-[56vh] 2xl:h-[54.2vh] flex justify-center items-center rounded-lg">
                 <img src={Basic} className="w-[32.48vw] h-[47.5vh]" />
               </div>
             </div>
             <div className="right w-[45.5%]  ">
-              <div className="form flex-col space-y-5 bg-white w-[33vw] h-[54.1vh] p-4 rounded-lg">
+              <div className="form flex-col space-y-5 bg-white w-[33vw] xl:h-[56vh] 2xl:h-[54.2vh] p-4 rounded-lg">
                 <div className="section flex flex-row items-center justify-center gap-2 ">
                   <div className="title text-[#646464] flex items-center w-1/3 h-[3.4vh] p-2 text-justify font-medium leading-5 border-l-2 border-[#007EE8]">
                     Name

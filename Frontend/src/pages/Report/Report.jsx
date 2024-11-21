@@ -41,6 +41,12 @@ const Report = () => {
 
   console.log(experienceData, "kfe");
 
+  let viewportWidth = window.innerWidth;
+let viewportHeight = window.innerHeight;
+
+console.log(`Viewport width: ${viewportWidth}px`);
+console.log(`Viewport height: ${viewportHeight}px`);
+
   return (
     <div>
       <Navbar />
