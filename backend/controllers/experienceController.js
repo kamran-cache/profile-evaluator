@@ -27,6 +27,7 @@ exports.getExperiences = async (req, res) => {
     const profile = await Profile.findById(req.params.profileId).populate(
       "experience"
     );
+
     if (!profile) return res.status(404).json({ error: "Profile not found" });
 
     res.status(200).json(profile.experience); // Send all experiences related to the profile

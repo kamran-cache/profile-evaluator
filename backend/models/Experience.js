@@ -27,6 +27,7 @@ const experienceSchema = new mongoose.Schema({
       projects: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }],
     },
   ],
+  awards: [{ type: mongoose.Schema.Types.ObjectId, ref: "Awards" }],
 
   location: {
     type: String,

@@ -5,8 +5,11 @@ import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { store } from "../../redux/store";
 import {
   addProjects,
+  setAwardsForm,
   setFormField,
   setProjects,
+  addAwards,
+  resetAwardForm,
 } from "../../redux/AdditionalForms/CriticalRoleSlice";
 import { setExperience } from "../../redux/experienceSlice";
 import Sidebar from "../../components/Tools/Sidebar";
@@ -14,14 +17,21 @@ import { FaAngleRight } from "react-icons/fa6";
 import { getData } from "../../utils/Data";
 import { current } from "@reduxjs/toolkit";
 import axios from "axios";
+import Awards from "./Awards";
+import { setAwards } from "../../redux/awardsSlice";
 
 const CriticalRole = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const userId = useSelector((state) => state.application.id);
-  //console.log("userId", userId);
-  const { currentForm, projects } = useSelector((state) => state.projects);
-  //console.log(projects, "porj", currentForm);
+
+  const { currentForm, projects, awards, currentAwardForm } = useSelector(
+    (state) => state.projects
+  );
+  const awardsData = useSelector((state) => state.awards);
+  console.log(awardsData, "awardsdata");
+
+  // console.log(awards, currentAwardForm, "awards");
   // Handle input change for form fields
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -43,8 +53,51 @@ const CriticalRole = () => {
     }
   };
 
+  // Handle awards input change for form fields
+  const handleAwardInputChange = (e) => {
+    const { name, value, files } = e.target;
+
+    // Handle file input separately
+    if (name === "evidence") {
+      dispatch(setAwardsForm({ name, value: files[0] }));
+    } else {
+      dispatch(setAwardsForm({ name, value }));
+    }
+  };
+
+  const handleAddAwardsForm = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Prepare the form data
+      const formData = currentAwardForm;
+      console.log(formData, 12324);
+
+      // Send the form data to the backend
+      const response = await axios.post(
+        `http://localhost:5000/api/v1/add-data/Awards/${id}/${c_id}`,
+        {
+          data: formData,
+        }
+      );
+
+      if (response.ok) {
+        alert("Award added successfully!");
+        dispatch(resetForm());
+      } else {
+        const errorData = await response.json();
+        console.error("Error adding award:", errorData);
+        alert("Failed to add the award.");
+      }
+    } catch (error) {
+      console.error("Error submitting award:", error);
+      alert("An unexpected error occurred.");
+    }
+  };
   // Toggle Experience section visibility
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenAwards, setIsOpenAwards] = useState(false);
+  const [tab, setTab] = useState(0);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -59,42 +112,18 @@ const CriticalRole = () => {
     setIsOpenArray(updatedIsOpenArray);
   };
   const { id, c_id, r_id } = useParams();
-  //console.log(id, r_id, "id", c_id);
+
   // calling the api to store the values in the states after the page is refreshed
   useEffect(() => {
     if (id) {
       getData(id, dispatch);
-      //console.log(store.getState(), "data", "user");
     }
-    //console.log(store.getState(), "datauseEffect", "user");
   }, [id, dispatch]);
 
   const companiesData = useSelector((state) => state.experience.experiences);
-  //console.log("store", store.getState());
-  //console.log(companiesData, "comanyData");
 
   const company = companiesData?.find((exp) => exp._id === c_id);
   const role = company?.roles.find((role) => role._id === r_id);
-
-  //console.log("company", company, role);
-  // const companiesData = [
-  //   {
-  //     companyName: "Company A",
-  //     employmentDates: "Jan 2022 - Dec 2024",
-  //     roles: [
-  //       { roleName: "Software Engineer", roleDates: "Jan 2022 - Dec 2023" , location: "New York, NY"},
-  //       { roleName: "Senior Engineer", roleDates: "Jan 2023 - Dec 2024" , location: "New York, NY"}
-  //     ]
-  //   },
-  //   {
-  //     companyName: "Company B",
-  //     employmentDates: "Jan 2019 - Present",
-  //     roles: [
-  //       { roleName: "Lead Developer", roleDates: "Jan 2019 - Dec 2021" , location: "New York, NY"},
-  //       { roleName: "Engineering Manager", roleDates: "Jan 2022 - Present" , location: "New York, NY"}
-  //     ]
-  //   }
-  // ];
 
   const [selectedCompany, setSelectedCompany] = useState(companiesData[0]);
 
@@ -116,13 +145,24 @@ const CriticalRole = () => {
       `http://localhost:5000/api/v1/projects/${r_id}`
     );
     if (response) dispatch(setProjects(response.data.projects));
+    else {
+      dispatch(setProjects(""));
+    }
     console.log(response.data, "response");
 
-    console.log(projects, "response");
+    const res = await axios.get(
+      `http://localhost:5000/api/v1/get/awards/${c_id}`
+    );
+
+    if (res) dispatch(setAwards(res.data.awards));
+    console.log(res.data, "response");
+    console.log(awardsData, "awrdsdra");
   };
   useEffect(() => {
     getProjects();
   }, [r_id]);
+
+  console.log(tab, "tab");
   return (
     <>
       <div key={id} className="flex p-8 ">
@@ -187,18 +227,58 @@ const CriticalRole = () => {
                 <FaAngleRight className="mt-1" />
                 {role ? role.jobTitle : "role"}{" "}
                 <FaAngleRight className="mt-1" />
-                <span>Projects</span>
+                <span>{tab === 0 ? "Projects" : "Awards"}</span>
+              </div>
+              <div className="tabs flex  gap-2">
+                {/* Toggle Form Button */}
+                <button
+                  className="w-fit mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  onClick={() => setTab(0)}
+                >
+                  Projects
+                </button>
+
+                {/* Toggle Awards Button */}
+                <button
+                  className="w-fit mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                  onClick={() => setTab(1)}
+                >
+                  Awards
+                </button>
               </div>
 
-              {/* Toggle Form Button */}
-              <button
-                className="w-fit mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                {isOpen ? "Collapse Form" : "Add Projects"}
-              </button>
+              {tab === 1 && !isOpenAwards && (
+                <>
+                  {/* had to change to awards display  */}
+                  {awardsData.awards.length > 0 && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:mt-8">
+                      {awardsData.awards.map((formContent, index) => (
+                        <div
+                          key={index}
+                          className="w-[20vw] mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-lg hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out"
+                        >
+                          <div className="flex justify-center text-xl text-center font-semibold text-blue-600">
+                            Award {index + 1}
+                          </div>
+                          <div className="flex justify-center text-lg text-center mt-2">
+                            <p className="text-gray-700 font-medium">
+                              {formContent.awardName}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <div
+                    onClick={() => setIsOpenAwards(!isOpenAwards)}
+                    className="w-[20vw] mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-lg hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out"
+                  >
+                    Add Awards
+                  </div>
+                </>
+              )}
 
-              {!isOpen && (
+              {tab === 0 && !isOpen && (
                 <>
                   {projects.length > 0 && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:mt-8">
@@ -219,11 +299,17 @@ const CriticalRole = () => {
                       ))}
                     </div>
                   )}
+                  <div
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="w-[20vw] mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-lg hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out"
+                  >
+                    Add Projects
+                  </div>
                 </>
               )}
 
               {/* Toggle Form */}
-              {isOpen && (
+              {isOpen && tab !== 1 && (
                 <form className="w-full px-12" onSubmit={handleAddForm}>
                   <div className="-mx-3 flex flex-wrap">
                     <div className="w-full px-3">
@@ -373,6 +459,140 @@ const CriticalRole = () => {
                     type="submit"
                   >
                     Add Project
+                  </button>
+                </form>
+              )}
+              {/* Awards form */}
+              {isOpenAwards && tab !== 0 && (
+                <form className="w-full px-12" onSubmit={handleAddAwardsForm}>
+                  <div className="-mx-3 flex flex-wrap">
+                    <div className="w-full px-3">
+                      <div className="mb-5">
+                        <label className="mb-3 block text-base font-medium text-[#07074D]">
+                          What is the Name of your Award?
+                        </label>
+                        <input
+                          type="text"
+                          name="awardName"
+                          placeholder="e.g., 'Meta AI Research Award'"
+                          onChange={handleAwardInputChange}
+                          className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] shadow-md outline-none focus:border-[#6A64F1] focus:shadow-lg"
+                        />
+                      </div>
+                    </div>
+                    <div className="w-full px-3">
+                      <div className="mb-5">
+                        <label className="mb-3 block text-base font-medium text-[#07074D]">
+                          Who presented the award(s)?
+                        </label>
+                        <input
+                          type="text"
+                          name="issuingOrganization"
+                          placeholder="e.g., 'Google, Government of XYZ'"
+                          onChange={handleAwardInputChange}
+                          className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] shadow-md outline-none focus:border-[#6A64F1] focus:shadow-lg"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="-mx-3 flex flex-wrap">
+                    <div className="w-full px-3">
+                      <div className="mb-5">
+                        <label className="mb-3 block text-base font-medium text-[#07074D]">
+                          When did you receive the award(s)?
+                        </label>
+                        <input
+                          type="date"
+                          name="date"
+                          onChange={handleAwardInputChange}
+                          className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] shadow-md outline-none focus:border-[#6A64F1] focus:shadow-lg"
+                        />
+                      </div>
+                    </div>
+                    <div className="w-full px-3">
+                      <div className="mb-5">
+                        <label className="mb-3 block text-base font-medium text-[#07074D]">
+                          Scope of the Award
+                        </label>
+                        <select
+                          name="scope"
+                          onChange={handleAwardInputChange}
+                          className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] shadow-md outline-none focus:border-[#6A64F1] focus:shadow-lg"
+                        >
+                          <option value="">-- select scope --</option>
+                          <option value="international">International</option>
+                          <option value="national">National</option>
+                          <option value="regional">Regional</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="-mx-3 flex flex-wrap">
+                    <div className="w-full px-3">
+                      <div className="mb-5">
+                        <label className="mb-3 block text-base font-medium text-[#07074D]">
+                          What were the criteria for the award?
+                        </label>
+                        <textarea
+                          name="criteria"
+                          placeholder="e.g., 'Recognized for exceptional contributions to AI research'"
+                          onChange={handleAwardInputChange}
+                          className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] shadow-md outline-none focus:border-[#6A64F1] focus:shadow-lg"
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div className="w-full px-3">
+                      <div className="mb-5">
+                        <label className="mb-3 block text-base font-medium text-[#07074D]">
+                          How does this award reflect your impact in your field?
+                        </label>
+                        <textarea
+                          name="nicheImpact"
+                          placeholder="e.g., 'Set a benchmark for AI ethics in research'"
+                          onChange={handleAwardInputChange}
+                          className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] shadow-md outline-none focus:border-[#6A64F1] focus:shadow-lg"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="-mx-3 flex flex-wrap">
+                    <div className="w-1/2 px-3">
+                      <div className="mb-5">
+                        <label className="mb-3 block text-base font-medium text-[#07074D]">
+                          Evidence Type
+                        </label>
+                        <select
+                          name="evidenceType"
+                          onChange={handleAwardInputChange}
+                          className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] shadow-md outline-none focus:border-[#6A64F1] focus:shadow-lg"
+                        >
+                          <option value="">-- select one --</option>
+                          <option value="certificate">Certificate</option>
+                          <option value="press_release">Press Release</option>
+                          <option value="media_coverage">Media Coverage</option>
+                          <option value="testimonial">Testimonial</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="w-1/2 px-3">
+                      <div className="mb-5">
+                        <label className="mb-3 block text-base font-medium text-[#07074D]">
+                          Upload Evidence
+                        </label>
+                        <input
+                          type="file"
+                          name="evidence"
+                          onChange={handleAwardInputChange}
+                          className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] shadow-md outline-none focus:border-[#6A64F1] focus:shadow-lg"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    className="mt-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                    type="submit"
+                  >
+                    Add Award
                   </button>
                 </form>
               )}

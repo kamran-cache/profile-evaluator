@@ -75,6 +75,68 @@ exports.addAwards = async (req, res) => {
   }
 };
 
+// main add awrds
+exports.AddAward = async (req, res) => {
+  try {
+    const { profileId, experienceId } = req.params;
+    const {
+      awardName,
+      issuingOrganization,
+      date,
+      scope,
+      criteria,
+      nicheImpact,
+      evidenceType,
+      evidence,
+    } = req.body.data;
+    console.log(req.body.data, profileId, experienceId, "awardsData");
+
+    // Create the award
+    const awardData = {
+      awardName,
+      issuingOrganization,
+      date,
+      scope,
+      criteria,
+      nicheImpact,
+      evidenceType,
+      evidence,
+      profile: profileId,
+    };
+    if (experienceId && experienceId !== "undefined") {
+      awardData.experience = experienceId;
+    }
+
+    const newAward = new Awards(awardData);
+    const savedAward = await newAward.save();
+
+    // Update the profile with the new award reference
+    if (profileId) {
+      await Profile.findByIdAndUpdate(profileId, {
+        $push: { awards: savedAward._id },
+      });
+    }
+
+    // Update the experience with the new award reference
+    if (experienceId && experienceId !== "undefined") {
+      await Experience.findByIdAndUpdate(experienceId, {
+        $push: { awards: savedAward._id },
+      });
+    }
+
+    res.status(201).json({
+      message: "Award added successfully!",
+      award: savedAward,
+    });
+  } catch (error) {
+    console.error("Error adding award:", error);
+    res.status(500).json({
+      message: "An error occurred while adding the award.",
+      error: error.message,
+    });
+  }
+};
+
 // Add new Exhibition to a profile
 exports.addExhibition = async (req, res) => {
   try {

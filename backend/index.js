@@ -26,6 +26,7 @@ const userRouter = require("./router/userRouter");
 const addRouter = require("./router/addDataRouter");
 const updateRouter = require("./router/updateRouter");
 const projectRouter = require("./router/projectRouter");
+const getRouter = require("./router/getRouter");
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/profile", profileRouter);
@@ -33,6 +34,7 @@ app.use("/api/v1/basicInfo", basicInfoRouter);
 app.use("/api/v1/add-data", addRouter);
 app.use("/api/v1/update", updateRouter);
 app.use("/api/v1/projects", projectRouter);
+app.use("/api/v1/get", getRouter);
 
 const Port = process.env.PORT || 8000;
 app.listen(Port, () => {

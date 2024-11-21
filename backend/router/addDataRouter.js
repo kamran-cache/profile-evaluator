@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.post("/authorship/:id", addController.addAuthorship);
 router.post("/awards/:id", addController.addAwards);
+router.post("/Awards/:profileId/:experienceId", addController.AddAward);
 router.post("/exhibition/:id", addController.addExhibition);
 router.post("/education/:id", addController.addEducation);
 router.post("/experience/:id", addController.addExperience);

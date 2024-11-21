@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  awards: [],
   projects: [], // Stores the experience form data
   currentForm: {
     projectTitle: "",
@@ -12,6 +13,16 @@ const initialState = {
     evidenceType: "",
     evidence: null,
   }, // Stores the currently edited form data
+  currentAwardForm: {
+    awardName: "",
+    issuingOrganization: "",
+    date: "",
+    scope: "",
+    criteria: "",
+    nicheImpact: "",
+    evidenceType: "",
+    evidence: null,
+  },
 };
 
 const CriticalRoleSlice = createSlice({
@@ -43,9 +54,27 @@ const CriticalRoleSlice = createSlice({
       const data = action.payload;
       state.projects = Array.isArray(data) ? data : [data];
     },
+    setAwardsForm: (state, action) => {
+      const { name, value } = action.payload;
+      state.currentAwardForm[name] = value;
+    },
+    addAwards: (state) => {
+      state.awards.push(state.currentAwardForm);
+      state.currentAwardForm = { ...initialState.currentAwardForm };
+    },
+    resetAwardForm: (state) => {
+      state.currentAwardForm = { ...initialState.currentAwardForm };
+    },
   },
 });
 
-export const { setFormField, addProjects, resetForm, setProjects } =
-  CriticalRoleSlice.actions;
+export const {
+  setFormField,
+  addProjects,
+  resetForm,
+  setProjects,
+  setAwardsForm,
+  addAwards,
+  resetAwardForm,
+} = CriticalRoleSlice.actions;
 export default CriticalRoleSlice.reducer;
