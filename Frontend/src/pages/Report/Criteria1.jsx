@@ -28,7 +28,7 @@ const Criteria1 = () => {
             <CircularProgress
               percentage={data.result}
               icon={data.icon}
-              dimension={9}
+              dimension={12}
             />
             <div className="flex flex-col ml-12 ">
               <p className="text-white font-medium text-lg"> Current Readiness:</p>

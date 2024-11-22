@@ -41,7 +41,7 @@ const CircularProgress = ({ percentage, icon, dimension }) => {
           width: dimension ? `${dimension - 0.7}rem` : "6.5rem",
         }}
       >
-        <img src={icon} alt="icon" className="h-[3rem] w-[3rem]" />
+        <img src={icon} alt="icon" className={`${dimension ? "h-[6rem] w-[6rem]" : "h-[3rem] w-[3rem]"} `} />
       </div>
     </div>
   );
