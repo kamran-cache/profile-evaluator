@@ -48,12 +48,12 @@ module.exports.getRoleProjects = async (req, res) => {
         .status(404)
         .json({ message: "Projects for this role not found" });
 
-    console.log(projects);
+    // console.log(projects);
     res
       .status(200)
       .json({ message: "Projects retrieved successfully", projects });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: "Error getting projects", error });
   }
 };
