@@ -1,15 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { useParams } from "react-router-dom";
-
+import axios from 'axios'
 export const fetchProfile = createAsyncThunk(
   "user/fetchProfile",
   async (id, { rejectWithValue }) => {
+    // console.log("idddddd",id)
     try {
       const response = await axios.get(
         `http://localhost:5000/api/v1/profile/${id}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+        // {
+        //   headers: { Authorization: `Bearer ${token}` },
+        // }
       );
       return response.data;
     } catch (error) {

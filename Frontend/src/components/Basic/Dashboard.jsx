@@ -15,9 +15,11 @@ import Modal from "../Tools/Modal";
 const Dashboard = () => {
   const [modal, setModal] = useState(false);
   const { id } = useParams();
+  console.log("iddddd",id)
   const dispatch = useDispatch();
   dispatch(setId(id));
   const data = useSelector((state) => state);
+  console.log("sssssssss",data)
   const navigate = useNavigate();
   useEffect(() => {
     getData(id, dispatch);

@@ -1,30 +1,29 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Dashboard.css";
+import { useEffect } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 import Sidebar2 from "./Sidebar2";
-import { useNavigate } from "react-router-dom";
-import { store } from "../redux/store";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { getData } from "../utils/Data";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setId } from "../redux/applicationSlice";
+import { store } from "../redux/store";
 const Dashboard2 = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { id } = useParams();
-
+  console.log("iddddd", id);
+  const dispatch = useDispatch();
+  dispatch(setId(id));
   useEffect(() => {
-    if (id) {
-      getData(id, dispatch);
-      //console.log(store.getState(), "data", "user");
-    }
-    //console.log(store.getState(), "datauseEffect", "user");
+   getData(id, dispatch);
+   console.log("gggggggggggggggg",store.getState());
   }, [id, dispatch]);
-  //console.log(store.getState(), 124);
-
-  const firstExperienceId = useSelector(
-    (state) => state.awards.awards[0]?.experience
-  );
-  //console.log(firstExperienceId, "first");
+  const authorshipData = useSelector((state) => state.authorship);
+console.log("aaaaaaaaaa",authorshipData)
+const firstExperienceId = useSelector(
+  (state) => state.awards.awards[0]?.experience
+);
   const experienceClick = () => {
     // Pass only the roleName, not the event object
     navigate("/role/:id/:c_id/:r_id");
@@ -32,7 +31,9 @@ const Dashboard2 = () => {
 
   const authorshipClick = () => {
     // Pass only the roleName, not the event object
-    navigate(`/authorship/${id}/:au_id`);
+    // navigate(`/authorship/${id}/:au_id`);
+    navigate(`/authorship/${id}/${store.getState().authorship.authorshipData[0]._id}`);
+
   };
   const awardsClick = () => {
     // Pass only the roleName, not the event object

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   addAuthorships,
   setFormField,
@@ -22,51 +22,61 @@ const Authorship2 = () => {
   const { currentForm, authorships } = useSelector(
     (state) => state.authorships
   );
-
+  console.log("authorshipsssss", authorships);
   // Handle input change for form fields
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     dispatch(setFormField({ name, value }));
   };
 
-      const companiesData = [
+  const companiesData = [
+    {
+      companyName: "Papers",
+      roles: [
+        { roleName: "The Future of AI in healthcare", roleDates: "IEEE" },
+        { roleName: "Impact of AI on healthcare", roleDates: "Forbes" },
+      ],
+    },
+    {
+      companyName: "Books",
+      roles: [
+        { roleName: "The Future of AI in healthcare", roleDates: "IEEE" },
+        { roleName: "Impact of AI on healthcare", roleDates: "Forbes" },
+      ],
+    },
+    {
+      companyName: "Patents",
+      roles: [
         {
-          companyName: "Papers",
-          roles: [
-            { roleName: "The Future of AI in healthcare", roleDates: "IEEE"},
-            { roleName: "Impact of AI on healthcare", roleDates: "Forbes"}
-          ]
+          roleName: "Lead Developer",
+          roleDates: "Jan 2019 - Dec 2021",
+          location: "New York, NY",
         },
         {
-          companyName: "Books",
-          roles: [
-            { roleName: "The Future of AI in healthcare", roleDates: "IEEE"},
-            { roleName: "Impact of AI on healthcare", roleDates: "Forbes"}
-          ]
+          roleName: "Engineering Manager",
+          roleDates: "Jan 2022 - Present",
+          location: "New York, NY",
         },
-        {
-          companyName: "Patents",
-          roles: [
-            { roleName: "Lead Developer", roleDates: "Jan 2019 - Dec 2021" , location: "New York, NY"},
-            { roleName: "Engineering Manager", roleDates: "Jan 2022 - Present" , location: "New York, NY"}
-          ]
-        }
-      ];
-    
-      const [selectedCompany, setSelectedCompany] = useState(companiesData[0]);
-    
-      const [expandedCompany, setExpandedCompany] = useState(null);
-    
-      const navigate = useNavigate();
-    
-      const handleCardClick = () => {
-        // Navigate to the details page with the companyId
-        navigate('/authorship');
-      };
-    
-      const toggleCompany = (index) => {
-        setExpandedCompany(expandedCompany === index ? null : index);
-      };    
+      ],
+    },
+  ];
+
+  const [selectedCompany, setSelectedCompany] = useState(companiesData[0]);
+
+  const [expandedCompany, setExpandedCompany] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    // Navigate to the details page with the companyId
+    navigate("/authorship");
+  };
+
+  const toggleCompany = (index) => {
+    setExpandedCompany(expandedCompany === index ? null : index);
+  };
+  const [isOpen, setIsOpen] = useState(false);
+  const { id, au_id } = useParams();
 
   // Add form content to the Redux store
   const handleAddForm = async (e) => {
@@ -76,19 +86,28 @@ const Authorship2 = () => {
       currentForm.patentTitle.trim() !== ""
     ) {
       const updatedAuthorship = currentForm;
+      console.log("auuuuuuuu", au_id);
       const response = await axios.put(
         `http://localhost:5000/api/v1/update/authorship/${au_id}`,
         { data: updatedAuthorship }
       );
       if (response) {
+        console.log("ressssssssssssss", response);
         dispatch(addAuthorships()); // Add the current form to experiences
-        setIsOpen(!isOpen);
+        setIsOpen(false);
+        localStorage.setItem(`isOpen_${au_id}`, "false");
       }
     }
   };
-
+  useEffect(() => {
+    const savedIsOpen = localStorage.getItem(`isOpen_${au_id}`);
+    if (savedIsOpen === "false") {
+      setIsOpen(false);
+    } else {
+      setIsOpen(true); // Default to open if not found
+    }
+  }, [au_id]);
   // Toggle Experience section visibility
-  const [isOpen, setIsOpen] = useState(true);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -105,7 +124,6 @@ const Authorship2 = () => {
 
   // api calling
   // id and authorship id from url
-  const { id, au_id } = useParams();
   // calling the api to store the values in the states after the page is refreshed
   useEffect(() => {
     if (id) {
@@ -126,7 +144,7 @@ const Authorship2 = () => {
     <div className="flex p-8">
       <div className="w-full md:w-1/3 pr-4">
         <div className="flex justify-center mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-md hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out text-2xl font-bold text-blue-600">
-            Authorship List
+          Authorship List
         </div>
         <div className="space-y-4">
           {companiesData.map((company, index) => (
@@ -139,17 +157,18 @@ const Authorship2 = () => {
               } cursor-pointer hover:shadow-lg transition-all duration-300`}
               onClick={() => toggleCompany(index)}
             >
-              <div
-                className="flex justify-between items-center"
-                
-              >
-                <h3 className="text-xl font-semibold text-center w-full">{company.companyName}</h3>
-                <span className="text-2xl">{expandedCompany === index ? "-" : "+"}</span>
+              <div className="flex justify-between items-center">
+                <h3 className="text-xl font-semibold text-center w-full">
+                  {company.companyName}
+                </h3>
+                {/* <span className="text-2xl">
+                  {expandedCompany === index ? "-" : "+"}
+                </span> */}
               </div>
               {/* <p className="text-gray-600">{company.employmentDates}</p> */}
 
               {/* Display roles only if this company is expanded */}
-              {expandedCompany === index && (
+              {/* {expandedCompany === index && (
                 <div className="mt-4">
                   <h4 className="text-lg font-bold text-blue-600">List:</h4>
                   <div className="mt-2 space-y-2">
@@ -159,17 +178,19 @@ const Authorship2 = () => {
                         className="p-4 rounded-lg bg-white border border-blue-300 shadow-md hover:shadow-xl"
                         onClick={handleCardClick}
                       >
-                        <h5 className="text-md font-semibold">{role.roleName}</h5>
+                        <h5 className="text-md font-semibold">
+                          {role.roleName}
+                        </h5>
                         <p className="text-gray-600">{role.roleDates}</p>
                       </div>
                     ))}
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
           ))}
         </div>
-        </div>
+      </div>
 
       <div className="flex w-2/3 h-[88vh]">
         <div className="flex flex-col justify-between w-full  rounded-xl shadow-[0_8px_10px_-1px_rgba(0,0,0,0.1),0_-6px_10px_-1px_rgba(0,0,0,0.1)] bg-slate-100">
@@ -177,51 +198,64 @@ const Authorship2 = () => {
           <div className="overflow-y-auto overflow-x-hidden w-full h-[88vh] py-4 scrollbar-transparent flex flex-col items-center mt-[1.5vh]">
             {/* Heading */}
             <div className="flex text-2xl font-semibold pl-2 mb-[1.5vh] w-full justify-start">
-              {currentAuthorshipData && currentAuthorshipData.authorshipType
+              {/* {currentAuthorshipData && currentAuthorshipData.authorshipType
                 ? currentAuthorshipData.authorshipType
-                : ""}
+                : ""} */}
               {/* :{" "} */}
-              {currentAuthorshipData && currentAuthorshipData.title
+              {/* {currentAuthorshipData && currentAuthorshipData.title
                 ? currentAuthorshipData.title
-                : "Authorship"}
+                : "Authorship"} */}
             </div>
             {/* Toggle Form Button */}
-            <button
+           { <button
               className="w-fit mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? "Collapse Form" : "Add Authorship"}
-            </button>
+            </button>}
 
-            {!isOpen && (
+            {isOpen === false && (
               <>
                 {/* Render previous forms as collapsed content */}
-                {authorships.length > 0 && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:mt-8">
-                    {authorships.map((formContent, index) => (
-                      <div
-                        key={index}
-                        className="w-[20vw] mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-lg hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out"
-                      >
-                        <div className="flex justify-center text-xl text-center font-semibold text-blue-600">
-                          Authorship {index + 1}
-                        </div>
-                        <div className="flex justify-center text-lg text-center mt-2">
-                          <p className="text-gray-700 font-medium">
-                            {formContent.title
-                              ? formContent.title
-                              : formContent.patentTitle}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
+                {authorshipData.authorshipData.length > 0 && (
+                  <div className="text-xl font-bold">
+                    {authorshipData.authorshipData[0].authorshipType}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:mt-8">
+                      {authorshipData.authorshipData.map(
+                        (formContent, index) => (
+                          <>
+                            <div
+                              key={index}
+                              className="w-[20vw] mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-lg hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out"
+                            >
+                              <div className="flex justify-center text-xl text-center font-semibold text-blue-600">
+                                Authorship {index + 1}
+                              </div>
+                              <div className="flex flex-col justify-center text-lg text-center mt-2">
+                                <p className="text-gray-700 font-medium">
+                                  {formContent.title
+                                    ? formContent.title
+                                    : formContent.patentTitle}
+                                </p>
+                                <p className="text-gray-700 font-medium">
+                                  {formContent?.summary}
+                                </p>
+                                <p className="text-gray-700 font-medium">
+                                  {formContent?.publication}
+                                </p>
+                              </div>
+                            </div>
+                          </>
+                        )
+                      )}
+                    </div>
                   </div>
                 )}
               </>
             )}
 
             {/* Toggle Form */}
-            {isOpen && (
+            {isOpen !== false && (
               <form className="w-full px-12" onSubmit={handleAddForm}>
                 <div className="-mx-3 flex flex-wrap">
                   <div className="w-full px-3">

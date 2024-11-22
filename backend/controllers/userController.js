@@ -6,14 +6,14 @@ const SECRET_KEY = process.env.SECRET_KEY; // Change this to your secret key
 // Register a new user
 const signup = async (req, res) => {
   const { name, email, password } = req.body;
-
+  console.log("nnnnnnn",name,email,password)
   try {
     // Check if the user already exists
     const existingUser = await Users.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
-
+    
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 

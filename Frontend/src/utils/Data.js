@@ -64,7 +64,9 @@ import { setMemberships } from "../redux/membershipSlice";
 export const getData = async (id, dispatch) => {
   try {
     const token = window.localStorage.getItem("token");
+    
     if (id !== "undefined") {
+      console.log("iddd", id);
       const response = await axios.get(
         `http://localhost:5000/api/v1/profile/${id}`,
         {

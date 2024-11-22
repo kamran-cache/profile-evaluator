@@ -1,11 +1,12 @@
 const express = require("express");
 const dotenv = require("dotenv");
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: ".env" });
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const db = process.env.DB.replace("<db_password>", process.env.password);
+console.log("dbbb",db,)
 mongoose
   .connect(db)
   .then(() => {
