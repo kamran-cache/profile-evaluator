@@ -37,9 +37,7 @@ const Dashboard2 = () => {
   const authorshipClick = () => {
     // Pass only the roleName, not the event object
     // navigate(`/authorship/${id}/:au_id`);
-    navigate(
-      `/authorship/${id}/${store.getState().authorship.authorshipData[0]._id}`
-    );
+    navigate(`/authorship/${id}`);
   };
   const awardsClick = () => {
     // Pass only the roleName, not the event object
