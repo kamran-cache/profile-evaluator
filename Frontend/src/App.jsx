@@ -22,6 +22,7 @@ import Dashboard2 from "./pages/Dashboard2";
 import Section1 from "./pages/Report/Section1";
 import Report from "./pages/Report/Report";
 import Awards from "./pages/additionalForms/Awards";
+import AuthorshipForm from "./pages/additionalForms/AuthorshipForm";
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.profile.profile);
@@ -46,7 +47,7 @@ function App() {
         <Route exact path="/dash/:id" element={<Dashboard />} />
         <Route exact path="/role/:id/:c_id/:r_id" element={<CriticalRole />} />
         <Route exact path="/judging/:id/:j_id" element={<Judging />} />
-        <Route exact path="/authorship/:id/:au_id" element={<Authorship2 />} />
+        <Route exact path="/authorship/:id" element={<Authorship2 />} />
         <Route exact path="/awards/:id" element={<Awards />} />
         <Route exact path="/awards/:id/:c_id" element={<Awards />} />
         <Route exact path="/company" element={<CompanyRoleDisplay />} />
@@ -56,6 +57,7 @@ function App() {
         <Route exact path="/final/:id/:f_id" element={<FinalMerits2 />} />
         <Route exact path="/todo" element={<ToDoList />} />
         <Route exact path="/dash2/:id" element={<Dashboard2 />} />
+        <Route exact path="/authorship/:id/:au_id" element={<AuthorshipForm/>}/>
         <Route exact path="/report/:id" element={<Report />} />
       </Routes>
     </>
