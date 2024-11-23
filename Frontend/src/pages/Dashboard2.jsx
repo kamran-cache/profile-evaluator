@@ -12,18 +12,23 @@ import { store } from "../redux/store";
 const Dashboard2 = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log("iddddd", id);
+
   const dispatch = useDispatch();
   dispatch(setId(id));
   useEffect(() => {
-   getData(id, dispatch);
-   console.log("gggggggggggggggg",store.getState());
+    getData(id, dispatch);
   }, [id, dispatch]);
   const authorshipData = useSelector((state) => state.authorship);
-console.log("aaaaaaaaaa",authorshipData)
-const firstExperienceId = useSelector(
-  (state) => state.awards.awards[0]?.experience
-);
+  const prData = useSelector((state) => state.pressRelease.pressReleases);
+  console.log(prData, "prData");
+  const totalLength = prData.length;
+  const completedCount = prData.filter(
+    (el) => el.status === "completed"
+  ).length;
+
+  const firstExperienceId = useSelector(
+    (state) => state.awards.awards[0]?.experience
+  );
   const experienceClick = () => {
     // Pass only the roleName, not the event object
     navigate("/role/:id/:c_id/:r_id");
@@ -32,8 +37,9 @@ const firstExperienceId = useSelector(
   const authorshipClick = () => {
     // Pass only the roleName, not the event object
     // navigate(`/authorship/${id}/:au_id`);
-    navigate(`/authorship/${id}/${store.getState().authorship.authorshipData[0]._id}`);
-
+    navigate(
+      `/authorship/${id}/${store.getState().authorship.authorshipData[0]._id}`
+    );
   };
   const awardsClick = () => {
     // Pass only the roleName, not the event object
@@ -47,7 +53,7 @@ const firstExperienceId = useSelector(
 
   const pressReleaseClick = () => {
     // Pass only the roleName, not the event object
-    navigate("/pr/:id/:pr_id");
+    navigate(`/pr/${id}/${prData[0]._id}`);
   };
 
   const exibitionClick = () => {
@@ -153,9 +159,15 @@ const firstExperienceId = useSelector(
               </div>
               <div className="items">
                 <div className="flex">
-                  <FaCircleCheck className="text-xl mr-[0.5rem] mt-1 text-gray-400" />
+                  <FaCircleCheck
+                    className={`text-xl mr-[0.5rem] mt-1 ${
+                      completedCount === totalLength ? "text-green-600" : ""
+                    } text-gray-400`}
+                  />
                   <div>
-                    <p className="font-medium text-medium">Press Release</p>
+                    <p className="font-medium text-medium">
+                      Press Release {completedCount}/{totalLength}
+                    </p>
                     <p className="sub-items">
                       Please provide details of any press release experience,
                       including media coverage, interviews, or publications.

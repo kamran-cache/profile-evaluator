@@ -51,6 +51,7 @@ function App() {
         <Route exact path="/awards/:id/:c_id" element={<Awards />} />
         <Route exact path="/company" element={<CompanyRoleDisplay />} />
         <Route exact path="/company2" element={<CompanyRoleDisplayAlt />} />
+        <Route exact path="/pr/:id/" element={<PressRelease2 />} />
         <Route exact path="/pr/:id/:pr_id" element={<PressRelease2 />} />
         <Route exact path="/exibition/:id/:e_id" element={<Exibition2 />} />
         <Route exact path="/final/:id/:f_id" element={<FinalMerits2 />} />

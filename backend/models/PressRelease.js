@@ -4,7 +4,7 @@ const prSchema = new mongoose.Schema(
   {
     articleType: {
       type: String,
-      required: true,
+
       enum: ["Online", "Print"],
     },
     title: {
@@ -13,12 +13,16 @@ const prSchema = new mongoose.Schema(
     },
     publication: {
       type: String,
-      required: true,
     },
     publicationDate: Date,
     link: String,
     author: String,
     industry: String,
+    status: {
+      type: String,
+      enum: ["pending", "completed"],
+      default: "pending",
+    },
   },
   { timestamps: true }
 );
