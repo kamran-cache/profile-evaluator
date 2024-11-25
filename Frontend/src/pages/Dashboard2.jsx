@@ -42,7 +42,7 @@ const firstExperienceId = useSelector(
 
   const judgingClick = () => {
     // Pass only the roleName, not the event object
-    navigate("/judging/:id/:j_id");
+    navigate(`/judging/${id}/${store.getState().judging.judgingRecords?.[0]?._id}`);
   };
 
   const pressReleaseClick = () => {

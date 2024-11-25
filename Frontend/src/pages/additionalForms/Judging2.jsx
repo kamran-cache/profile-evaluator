@@ -5,11 +5,12 @@ import {
   addJudging,
   setFormField,
 } from "../../redux/AdditionalForms/JudgingSlice2";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Judging = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { currentForm, judging } = useSelector((state) => state.judgings);
 
@@ -58,10 +59,21 @@ const Judging = () => {
   const judgingData = useSelector((state) => state.judging);
   console.log(judgingData, "jdata");
 
-  const currentJudgedData = judgingData.judgingRecords.find(
+  const filteredData = judgingData.judgingRecords.filter(
     (el) => el._id === j_id
   );
-  console.log(currentJudgedData, "curr");
+  console.log(filteredData, "curr");
+
+  const isDataAvailable = filteredData.length > 0;
+
+  // if(judgingData){
+  //   const firstId = judgingData.judgingRecords?.[0]?._id;
+  //   console.log(firstId , "firstID");
+  // }
+
+  const handleJudgingClick = (j_id) => {
+    navigate(`/judging/${id}/${j_id}`);
+  };
 
   return (
     <>
@@ -72,7 +84,7 @@ const Judging = () => {
               Judging List
             </div>
             {/* Render previous forms as collapsed content */}
-            {currentJudgedData && currentJudgedData.count > 0 && (
+            {/* {currentJudgedData && currentJudgedData.count > 0 && (
               <div className="w-full">
                 {Array.from({ length: currentJudgedData.count }).map(
                   (_, index) => (
@@ -86,8 +98,29 @@ const Judging = () => {
                     </div>
                   )
                 )}
-              </div>
-            )}
+                </div>
+            )} */}
+            <div className="w-full">
+              {judgingData &&
+                judgingData.judgingRecords.map((content, index) => (
+                  <div
+                    key={content._id}
+                    className="my-3 p-3 border border-gray-300 bg-gradient-to-r from-white to-gray-100 cursor-pointer"
+                    onClick={() => handleJudgingClick(content._id)}
+                  >
+                    <p className="font-bold">Judged at {content.category}</p>
+                    <p>{content.count} times</p>
+
+                    <ul className="list-disc pl-5">
+                      {Array.from({ length: content.count }, (_, index) => (
+                        <li key={index}>
+                          {content.category} {index + 1}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
 
