@@ -1,28 +1,27 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import MultiStepForm from "./pages/Index";
+import MultiStepForm from "./ProfileEvaluator/pages/Index";
 import { Routes, Route } from "react-router-dom";
-import Dashboard from "./components/Basic/Dashboard";
-import Login from "./pages/Login";
-import CriticalRole from "./pages/additionalForms/CriticalRole";
-import Judging from "./pages/additionalForms/Judging2";
-import Authorship2 from "./pages/additionalForms/Authorship2";
-import CompanyRoleDisplay from "./others/Company";
-import CompanyRoleDisplayAlt from "./others/Company2";
-import PressRelease2 from "./pages/additionalForms/PressRelease2";
-import Exibition2 from "./pages/additionalForms/Exibition2";
-import FinalMerits2 from "./pages/additionalForms/FinalMerits2";
-import ToDoList from "./others/todo";
+import Dashboard from "./ProfileEvaluator/components/Basic/Dashboard";
+import Login from "./ProfileEvaluator/pages/Login";
+import CriticalRole from "./ProfileEvaluator/pages/additionalForms/CriticalRole";
+import Judging from "./ProfileEvaluator/pages/additionalForms/Judging2";
+import Authorship2 from "./ProfileEvaluator/pages/additionalForms/Authorship2";
+import CompanyRoleDisplay from "./ProfileEvaluator/others/Company";
+import CompanyRoleDisplayAlt from "./ProfileEvaluator/others/Company2";
+import PressRelease2 from "./ProfileEvaluator/pages/additionalForms/PressRelease2";
+import Exibition2 from "./ProfileEvaluator/pages/additionalForms/Exibition2";
+import FinalMerits2 from "./ProfileEvaluator/pages/additionalForms/FinalMerits2";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getData } from "./utils/Data";
-import { store } from "./redux/store";
-import { fetchProfile } from "./redux/profileData";
-import Dashboard2 from "./pages/Dashboard2";
-import Section1 from "./pages/Report/Section1";
-import Report from "./pages/Report/Report";
-import Awards from "./pages/additionalForms/Awards";
-import AuthorshipForm from "./pages/additionalForms/AuthorshipForm";
+import { getData } from "./ProfileEvaluator/utils/Data";
+import { store } from "./ProfileEvaluator/redux/store";
+import { fetchProfile } from "./ProfileEvaluator/redux/profileData";
+import Dashboard2 from "./ProfileEvaluator/pages/Dashboard2";
+import Section1 from "./ProfileEvaluator/pages/Report/Section1";
+import Report from "./ProfileEvaluator/pages/Report/Report";
+import Awards from "./ProfileEvaluator/pages/additionalForms/Awards";
+import AuthorshipForm from "./ProfileEvaluator/pages/additionalForms/AuthorshipForm";
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.profile.profile);
@@ -56,7 +55,6 @@ function App() {
         <Route exact path="/pr/:id/:pr_id" element={<PressRelease2 />} />
         <Route exact path="/exibition/:id/:e_id" element={<Exibition2 />} />
         <Route exact path="/final/:id/:f_id" element={<FinalMerits2 />} />
-        <Route exact path="/todo" element={<ToDoList />} />
         <Route exact path="/dash2/:id" element={<Dashboard2 />} />
         <Route exact path="/authorship/:id/:au_id" element={<AuthorshipForm/>}/>
         <Route exact path="/report/:id" element={<Report />} />
