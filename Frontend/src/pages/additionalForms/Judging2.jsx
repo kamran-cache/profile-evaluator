@@ -30,7 +30,7 @@ const Judging = () => {
         { data: updatedJudging }
       );
       if (response) {
-        dispatch(addJudging()); // Add the current form to experiences
+        // dispatch(addJudging()); // Add the current form to experiences
         setIsOpen(!isOpen);
       }
     }
@@ -105,19 +105,13 @@ const Judging = () => {
                 judgingData.judgingRecords.map((content, index) => (
                   <div
                     key={content._id}
-                    className="my-3 p-3 border border-gray-300 bg-gradient-to-r from-white to-gray-100 cursor-pointer"
+                    className="my-3 p-3 border border-gray-300 bg-gradient-to-r from-white to-gray-100 cursor-pointer rounded-lg"
                     onClick={() => handleJudgingClick(content._id)}
                   >
-                    <p className="font-bold">Judged at {content.category}</p>
-                    <p>{content.count} times</p>
-
-                    <ul className="list-disc pl-5">
-                      {Array.from({ length: content.count }, (_, index) => (
-                        <li key={index}>
-                          {content.category} {index + 1}
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="flex flex-col justify-center text-lg text-center mt-2">
+                    <p className="text-gray-700 font-medium">Judged at {content.category}</p>
+                    <p className="text-gray-700 font-medium">{Array.isArray(content.main) ? content.main.length : 0}/{content.count}</p>
+                    </div>
                   </div>
                 ))}
             </div>
@@ -133,15 +127,17 @@ const Judging = () => {
                 Judging
               </div>
               {/* Toggle Form Button */}
-              <button
+              {/* <button
                 className="w-fit mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                 onClick={() => setIsOpen(!isOpen)}
               >
                 {isOpen ? "Collapse Form" : "Add Projects"}
-              </button>
+              </button> */}
 
               {/* Toggle Form */}
-              {isOpen && (
+              {isDataAvailable && 
+              (filteredData[0].main.length < filteredData[0].count ||
+                filteredData[0].main.length === 0) ? (
                 <form className="w-full pr-12" onSubmit={handleAddForm}>
                   <div className="-mx-3 flex flex-wrap">
                     <div className="w-full px-3">
@@ -273,6 +269,32 @@ const Judging = () => {
                     Add Project
                   </button>
                 </form>
+              ): (
+                isDataAvailable &&
+                filteredData[0].main.length === filteredData[0].count &&
+                filteredData[0].main.map((item, index) => (
+                  <div
+                    key={index}
+                    className="mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-lg hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out"
+                  >
+                    <div className="flex justify-center text-xl text-center font-semibold text-blue-600">
+                      Judging {index + 1} details:
+                    </div>
+                    <div className="flex flex-col gap-4 justify-center text-lg text-center mt-2">
+                      <div className="text-gray-700 font-medium flex">
+                        <div className="font-normal "> Organization </div> :{" "}
+                        {item.organizationName}
+                      </div>
+                      <div className="text-gray-700 font-medium flex">
+                        <div className="font-normal "> criteria : </div>{" "}
+                        {item.criteria}
+                      </div>
+                      <div className="text-gray-700 font-medium flex">
+                        <div className="font-normal "> link : </div> {item.link}
+                      </div>
+                    </div>
+                  </div>
+                ))
               )}
             </div>
           </div>
