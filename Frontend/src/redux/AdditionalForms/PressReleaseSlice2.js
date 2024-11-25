@@ -4,7 +4,7 @@ const initialState = {
   press: [], // Stores the experience form data
   currentForm: {
     title: "",
-    publisher: "",
+    publication: "",
     date: "",
     link: "",
     author: "",
@@ -26,7 +26,7 @@ const pressSlice = createSlice({
       // Reset the form
       state.currentForm = {
         title: "",
-        publisher: "",
+        publication: "",
         date: "",
         link: "",
         author: "",
@@ -40,6 +40,5 @@ const pressSlice = createSlice({
   },
 });
 
-export const { setFormField, addPress, resetForm } =
-pressSlice.actions;
+export const { setFormField, addPress, resetForm } = pressSlice.actions;
 export default pressSlice.reducer;

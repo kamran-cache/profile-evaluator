@@ -7,13 +7,19 @@ import {
 } from "../../redux/AdditionalForms/ExibitionSlice";
 import { store } from "../../redux/store";
 import { getData } from "../../utils/Data";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const Exibition2 = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  const { id, e_id } = useParams();
   const { currentForm, exibition } = useSelector((state) => state.exibition);
+
+  const exhibitionData = useSelector((state) => state.exhibition.forms);
+  const filteredData = exhibitionData.filter((el) => el._id === e_id);
+  const isDataAvailable = filteredData.length > 0;
+  console.log(filteredData, "data");
 
   // Handle input change for form fields
   const handleInputChange = (e) => {
@@ -53,7 +59,6 @@ const Exibition2 = () => {
     setIsOpenArray(updatedIsOpenArray);
   };
 
-  const { id, e_id } = useParams();
   // calling the api to store the values in the states after the page is refreshed
   useEffect(() => {
     if (id) {
@@ -62,6 +67,10 @@ const Exibition2 = () => {
     }
     console.log(store.getState(), "datauseEffect", "user");
   }, [id, dispatch]);
+  const handleExhibition = (exhibition_id) => {
+    console.log(exhibition_id);
+    navigate(`/exibition/${id}/${exhibition_id}`);
+  };
 
   return (
     <div className="flex p-8">
@@ -71,11 +80,12 @@ const Exibition2 = () => {
             Exibitions List
           </div>
           {/* Render previous forms as collapsed content */}
-          {exibition.length > 0 && (
+          {exhibitionData.length > 0 && (
             <div className="mb-4">
-              {exibition.map((formContent, index) => (
+              {exhibitionData.map((formContent, index) => (
                 <div
                   key={index}
+                  onClick={() => handleExhibition(formContent._id)}
                   className="w-[20vw] mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-lg hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out"
                 >
                   <div className="flex justify-center text-xl text-center font-semibold text-blue-600">
@@ -83,7 +93,8 @@ const Exibition2 = () => {
                   </div>
                   <div className="flex justify-center text-lg text-center mt-2">
                     <p className="text-gray-700 font-medium">
-                      {formContent.title}
+                      {formContent.role} {formContent.main.length}/
+                      {formContent.count}
                     </p>
                   </div>
                 </div>
@@ -98,16 +109,11 @@ const Exibition2 = () => {
             <div className="flex text-2xl font-semibold mb-[1.5vh]">
               Exibitions
             </div>
-            {/* Toggle Form Button */}
-            <button
-              className="w-fit mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? "Collapse Form" : "Add Exibition"}
-            </button>
 
             {/* Toggle Form */}
-            {isOpen && (
+            {isDataAvailable &&
+            (filteredData[0].main.length < filteredData[0].count ||
+              filteredData[0].main.length === 0) ? (
               <form className="w-full pr-12" onSubmit={handleAddForm}>
                 <div className="-mx-3 flex flex-wrap">
                   <div className="w-full px-3">
@@ -240,6 +246,35 @@ const Exibition2 = () => {
                   Add Exibition
                 </button>
               </form>
+            ) : (
+              isDataAvailable &&
+              filteredData[0].main.length === filteredData[0].count &&
+              filteredData[0].main.map((item, index) => (
+                <div
+                  key={index}
+                  className="mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-lg hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out"
+                >
+                  <div className="flex justify-center text-xl text-center font-semibold text-blue-600">
+                    Exhibition {index + 1} details:
+                  </div>
+                  <div className="flex flex-col gap-4 justify-center text-lg text-center mt-2">
+                    <div className="text-gray-700 font-medium flex ">
+                      <div className="font-normal ">Title</div> : {item.title}
+                    </div>
+                    <div className="text-gray-700 font-medium flex">
+                      <div className="font-normal "> Organization </div> :{" "}
+                      {item.organization}
+                    </div>
+                    <div className="text-gray-700 font-medium flex">
+                      <div className="font-normal "> criteria : </div>{" "}
+                      {item.criteria}
+                    </div>
+                    <div className="text-gray-700 font-medium flex">
+                      <div className="font-normal "> link : </div> {item.link}
+                    </div>
+                  </div>
+                </div>
+              ))
             )}
           </div>
         </div>

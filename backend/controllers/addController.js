@@ -420,7 +420,11 @@ exports.addPR = async (req, res) => {
     const profile = await Profile.findById(req.params.id);
     if (!profile) return res.status(404).json({ error: "Profile not found" });
     const savedData = [];
-    for (const pressRelease of pressReleases) {
+
+    const pressReleasesArray = Array.isArray(pressReleases)
+      ? pressReleases
+      : [pressReleases];
+    for (const pressRelease of pressReleasesArray) {
       // Convert date strings to Date objects
 
       const newPressRelease = new PressRelease(pressRelease);

@@ -161,7 +161,7 @@ module.exports.updateAuthorship = async (req, res) => {
 module.exports.updatePressRelease = async (req, res) => {
   try {
     const pressId = req.params.pressId;
-    const updatedData = req.body.data;
+    const updatedData = { ...req.body.data, status: "completed" };
 
     const updatedPR = await PressRelease.findByIdAndUpdate(
       pressId,
