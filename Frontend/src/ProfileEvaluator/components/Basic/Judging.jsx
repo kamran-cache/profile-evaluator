@@ -102,7 +102,7 @@ const JudgingForm = () => {
                   <div className="-mx-3 flex flex-wrap">
                     <div className="w-full px-3">
                       <div className="mb-5">
-                        <div className="container flex justify-between">
+                        <div className="container h-[3rem] flex justify-between">
                           <label className="mb-3 block text-base text-[#07074D]">
                             Where did you judge?
                           </label>
@@ -111,7 +111,7 @@ const JudgingForm = () => {
                           </label>
                         </div>
 
-                        <div className="bg-white border w-full rounded mt-1 shadow-lg ">
+                        <div className="bg-white border px-4 py-2 w-full rounded mt-1 shadow-lg ">
                           {[
                             "awards",
                             "journals",

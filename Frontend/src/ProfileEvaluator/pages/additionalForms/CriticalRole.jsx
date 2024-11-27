@@ -169,7 +169,7 @@ const CriticalRole = () => {
         <Sidebar />
         {/* Timeline */}
         <div className="w-full md:w-1/3 ml-10 pr-4">
-          <div className="flex w-[70%] justify-center mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-2 px-3 shadow-md hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out text-2xl font-bold text-blue-600">
+          <div className="flex w-full justify-center mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-2 px-3 shadow-md hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out text-2xl font-bold text-blue-600">
             Companies
           </div>
           <div className="space-y-4">
@@ -220,9 +220,9 @@ const CriticalRole = () => {
         <div className="flex w-2/3 h-[88vh]">
           <div className="flex flex-col justify-between w-full  rounded-xl border shadow-lg bg-white">
             {/* Scrollable form content */}
-            <div className="overflow-y-auto overflow-x-hidden w-full h-[85vh] py-4 scrollbar-transparent flex flex-col items-center mt-[1.5vh]">
+            <div className="overflow-y-auto overflow-x-hidden w-full h-[85vh] py-4 scrollbar-transparent flex flex-col items-center mt-[1vh]">
               {/* Heading */}
-              <div className="text-2xl font-semibold mb-[2vh] flex flex-row items-center justify-start  w-full">
+              <div className="text-2xl font-semibold mb-[2vh] ml-8 flex flex-row items-center justify-start  w-full">
                 {company ? company.company : "company"}{" "}
                 <FaAngleRight className="mt-1" />
                 {role ? role.jobTitle : "role"}{" "}
@@ -231,20 +231,20 @@ const CriticalRole = () => {
               </div>
               <div className="tabs flex  gap-2">
                 {/* Toggle Form Button */}
-                <button
+                {/* <button
                   className="w-fit mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                   onClick={() => setTab(0)}
                 >
                   Projects
-                </button>
+                </button> */}
 
                 {/* Toggle Awards Button */}
-                <button
+                {/* <button
                   className="w-fit mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                   onClick={() => setTab(1)}
                 >
                   Awards
-                </button>
+                </button> */}
               </div>
 
               {tab === 1 && !isOpenAwards && (
@@ -281,7 +281,7 @@ const CriticalRole = () => {
               {tab === 0 && !isOpen && (
                 <>
                   {projects.length > 0 && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:mt-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-4 md:mt-8">
                       {projects.map((formContent, index) => (
                         <div
                           key={index}
@@ -299,9 +299,10 @@ const CriticalRole = () => {
                       ))}
                     </div>
                   )}
+                  <p className="font-medium text-gray-700">Please provide details of all the projects you have completed while serving as {role ? role.jobTitle : "role"} at {company ? company.company : "company"}</p>
                   <div
                     onClick={() => setIsOpen(!isOpen)}
-                    className="w-[20vw] mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-lg hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out"
+                    className="mt-2 px-4 py-2 bg-green-500 text-white rounded cursor-pointer hover:bg-green-600"
                   >
                     Add Projects
                   </div>

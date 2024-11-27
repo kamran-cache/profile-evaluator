@@ -29,9 +29,11 @@ const Dashboard2 = () => {
   const firstExperienceId = useSelector(
     (state) => state.awards.awards[0]?.experience
   );
+
+  const firstExperience = store.getState().experience.experiences?.[0];
   const experienceClick = () => {
     // Pass only the roleName, not the event object
-    navigate("/role/:id/:c_id/:r_id");
+    navigate(`/role/${id}/${firstExperience?._id}/${firstExperience.roles?.[0]?._id}`);
   };
 
   const authorshipClick = () => {
@@ -48,6 +50,7 @@ const Dashboard2 = () => {
     // Pass only the roleName, not the event object
     navigate(`/judging/${id}/${store.getState().judging.judgingRecords?.[0]?._id}`);
   };
+  console.log(store.getState(), "store");
 
   const pressReleaseClick = () => {
     // Pass only the roleName, not the event object
@@ -56,12 +59,13 @@ const Dashboard2 = () => {
 
   const exibitionClick = () => {
     // Pass only the roleName, not the event object
-    navigate("/exibition/:id/:e_id");
+    navigate(`/exibition/${id}/${store.getState().exhibition.forms?.[0]?._id}`);
   };
 
+  const firstmerit = store.getState().finalMerits.forms?.[0];
   const meritsClick = () => {
     // Pass only the roleName, not the event object
-    navigate("/final/:id/:f_id");
+    navigate(`/final/${id}/${firstmerit?._id}`);
   };
 
   return (

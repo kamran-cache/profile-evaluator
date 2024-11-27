@@ -266,6 +266,7 @@ const Authorship2 = () => {
                                     formContent.patentNumber}
                                 </p>
                               </div>
+                              <div className="w-full flex justify-center mt-4">
                               <button
                                 className={`w-fit mb-4 px-4 py-2 rounded transition-all duration-300 ${
                                   localStorage.getItem(
@@ -287,6 +288,7 @@ const Authorship2 = () => {
                                   ? "Completed"
                                   : "Fill Application"}
                               </button>
+                              </div>
                             </div>
                           ))}
                         </div>

@@ -17,7 +17,7 @@ const judgingSlice = createSlice({
   name: "judging",
   initialState,
   reducers: {
-    setFormField: (state, action) => {
+    setFormField2: (state, action) => {
       const { name, value } = action.payload;
       state.currentForm[name] = value;
     },
@@ -40,6 +40,6 @@ const judgingSlice = createSlice({
   },
 });
 
-export const { setFormField, addJudging, resetForm } =
+export const { setFormField2, addJudging, resetForm } =
 judgingSlice.actions;
 export default judgingSlice.reducer;

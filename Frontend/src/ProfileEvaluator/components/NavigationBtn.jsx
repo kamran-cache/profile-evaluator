@@ -529,7 +529,7 @@ const NavigationBtn = ({ data, api, section }) => {
           navigate(`/role/${id}`);
         }
       }
-      navigate(`/dash/${id}`);
+      navigate(`/dash2/${id}`);
       console.log("API Response:", response);
     } catch (error) {
       console.error("Error in API request:", error);

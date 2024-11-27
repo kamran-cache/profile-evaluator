@@ -137,14 +137,14 @@ const Awards = () => {
     <div key={id} className="flex p-8">
       <Sidebar />
       <div className="w-full md:w-1/3 ml-10 pr-4">
-        <div className="sorting text-xl mb-2 ml-2 font-metropolis">
+        <div className="sorting text-xl mb-2 ml-2 font-medium font-metropolis">
           Apply filter to see awards:
         </div>
 
         <select
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          className="flex text-xl w-[70%] justify-center mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-2 px-3 shadow-md hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out  font-bold text-blue-600"
+          className="flex text-xl w-full justify-center mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-2 px-3 shadow-md hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out  font-bold text-blue-600 text-center"
         >
           {/* <option value="">Filter Awards</option> */}
           <option value="0">Company</option>
@@ -173,7 +173,7 @@ const Awards = () => {
       <div className="flex w-2/3 h-[88vh]">
         <div className="flex flex-col justify-between w-full rounded-xl border shadow-lg bg-white">
           <div className="overflow-y-auto w-full h-[85vh] py-4 px-3 flex flex-col items-center mt-[1.5vh]">
-            <div className="text-2xl  font-semibold mb-[2vh] flex flex-row items-center justify-start w-full">
+            <div className="text-2xl  font-semibold mb-[2vh] ml-4 flex flex-row items-center justify-start w-full">
               {selectedCompany ? selectedCompany.company : ""}
               {selectedCompany ? <FaAngleRight className="mt-1" /> : ""}
 
@@ -181,11 +181,12 @@ const Awards = () => {
             </div>
 
             {filteredAwards.length > 0 && !isFormOpen ? (
+              <>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:mt-8">
                 {filteredAwards.map((award, index) => (
                   <div
                     key={index}
-                    className="w-[20vw] mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-lg hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out"
+                    className="mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-lg hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out"
                   >
                     <div className="flex justify-center text-xl text-center font-semibold text-blue-600">
                       Award {index + 1}
@@ -200,15 +201,17 @@ const Awards = () => {
                     </div>
                   </div>
                 ))}
-                <div className="addAwards">
+                
+              </div>
+              <div className="addAwards">
                   <button
                     onClick={() => setIsFormOpen(!isFormOpen)}
-                    className="w-[20vw] text-primary font-medium text-xl  mb-4 rounded-lg border border-gray-300 bg-gradient-to-r from-white to-gray-100 py-4 px-6 shadow-lg hover:shadow-xl cursor-pointer transition-shadow duration-300 ease-in-out"
+                    className=" px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
                   >
                     Add Awards
                   </button>
                 </div>
-              </div>
+              </>
             ) : (
               <div className="text-gray-500 mt-4 flex flex-col">
                 {!isFormOpen && (

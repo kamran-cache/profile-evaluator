@@ -65,7 +65,7 @@ const FinalMerits2 = () => {
     const updatedIsOpenArray = [...isOpenArray];
     updatedIsOpenArray[index] = !updatedIsOpenArray[index]; // Toggle only the clicked section
     setIsOpenArray(updatedIsOpenArray);
-  };
+  }; 
   const { id, f_id } = useParams();
   // calling the api to store the values in the states after the page is refreshed
   useEffect(() => {
